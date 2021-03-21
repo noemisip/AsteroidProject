@@ -72,9 +72,15 @@ public class Asteroid implements Steppable, Transport {
 	public void DecreaseLayer() {             //Cs�kkenti az aszteroida r�tegeinek a sz�m�t.
 		Controller cnt = new Controller();
 		cnt.PrintFunc("DecreaseLayer()");
-	    if(layer>0) --layer;
+		System.out.println("How many layers does the Asteroid have?:");
+		layer = new Scanner(System.in).nextInt();
+		if (layer > 0) {
+			SetLayer(layer - 1);
+			System.out.println("The layer is reduced!");
+		} else {
+			System.out.println("No more layer, Mine!");
+		}
 	}
-	
 	public void Explosion() {                //Felrobban az aszteroida. 
 		Controller cnt = new Controller();
 		cnt.PrintFunc("Explosion()");
@@ -145,6 +151,12 @@ public class Asteroid implements Steppable, Transport {
 			    creature.Die();
 			}
 		}
+	}
+
+	public void SetLayer(int i){
+		Controller cnt = new Controller();
+		cnt.PrintFunc("SetLayer(int i)");
+		layer = i;
 	}
 
 	public void SetSpace(Space sp) {
