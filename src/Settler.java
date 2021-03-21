@@ -25,17 +25,20 @@ public class Settler extends Creature {
 
 	public void RestoreMaterial(Material m) { //a telepes visszahelyez egy nyersanyagot az aszteroidára, amin épp áll
 		Controller c = new Controller();
-		c.PrintFunc("RestroreMaterial(m)");
+		c.SetTab(1);
+		c.PrintFunc("RestoreMaterial(m)");
 
 		if(asteroid.GetMaterial()==null && asteroid.GetLayer()==0){ //a telepes csak abban az esetben helyezi el a nyersanyagot, ha
 			RemoveMaterial(m);										//az aszteroida üreges és nincs rajta  kéreg
 			asteroid.SetMaterial(m);
 		}
+		c.SetTab(-1);
 	}
 
 	
 	public void Mine() { //e telepes bányászik az aszteroidán
 		Controller c = new Controller();
+		c.SetTab(1);
 		c.PrintFunc("Mine()");
 
 		Material m = asteroid.GetMaterial();
@@ -43,6 +46,7 @@ public class Settler extends Creature {
 			m.ReactToMine(asteroid, this);
 			Game.getInstance().CheckBase(asteroid); //a játék ellenőrzi, hogy fel tudják-e építeni a telpesek a bázist az aszteroidán
 		}
+		c.SetTab(-1);
 	}
 
 	

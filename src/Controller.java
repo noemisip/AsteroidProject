@@ -313,7 +313,6 @@ public class Controller {
 		System.out.println("-----Teszteset vege----");
 		inTest=false;
 	}
-
 	public void AsteroidExplosionandGameOver(){
 	    //A teszthez szükséges objektumok létrehozása
 		Asteroid b = new Asteroid();          //Ide kerül a robot, miután felrobbant az "a" aszteroida
@@ -421,6 +420,7 @@ public class Controller {
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSteppable(a);
 		s.SetAsteroid(a);
+
 		System.out.println("Settler mines:");
 		tab = 0;
 		inTest=true;

@@ -72,9 +72,15 @@ public class Asteroid implements Steppable, Transport {
 	public void DecreaseLayer() {             //Cs�kkenti az aszteroida r�tegeinek a sz�m�t.
 		Controller cnt = new Controller();
 		cnt.PrintFunc("DecreaseLayer()");
-	    if(layer>0) --layer;
+		System.out.println("How many layers does the Asteroid have?:");
+		layer = new Scanner(System.in).nextInt();
+		if (layer > 0) {
+			SetLayer(layer - 1);
+			System.out.println("The layer is reduced!");
+		} else {
+			System.out.println("No more layer, Mine!");
+		}
 	}
-	
 	public void Explosion() {                //Felrobban az aszteroida. 
 		Controller cnt = new Controller();
 		cnt.PrintFunc("Explosion()");
@@ -123,21 +129,28 @@ public class Asteroid implements Steppable, Transport {
 	
 	public void RemoveCreature(Creature c) {  //Kivesz egy Creature objektumot a creatures list�b�l.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("RemoveCreature(Creature c)");
 
 		creatures.remove(c);
+
+		cnt.SetTab(-1);
 	}
 	
 	public void Transport(Creature c) {      //Utaztatja a l�nyeket, a l�ny be�ll�tja mag�t az �j aszteroid�ra
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("Transport(Creature c)");
 
 		AddCreature(c);
 		c.SetAsteroid(this);
+
+		cnt.SetTab(-1);
 	}
 	
 	public void SolarStorm() {              //Az aszteroida napviharba ker�l.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("SolarStorm()");
 
 		if(layer != 0 || material != null){ //Ha a rajta tart�zkod� utaz�k nem tudnak elb�jni, akkor meghalnak.
@@ -145,11 +158,20 @@ public class Asteroid implements Steppable, Transport {
 			    creature.Die();
 			}
 		}
+		cnt.SetTab(-1);
+	}
+
+	public void SetLayer(int i){
+		Controller cnt = new Controller();
+		cnt.PrintFunc("SetLayer(int i)");
+		layer = i;
 	}
 
 	public void SetSpace(Space sp) {
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("SetSpace(Space sp)");
 		space=sp;
+		cnt.SetTab(-1);
 	}
 }
