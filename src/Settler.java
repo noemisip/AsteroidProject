@@ -73,10 +73,10 @@ public class Settler extends Creature {
 	public void PlaceGate() { //a telepes lehelyez egy kaput az aszteroidára
 		Controller c = new Controller();
 		c.PrintFunc("PlaceGate(a)");
-
-		asteroid.AddNeighbour(gates.get(0)); //az aszteroida új szomszédot kap a kapun keresztül
+		Gate g2=gates.get(0).GetPair();
+		asteroid.AddNeighbour(g2); //az aszteroida új szomszédot kap a kapun keresztül
 		gates.get(0).SetAsteroid(asteroid); //beállítja, hogy a kapu melyik aszteroidán helyezkedik el
-		gates.remove(0); //a telepes kitölri a kaput a listjából.
+		RemoveGate(gates.get(0)); //a telepes kitölri a kaput a listjából.
 	}
 
 	
@@ -134,4 +134,11 @@ public class Settler extends Creature {
 		Die(); //a telpes meghal a robbanás következtében
 	}
 
+	public void RemoveGate(Gate g){
+		Controller c = new Controller();
+		c.SetTab(1);
+		c.PrintFunc("RemoveGate(Gate g)");
+		gates.remove(g);
+		c.SetTab(-1);
+	}
 }
