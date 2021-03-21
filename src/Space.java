@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Space implements Steppable {
 	
 	private ArrayList<Asteroid> asteroids; // az űrben található aszteroidák listája
-	private ArrayList<Creature> creatures; // az űrben tartozkodó Creature-ök listája
+	private ArrayList<Creature> creatures; // az űrben tartozkodó Creature-ök listája 
 
 	public Space(){
 		asteroids= new ArrayList<Asteroid>();
