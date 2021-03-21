@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Space implements Steppable {
 	
-	private ArrayList<Asteroid> asteroids; // az űrben található aszteroidák listája
-	private ArrayList<Creature> creatures; // az űrben tartozkodó Creature-ök listája 
+	private ArrayList<Asteroid> asteroids; // az urben talalható aszteroidak listaja
+	private ArrayList<Creature> creatures; // az urben tartozkodo Creature-ok listaja 
 
 	public Space(){
 		asteroids= new ArrayList<Asteroid>();
 		creatures = new ArrayList<Creature>();
 	}
-	//hozzáadja a paraméterként megkapott Astreoid példányt az asteroids listához
+	//hozzaadja a parameterkent megkapott Astreoid peldanyt az asteroids listahoz
 	public void AddAsteroid(Asteroid a) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -18,7 +18,7 @@ public class Space implements Steppable {
 		cnt.SetTab(-1);		
 	}
 
-	//kiveszi a paraméterként megkapott Astreoid példányt az asteroids listából
+	//kiveszi a parameterkent megkapott Astreoid peldanyt az asteroids listabol
 	public void RemoveAsteroid(Asteroid a) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -27,7 +27,7 @@ public class Space implements Steppable {
         cnt.SetTab(-1);
     }
 
-	//hozzáadja a paraméterként megkapott Creature példányt az creatures listához
+	//hozzaadja a parameterkent megkapott Creature peldanyt az creatures listahoz
 	public void AddCreature(Creature c) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -36,7 +36,7 @@ public class Space implements Steppable {
     	cnt.SetTab(-1);
 	}
 
-	//kiveszi a paraméterként megkapott Creature példányt az creatures listából
+	//kiveszi a parameterkent megkapott Creature peldanyt az creatures listabol
 	public void RemoveCreature(Creature c) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -45,7 +45,7 @@ public class Space implements Steppable {
     	cnt.SetTab(-1);		
 	}
 
-	//minden körben eldönti, hogy lesz-e napvihar, azaz random meghívja az aszteroidák SolarStorm() fÃ¼ggvÃ©nyÃ©t	
+	//minden korben eldonti, hogy lesz-e napvihar, azaz random meghivja az aszteroidak SolarStorm() fuggvenyet	
 	public void Step() {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
