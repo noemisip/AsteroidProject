@@ -108,9 +108,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(1);
 		cnt.PrintFunc("Explosion()");
 
-		for(int i=0; i<creatures.size(); i++){
-			creatures.get(i).AsteroidExplosion();
-		}
+		while(creatures.size()!=0) creatures.get(0).AsteroidExplosion();
 		cnt.SetTab(-1);
 	}
 

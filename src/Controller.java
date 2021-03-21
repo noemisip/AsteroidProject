@@ -325,6 +325,7 @@ public class Controller {
 		//Aszteroida beállításai
 		a.SetMaterial(u);
 		a.AddCreature(s);
+		a.AddCreature(r);
 		a.SetSpace(sp);
 
 		//Robot és Settler beállításai
