@@ -16,7 +16,7 @@ public class Robot extends Creature implements Steppable {
 
 	public void WhereToMove() { //A robot eldönti, hogy melyik aszteroidára mozogjon
 		Controller c = new Controller();
-		c.InsertTab("WhereToMove()");
+		c.PrintFunc("WhereToMove()");
 
 		ArrayList<Transport> a = asteroid.GetNeighbours(); //lekerdezi annak az aszteroidanak a szomszedait, amin epp all
 		if(a.size()==0) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
@@ -25,14 +25,14 @@ public class Robot extends Creature implements Steppable {
 
 	public int NextStep() {//a robot eldonti, hogy a kovetkezo lepesben mit csinaljon
 		Controller c = new Controller();
-		c.InsertTab("NextStep(): 0");
+		c.PrintFunc("NextStep(): 0");
 
 		return 0; //az egyszeruseg kedveert most csak 0-val ter vissza
 	}
 
 	public void Step() { //a robot vegrehajtja a kivalasztott muveletet
 		Controller c = new Controller();
-		c.InsertTab("Step()");
+		c.PrintFunc("Step()");
 
 		int result = NextStep();
 		if(result == 0) Drill();
@@ -41,7 +41,7 @@ public class Robot extends Creature implements Steppable {
 	
 	public void Die() { // a robot meghal
 		Controller c = new Controller();
-		c.InsertTab("Die()");
+		c.PrintFunc("Die()");
 
 		asteroid.RemoveCreature(this); //a robot kitorlodik az aszterodia creture listajabol
 		asteroid.GetSpace().RemoveCreature(this); //a robot megkerdezi az aszteroidat, hogy melyik spaceben van és kitorlodik az space creture listajabol
@@ -50,7 +50,7 @@ public class Robot extends Creature implements Steppable {
 	
 	public void Move(Asteroid a) { //a robot a kiavlasztott aszteroidara mozog
 		Controller c = new Controller();
-		c.InsertTab("Move(a)");
+		c.PrintFunc("Move(a)");
 
 		asteroid.GetNeighbours(); //a robot megkapja, hogy melyik transport objektum fogja átvinni a másik aszteroidára
 		a.Transport(this); //meghívja az objektum transport függvényét
@@ -59,14 +59,14 @@ public class Robot extends Creature implements Steppable {
 	
 	public void AsteroidExplosion() { //a robot reagál az aszteroida felrobbanására
 		Controller c = new Controller();
-		c.InsertTab("AsteroidExplosion()");
+		c.PrintFunc("AsteroidExplosion()");
 
 		WhereToMove();
 	}
 	
 	public ArrayList<Material> GetMaterials() { //a robot megmondja, hogy milyen nyersanyagok vannak nala
 		Controller c = new Controller();
-		c.InsertTab("GetMaterials() : null");
+		c.PrintFunc("GetMaterials() : null");
 
 		return null; // a robotnál nincs nyersanyag
 	}

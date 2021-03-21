@@ -445,14 +445,16 @@ public class Controller {
 		inTest=false;
 	}
 
-	public void InsertTab(String s){
+	public void PrintFunc(String s){
 		if(inTest) {
-			tab++;
 			for (int i = 0; i < tab; i++) {
 				System.out.print("\t");
 			}
 			System.out.println(s);
 		}
+	}
+	public void SetTab(int i){
+		tab+=i;
 	}
 
 }

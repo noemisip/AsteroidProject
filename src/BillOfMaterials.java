@@ -11,7 +11,7 @@ public class BillOfMaterials {
 	public boolean CheckMaterials(ArrayList<Material> materials) {
 		//Összehasonlítja a paraméterül kapott material listával a saját materialList-jét.
 		Controller c = new Controller();
-		c.InsertTab("CheckMaterials(ArrayList<Material> materials;) : true/false");
+		c.PrintFunc("CheckMaterials(ArrayList<Material> materials;) : true/false");
 		int i=0;
 		while(materialList.size()!=0 && i<materials.size())
 		{
@@ -32,7 +32,7 @@ public class BillOfMaterials {
 	public void SetUpRobot() {
 		//Feltölti a materialList-et a robot megépítéséhez szükséges alapanyagokkal
 		Controller c = new Controller();
-		c.InsertTab("SetupRobot()");
+		c.PrintFunc("SetupRobot()");
 		//A teszt folyamán a robot építéséhez egy Iron és egy Carbon szükséges
 		//Ezekkel tölti fel a materialListet
 		materialList.add(new Iron());
@@ -42,7 +42,7 @@ public class BillOfMaterials {
 	public void SetUpGate() {
 		//Feltölti a materialList-et a teleportkapu megépítéséhez szükséges alapanyagokkal
 		Controller c = new Controller();
-		c.InsertTab("SetUPGate()");
+		c.PrintFunc("SetUPGate()");
 		//A teszt folyamán a teleportkapu építéséhez egy Uranium és egy Iron szükséges
 		//Ezekkel tölti fel a materialListet
 		materialList.add(new Uranium());
@@ -52,7 +52,7 @@ public class BillOfMaterials {
 	public void SetUpBase() {
 		//Feltölti a materialList-et az ûrbázis megépítéséhez szükséges alapanyagokkal
 		Controller c = new Controller();
-		c.InsertTab("SetUpBase()");
+		c.PrintFunc("SetUpBase()");
 		//A teszt folyamán a teleportkapu építéséhez egy Carbon szükséges
 		//Ezzel tölti fel a materialListet
 		materialList.add(new Carbon());
@@ -61,7 +61,7 @@ public class BillOfMaterials {
 	public void RemoveMaterials(Settler s) {
 		//A paraméterül kapott telepes material listájából kitörli a materialList-ben található alapanyagokat
 		Controller c = new Controller();
-		c.InsertTab("RemoveMaterials(s)");
+		c.PrintFunc("RemoveMaterials(s)");
 		//A materialList összes elemét kitörli a settler materialjai közül egyenként
 		for (int m=0;m< materialList.size();m++)
 		{
@@ -72,7 +72,7 @@ public class BillOfMaterials {
 	public void RemoveMaterialFromList(Material m) {
 		//Kitörli a materialList-bõl a paraméterként kapott materialt.
 		Controller c = new Controller();
-		c.InsertTab("RemoveMaterials(s)");
+		c.PrintFunc("RemoveMaterials(s)");
 		materialList.remove(m);
 	}
 }

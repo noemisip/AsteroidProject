@@ -25,7 +25,7 @@ public class Settler extends Creature {
 
 	public void RestoreMaterial(Material m) { //a telepes visszahelyez egy nyersanyagot az aszteroidára, amin épp áll
 		Controller c = new Controller();
-		c.InsertTab("RestroreMaterial(m)");
+		c.PrintFunc("RestroreMaterial(m)");
 
 		if(asteroid.GetMaterial()==null && asteroid.GetLayer()==0){ //a telepes csak abban az esetben helyezi el a nyersanyagot, ha
 			RemoveMaterial(m);										//az aszteroida üreges és nincs rajta  kéreg
@@ -36,7 +36,7 @@ public class Settler extends Creature {
 	
 	public void Mine() { //e telepes bányászik az aszteroidán
 		Controller c = new Controller();
-		c.InsertTab("Mine()");
+		c.PrintFunc("Mine()");
 
 		Material m = asteroid.GetMaterial();
 		if(asteroid.GetLayer()==0 && materials.size()<10 && m!=null) { //ellenőrzi, hogy tud-e bányászni
@@ -48,7 +48,7 @@ public class Settler extends Creature {
 	
 	public void CreateRobot() { //a telepes létrehoz egy robotot
 		Controller c = new Controller();
-		c.InsertTab("CreateRobot()");
+		c.PrintFunc("CreateRobot()");
 
 		bill.SetUpRobot(); //bill attributum material listáját beállítja a robothoz szükségesekre
 		if(bill.CheckMaterials(materials)){ //elenőrzi, hogy megvan-e a szükséges mennyiségű nyersanyag
@@ -63,7 +63,7 @@ public class Settler extends Creature {
 	
 	public void CreateGate() { //a telepes létrehoz egy teleportkapu-párt
 		Controller c = new Controller();
-		c.InsertTab("CreateGate()");
+		c.PrintFunc("CreateGate()");
 
 		bill.SetUpGate(); //bill attributum material listáját beállítja a kapuhoz szükségesekre
 		if(bill.CheckMaterials(materials)){ //elenőrzi, hogy megvan-e a szükséges mennyiségű nyersanyag
@@ -80,7 +80,7 @@ public class Settler extends Creature {
 	
 	public void PlaceGate() { //a telepes lehelyez egy kaput az aszteroidára
 		Controller c = new Controller();
-		c.InsertTab("PlaceGate(a)");
+		c.PrintFunc("PlaceGate(a)");
 
 		asteroid.AddNeighbour(gates.get(0)); //az aszteroida új szomszédot kap a kapun keresztül
 		gates.get(0).SetAsteroid(asteroid); //beállítja, hogy a kapu melyik aszteroidán helyezkedik el
@@ -90,33 +90,33 @@ public class Settler extends Creature {
 	
 	public void AddMaterial(Material m) { //a telepes felvesz egy nyerssanyagot a listájába
 		Controller c = new Controller();
-		c.InsertTab("AddMaterial(m)");
+		c.PrintFunc("AddMaterial(m)");
 
 		materials.add(m);
 	}
 	
 	public void RemoveMaterial(Material m) { //a telepes kitöröl egy nyerssanyagot a listájából
 		Controller c = new Controller();
-		c.InsertTab("RemoveMaterial(m)");
+		c.PrintFunc("RemoveMaterial(m)");
 	}
 	
 	public void AddGate(Gate g) { //a telepes egy kaput készített és felveszi a listájába
 		Controller c = new Controller();
-		c.InsertTab("AddGate(g)");
+		c.PrintFunc("AddGate(g)");
 
 		gates.add(g);
 	}
 	
 	public ArrayList<Material> GetMaterials() { //a telepes visszaadja a néla lévő nyersanyagok listáját
 		Controller c = new Controller();
-		c.InsertTab("Getmaterials() : materials");
+		c.PrintFunc("Getmaterials() : materials");
 
 		return materials;
 	}
 	
 	public void Die() { //a telepes meghal
 		Controller c = new Controller();
-		c.InsertTab("Die()");
+		c.PrintFunc("Die()");
 
 		asteroid.RemoveCreature(this);//a telpes kitorlodik az aszterodia creture listajabol
 		asteroid.GetSpace().RemoveCreature(this); //a telpes megkerdezi az aszteroidat, hogy melyik spaceben van és kitorlodik az space creture listajabol
@@ -126,7 +126,7 @@ public class Settler extends Creature {
 	
 	public void Move(Asteroid a) { //a telepes a kivalasztott aszteroidara mozog
 		Controller c = new Controller();
-		c.InsertTab("Move(a)");
+		c.PrintFunc("Move(a)");
 
 		asteroid.GetNeighbours(); //a telepes megkapja, hogy melyik transport objektum fogja átvinni a másik aszteroidára
 		a.Transport(this); //meghívja az objektum transport függvényét
@@ -136,7 +136,7 @@ public class Settler extends Creature {
 	
 	public void AsteroidExplosion() { //a telepes reagál az aszteroida felrobbanására
 		Controller c = new Controller();
-		c.InsertTab("AsteroidExplosion()");
+		c.PrintFunc("AsteroidExplosion()");
 
 		Die(); //a telpes meghal a robbanás következtében
 	}

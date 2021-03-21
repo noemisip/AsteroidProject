@@ -12,35 +12,35 @@ public class Space implements Steppable {
 	//hozzáadja a paraméterként megkapott Astreoid példányt az asteroids listához
 	public void AddAsteroid(Asteroid a) {
 		Controller c = new Controller();
-		c.InsertTab("AddAsteroid(Asteroid a)");
+		c.PrintFunc("AddAsteroid(Asteroid a)");
 		asteroids.add(a); 
 	}
 
 	//kiveszi a paraméterként megkapott Astreoid példányt az asteroids listából
 	public void RemoveAsteroid(Asteroid a) {
 		Controller c = new Controller();
-		c.InsertTab("RemoveAsteroid(Asteroid a)");
+		c.PrintFunc("RemoveAsteroid(Asteroid a)");
 		asteroids.remove(a);
 	}
 
 	//hozzáadja a paraméterként megkapott Creature példányt az creatures listához
 	public void AddCreature(Creature c) {
 		Controller cnt = new Controller();
-		cnt.InsertTab("AddCreature(Creature c)");
+		cnt.PrintFunc("AddCreature(Creature c)");
 		creatures.add(c);
 	}
 
 	//kiveszi a paraméterként megkapott Creature példányt az creatures listából
 	public void RemoveCreature(Creature c) {
 		Controller cnt = new Controller();
-		cnt.InsertTab("RemoveCreature(Creature c)");
+		cnt.PrintFunc("RemoveCreature(Creature c)");
 		creatures.remove(c);
 	}
 
 	//minden körben eldöbti, hogy lesz-e napvihar, azaz random meghívja az aszteroidák SolarStorm() függvényét	
 	public void Step() {
 		Controller c = new Controller();
-		c.InsertTab("Step()");
+		c.PrintFunc("Step()");
 		for (Asteroid a : asteroids) {
 			a.SolarStorm();
 		}

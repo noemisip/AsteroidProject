@@ -14,7 +14,7 @@ public class Uranium extends Material {
 	public void ReactToMine(Asteroid a, Settler s) {
 		// Akkor hívódik meg ha ásnak az aszteroidán
 		Controller c = new Controller();
-		c.InsertTab("ReactToMine(Asteroid a, Settler s)");
+		c.PrintFunc("ReactToMine(Asteroid a, Settler s)");
 		a.SetMaterial(null); // kiszedi az aszteroidából az eddig bennelévő anyagot, így üres lesz
 		s.AddMaterial(this); //hozzáadja a kibányászott anyagot a settler materialjaihoz
 	}
@@ -22,7 +22,7 @@ public class Uranium extends Material {
 	public void ReactToSunclose(Asteroid a) {
 		// Akkor hívódik meg, ha az aszteroida napközelben van
 		Controller c = new Controller();
-		c.InsertTab("ReactToSunclose(Asteroid a)");
+		c.PrintFunc("ReactToSunclose(Asteroid a)");
 
 		a.Explosion(); // felrobban az aszteroida
 	}
@@ -30,8 +30,7 @@ public class Uranium extends Material {
 	public boolean IsEquales(Material m) {
 		// ellenőrzi, hogy a megadott material ugyanolyan fajta- e, mint az osztály
 		Controller c = new Controller();
-		c.InsertTab("IsEquales(Material m)");
-		c.InsertTab("true/false");
+		c.PrintFunc("IsEquales(Material m): true/false");
 		return m.getClass()==this.getClass();
 	}
 	

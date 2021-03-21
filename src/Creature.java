@@ -18,7 +18,7 @@ public abstract class Creature {
 	public abstract void Die(); //a creature meghal
 	public void Drill() { //a creature fúr az aszteroida köpenyén
 		Controller c = new Controller();
-		c.InsertTab("Drill()");
+		c.PrintFunc("Drill()");
 
 		asteroid.DecreaseLayer();
 	}
@@ -29,7 +29,7 @@ public abstract class Creature {
 	
 	public void SetAsteroid(Asteroid a) { //a creature asteroid attruibutumának értékét állítja be
 		Controller c = new Controller();
-		c.InsertTab("SetAsteroid(a)");
+		c.PrintFunc("SetAsteroid(a)");
 
 		asteroid=a;
 	}

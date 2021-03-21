@@ -29,13 +29,17 @@ public class Game {
 	
 	//ellenőrzi, hogy a játékban vannak-e még életben telepesek, ha nem, meghívja a játékot befejező EndGame() függvényt
 	public void CheckSettlers() {
-		System.out.print("CheckSettlers()");
+		Controller cnt = new Controller();
+		cnt.PrintFunc("CheckSettlers()");
+
 		EndGame(true);
 	}
 	
 	//megviszgálja, hogy megvannak-e az űrbázis felépítéséhez szükséges nyersanyagok, ha igen meghívja a játékot befejező EndGame() függvényt
 	public void CheckBase(Asteroid a) {
-		System.out.print("CheckBase(Asteroid a)");
+		Controller cnt = new Controller();
+		cnt.PrintFunc("CheckBase(Asteroid a)");
+
 		ArrayList<Creature> creatures = new ArrayList<>();
 		creatures = a.GetCreatures();
 		ArrayList<Material> materials = new ArrayList<>();
@@ -51,19 +55,22 @@ public class Game {
 	
 	//a játék befejésekor meghívódó függvény
 	public void EndGame(boolean result) {
-		System.out.print("EndGame(booelan result)");
+		Controller cnt = new Controller();
+		cnt.PrintFunc("EndGame(booelan result)");
 			
 	}
 
 	//a játék kezdetekor meghívódó függvény	
 	public void StartGame() {
-		System.out.print("StartGame()");
+		Controller cnt = new Controller();
+		cnt.PrintFunc("StartGame()");
+
 	}
 	
 	//egy kör a játékban: először a telepesek cselekvései vegződnek el, majd a Steppeble objektumok lépései
 	public void Round() {
 		Controller c = new Controller();
-		c.InsertTab("Round()");
+		c.PrintFunc("Round()");
 		while (onGame) {
 			for (Settler s : settlers) {
 				Action(s);
@@ -77,42 +84,42 @@ public class Game {
 	//egy telepes által végrehajtható műveletek (utazás, fúrás, bányászás, visszahelyezés, robot vagy kapu építés)	
 	public void Action(Settler s) {
 		Controller c = new Controller();
-		c.InsertTab("Action(Settler s)");
+		c.PrintFunc("Action(Settler s)");
 
 	}
 
 	//egy telepes halálakor kiveszi a settlers listából	
 	public void RemoveSettler(Settler s) {
 		Controller c = new Controller();
-		c.InsertTab("RemoveSettler(Settler s)");
+		c.PrintFunc("RemoveSettler(Settler s)");
 		settlers.remove(s);
 	}
 	
 	//egy telepest hozzáad a settlers listához
 	public void AddSettler(Settler s) {
 		Controller c = new Controller();
-		c.InsertTab("AddSettler(Settler s)");
+		c.PrintFunc("AddSettler(Settler s)");
 		settlers.add(s);
 	}
 	
 	//kiveszi a paraméterként kapott Steppable példányt a steppable listából
 	public void RemoveSteppable(Steppable s) {
 		Controller c = new Controller();
-		c.InsertTab("RemoveSteppable(Steppable s)");
+		c.PrintFunc("RemoveSteppable(Steppable s)");
 		steppable.remove(s);
 	}
 	
 	//hozzáadja a steppable listához a paraméterként megkapott Steppable példányt
 	public void AddSteppable(Steppable s) {
 		Controller c = new Controller();
-		c.InsertTab("AddSteppable(Steppable s)");
+		c.PrintFunc("AddSteppable(Steppable s)");
 		steppable.add(s);
 	}
 	
 	//addig hívogatja meg a Round() függvényt amíg az onGame attribútum igaz
 	public void OnGame() {
 		Controller c = new Controller();
-		c.InsertTab("OnGame()");
+		c.PrintFunc("OnGame()");
 		Round();
 	}
 }
