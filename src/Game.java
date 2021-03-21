@@ -40,11 +40,10 @@ public class Game {
 		Controller cnt = new Controller();
 		cnt.PrintFunc("CheckBase(Asteroid a)");
 
-		ArrayList<Creature> creatures = new ArrayList<>();
-		creatures = a.GetCreatures();
+		ArrayList<Creature> creatures = a.GetCreatures();
 		ArrayList<Material> materials = new ArrayList<>();
 		for (Creature c : creatures) { 
-			materials = c.GetMaterials(); 
+			materials.addAll(c.GetMaterials());
 			bill.SetUpBase();
 			boolean result = bill.CheckMaterials(materials); 
 			if (result)
