@@ -21,6 +21,7 @@ public class BillOfMaterials {
 			//Ha megáll a ciklus, és a j még kisebb, mint a lista mérete, akkor talált egyezést, így törölni kell
 			//a materialListbõl
 			if(j<materialList.size()) RemoveMaterialFromList(materialList.get(j));
+			i++;
 		}
 		//Ha a BillOfMaterials materialListájából az összes alapanyag kitörlõdött,
 		//akkor a settlernek van elég alapanyaga, így építhet.

@@ -19,7 +19,7 @@ public class Robot extends Creature implements Steppable {
 		c.InsertTab("WhereToMove()");
 
 		ArrayList<Transport> a = asteroid.GetNeighbours(); //lekerdezi annak az aszteroidanak a szomszedait, amin epp all
-		if(a==null) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
+		if(a.size()==0) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
 		else Move(a.get(0).GetAsteroid()); //a robot mozog
 	}
 

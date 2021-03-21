@@ -70,8 +70,9 @@ public class Asteroid implements Steppable, Transport {
 	
 	public void Explosion() {                //Felrobban az aszteroida. 
 	    System.out.println("Explosion()");
-	    for(Creature creature : creatures){
-		    creature.AsteroidExplosion();
+
+	    for(int i=0; i<creatures.size(); i++){
+			creatures.get(i).AsteroidExplosion();
 	    }                
 	}
 	

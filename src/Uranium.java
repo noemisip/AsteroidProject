@@ -22,7 +22,8 @@ public class Uranium extends Material {
 	public void ReactToSunclose(Asteroid a) {
 		// Akkor hívódik meg, ha az aszteroida napközelben van
 		Controller c = new Controller();
-		c.InsertTab(" ReactToSunclose(Asteroid a)");
+		c.InsertTab("ReactToSunclose(Asteroid a)");
+
 		a.Explosion(); // felrobban az aszteroida
 	}
 	

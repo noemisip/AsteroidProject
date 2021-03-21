@@ -315,7 +315,6 @@ public class Controller {
 	}
 
 	public void AsteroidExplosionandGameOver(){
-	    System.out.println("Asteroid Explosion and GameOver:");
 	    //A teszthez szükséges objektumok létrehozása
 		Asteroid b = new Asteroid();          //Ide kerül a robot, miután felrobbant az "a" aszteroida
 		Uranium u = new Uranium();
@@ -327,6 +326,7 @@ public class Controller {
 		//Aszteroida beállításai
 		a.SetMaterial(u);
 		a.AddCreature(s);
+		a.SetSpace(sp);
 
 		//Robot és Settler beállításai
 		r.SetAsteroid(a);
@@ -338,7 +338,7 @@ public class Controller {
 		Game.getInstance().AddSteppable(b);
 
 		//A teszteset elindítása 
-		System.out.println("Robot moves to neighbour asteroid:");
+		System.out.println("Asteroid Explosion and GameOver:");
 		tab = 0;
 		inTest=true;
 		a.Step();
@@ -376,6 +376,9 @@ public class Controller {
 		//Settler beállításai
 		s.AddMaterial(i);
 		s.AddMaterial(c);
+
+		s.SetAsteroid(a);
+		a.SetSpace(sp);
 
 		//A teszteset elindítása
 		System.out.println("Create Robot:");
