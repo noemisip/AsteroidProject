@@ -15,6 +15,7 @@
 public class Gate implements Transport {    // A teleportkaput reprezent�l� oszt�ly.
 	private Asteroid asteroid;              //Az az aszteroida, amire a Gate p�ld�nyt elhelyezt�k.
 	private Gate pair;                      //Az adott kapu p�rja. 
+
 	public void SetPair(Gate g) {           //Be�ll�tja, hogy melyik kapup�r a p�rja.
 	    System.out.println("SetPair()");
 	    pair = g; 

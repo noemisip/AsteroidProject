@@ -4,10 +4,9 @@ public class Game {
 
 	private boolean onGame = true; //azt mutatja, hogy tart-e még a játék, alapból true értéket kap
 	private Space space; //a játékszítere, a világűr
-	private ArrayList<Steppable> steppable; //a játékban résztvevő léptethető dolgok listája
-	private ArrayList<Settler> settlers; //a játékban résztvevő telepesek listája
-	private Material BaseList; //SetUPBase() metódus által feltöltött lista, azon anyagokból áll, amik egy bázis építéséhez szükségesek
-	private BillOfMaterials bill; //a bázis megépítéséhez szükséges nyersanyagok meglétét ellenőrzi
+	private static ArrayList<Steppable> steppable; //a játékban résztvevő léptethető dolgok listája
+	private static ArrayList<Settler> settlers; //a játékban résztvevő telepesek listája
+	private static BillOfMaterials bill; //a bázis megépítéséhez szükséges nyersanyagok meglétét ellenőrzi
 
 
 	private static Game INSTANCE;
@@ -17,6 +16,10 @@ public class Game {
 
 	//mivel a Game osztály egy singleton, ezért létrehozzunk az egyetlen példány, amivel dolgozni fogunk
 	public static Game getInstance() {
+		steppable = new ArrayList<Steppable>();
+		settlers = new ArrayList<Settler>();
+		bill=  new BillOfMaterials();
+
 		if(INSTANCE == null) {
 			INSTANCE = new Game(); //ide nem StartGame kene?
 		}

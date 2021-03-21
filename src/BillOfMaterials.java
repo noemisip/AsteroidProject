@@ -4,7 +4,10 @@ public class BillOfMaterials {
 	//private Material GateList;
 	//ezt a listát a SetUP() metódusok töltik fel, attól függõen, hogy robot, teleportkapu, vagy bázis építését vizsgáljuk
 	private ArrayList<Material> materialList;
-	
+
+	public BillOfMaterials(){
+		materialList= new ArrayList<Material>();
+	}
 	public boolean CheckMaterials(ArrayList<Material> materials) {
 		//Összehasonlítja a paraméterül kapott material listával a saját materialList-jét.
 		Controller c = new Controller();

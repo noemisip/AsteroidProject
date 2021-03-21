@@ -5,6 +5,10 @@ public class Space implements Steppable {
 	private ArrayList<Asteroid> asteroids; // az űrben található aszteroidák listája
 	private ArrayList<Creature> creatures; // az űrben tartozkodó Creature-ök listája
 
+	public Space(){
+		asteroids= new ArrayList<Asteroid>();
+		creatures = new ArrayList<Creature>();
+	}
 	//hozzáadja a paraméterként megkapott Astreoid példányt az asteroids listához
 	public void AddAsteroid(Asteroid a) {
 		Controller c = new Controller();

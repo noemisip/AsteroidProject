@@ -17,6 +17,12 @@ public class Settler extends Creature {
 	private ArrayList<Gate> gates; //a telepesnél lévő kapuk
 	private BillOfMaterials bill; //a robot és kapu építéséhez szükséseg nyersanyagok megépítését segítő objektum
 
+	public Settler(){
+		materials= new ArrayList<Material>();
+		gates = new ArrayList<Gate>();
+		bill = new BillOfMaterials();
+	}
+
 	public void RestoreMaterial(Material m) { //a telepes visszahelyez egy nyersanyagot az aszteroidára, amin épp áll
 		Controller c = new Controller();
 		c.InsertTab("RestroreMaterial(m)");
