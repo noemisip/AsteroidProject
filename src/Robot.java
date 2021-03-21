@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Robot extends Creature implements Steppable {
 
-	public void WhereToMove() { //A robot eldönti, hogy melyik aszteroidára mozogjon
+	public void WhereToMove() { //A robot eldonti, hogy melyik aszteroidara mozogjon
 		Controller c = new Controller();
 		c.SetTab(1);
 		c.PrintFunc("WhereToMove()");
@@ -50,13 +50,13 @@ public class Robot extends Creature implements Steppable {
 		c.SetTab(1);
 		c.PrintFunc("Move(a)");
 
-		asteroid.GetNeighbours(); //a robot megkapja, hogy melyik transport objektum fogja átvinni a másik aszteroidára
-		a.Transport(this); //meghívja az objektum transport függvényét
+		asteroid.GetNeighbours(); //a robot megkapja, hogy melyik transport objektum fogja atvinni a masik aszteroidára
+		a.Transport(this); //meghivja az objektum transport fuggvenyet
 		asteroid.RemoveCreature(this); //a robot kitorlodik az aszterodia creture listajabol
 		c.SetTab(-1);
 	}
 	
-	public void AsteroidExplosion() { //a robot reagál az aszteroida felrobbanására
+	public void AsteroidExplosion() { //a robot reagal az aszteroida felrobbanasara
 		Controller c = new Controller();
 		c.SetTab(1);
 		c.PrintFunc("AsteroidExplosion()");
