@@ -8,135 +8,166 @@ public class Asteroid implements Steppable, Transport {
 	private ArrayList<Creature> creatures;             //Az aszteroid�n tal�lhat� Creature oszt�lyb�l sz�rmaz� objektumok list�ja.
 	private Material material;              //Az aszteroid�ban tal�lhat� nyersanyag. Ha �reges, ennek az �rt�ke null.
 	private ArrayList<Transport> neighbours;           //Azok az aszteroid�k, amelyekre a telepes eljuthat az adott aszteroid�r�l
-	
+
 	public Asteroid(){
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		creatures = new ArrayList<Creature>();
 		neighbours= new ArrayList<Transport>();
+		cnt.SetTab(-1);
 	}
 	public void AddCreature(Creature c) {   //Hozz�ad egy Creature objektumot a creatures list�hoz.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("AddCreature(Creature c)");
 		creatures.add(c);
+		cnt.SetTab(-1);
 	}
-	
+
 	public void AddNeighbour(Transport t) { //Hozz�ad egy aszteroid�t a neighbours list�hoz.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("AddNeighbour(Transport t)");
-	    neighbours.add(t);
+		neighbours.add(t);
+		cnt.SetTab(-1);
 	}
-	
+
 	public Asteroid GetAsteroid() {          //Az aszteroida objektum
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("GetAsteroid() : Asteroid");
-	    return this;
+		cnt.SetTab(-1);
+		return this;
 	}
-	
+
 	public boolean GetCloseToSun() {           //Igazzal t�r vissza, ha az aszteroida napk�zelben van.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("GetCloseToSun()");
-	    return closeToSun;
+		cnt.SetTab(-1);
+		return closeToSun;
 	}
-	
+
 	public ArrayList<Creature> GetCreatures() {     //Visszaadja az aszteroid�n l�v� l�nyeket.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("GetCreatures() : ArrayList<Creature>");
+		cnt.SetTab(-1);
+		return creatures;
+	}
 
-	    return creatures;
-	}
-	
 	public int GetLayer() {                   //Visszaadja az aszteroid�n l�v� aktu�lis r�tegek sz�m�t.
-	    System.out.println("GetLayer() : int");
-	    return layer;
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("GetLayer() : int");
+		cnt.PrintFunc("How many layers does the asteroid have?");
+		int  b = new Scanner(System.in).nextInt();
+		cnt.SetTab(-1);
+		return b;
 	}
-	
+
 	public Material GetMaterial() {          //Visszaadja az aszteroid�ban tal�lhat� nyersanyagot.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("GetMaterial() : material");
-	    return material;
+		cnt.SetTab(-1);
+		return material;
 	}
-	
+
 	public ArrayList<Transport> GetNeighbours() {  //Visszaadja azon aszteroid�k t�mbj�t, ahova mehet a l�ny
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("GetNeighbours() : ArrayList<Transport>");
-
-	    return neighbours;
+		cnt.SetTab(-1);
+		return neighbours;
 	}
-	
+
 	public Space GetSpace() {                //Visszaadja az �rt.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("GetSpace() : Space");
-
-	    return space;
+		cnt.SetTab(-1);
+		return space;
 	}
-	
+
 	public void DecreaseLayer() {             //Cs�kkenti az aszteroida r�tegeinek a sz�m�t.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
+
 		cnt.PrintFunc("DecreaseLayer()");
-		System.out.println("How many layers does the Asteroid have?:");
-		layer = new Scanner(System.in).nextInt();
-		if (layer > 0) {
-			SetLayer(layer - 1);
-			System.out.println("The layer is reduced!");
-		} else {
-			System.out.println("No more layer, Mine!");
-		}
+		cnt.PrintFunc("How many layers does the asteroid have?");
+		int  b = new Scanner(System.in).nextInt();
+		if(b>0) setLayer(b-1);
+
+
+		cnt.SetTab(-1);
 	}
-	public void Explosion() {                //Felrobban az aszteroida. 
+
+	public void Explosion() {                //Felrobban az aszteroida.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("Explosion()");
 
-	    for(int i=0; i<creatures.size(); i++){
+		for(int i=0; i<creatures.size(); i++){
 			creatures.get(i).AsteroidExplosion();
-	    }                
+		}
+		cnt.SetTab(-1);
 	}
-	
+
 	public void SetCloseToSun(boolean b) {    //Be�ll�tja az aszteroida napk�zels�g�t.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("SetCloseToSun(boolen b)");
 
-	    closeToSun=b;
+		closeToSun=b;
+		cnt.SetTab(-1);
 	}
-	
+
 	public void SetMaterial(Material m) {      //Be�ll�tja az aszteroid�ban tal�lhat� nyersanyagot.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("SetMaterial(Material m)");
 
 		material=m;
+		cnt.SetTab(-1);
 	}
-	
+
 	public void Step() {
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("Step()");
 
-		System.out.println("the asteroid is in sunclose?(0-No, 1-Yes):");
+		cnt.PrintFunc("the asteroid is in sunclose?(0-No, 1-Yes):");
 		int  a = new Scanner(System.in).nextInt();
 		if(a==0){
-		SetCloseToSun(false);              // beállítja az aszteroida napk�zels�g�t
+			SetCloseToSun(false);              // beállítja az aszteroida napk�zels�g�t
 		}else {SetCloseToSun(true);}
-		System.out.println("How many layers does the Asteroid have?:");
+		cnt.PrintFunc("How many layers does the Asteroid have?:");
 		int  b = new Scanner(System.in).nextInt();
 		if(closeToSun && b==0){
-		     material.ReactToSunclose(this);
+			material.ReactToSunclose(this);
 		}
+		cnt.SetTab(-1);
 
 	}
-	
+
 	public void RemoveNeighbour(Asteroid t) { //Kivesz egy aszteroid�t a neighbours list�b�l.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("RemoveNeighbour(Asteroid t)");
-	    neighbours.remove(t);
+		neighbours.remove(t);
+		cnt.SetTab(-1);
 	}
-	
+
 	public void RemoveCreature(Creature c) {  //Kivesz egy Creature objektumot a creatures list�b�l.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("RemoveCreature(Creature c)");
 
 		creatures.remove(c);
-
 		cnt.SetTab(-1);
 	}
-	
+
 	public void Transport(Creature c) {      //Utaztatja a l�nyeket, a l�ny be�ll�tja mag�t az �j aszteroid�ra
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
@@ -144,27 +175,20 @@ public class Asteroid implements Steppable, Transport {
 
 		AddCreature(c);
 		c.SetAsteroid(this);
-
 		cnt.SetTab(-1);
 	}
-	
+
 	public void SolarStorm() {              //Az aszteroida napviharba ker�l.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("SolarStorm()");
 
 		if(layer != 0 || material != null){ //Ha a rajta tart�zkod� utaz�k nem tudnak elb�jni, akkor meghalnak.
-			for(Creature creature : creatures){
-			    creature.Die();
+			for(Creature creature : creatures) {
+				creature.Die();
 			}
 		}
 		cnt.SetTab(-1);
-	}
-
-	public void SetLayer(int i){
-		Controller cnt = new Controller();
-		cnt.PrintFunc("SetLayer(int i)");
-		layer = i;
 	}
 
 	public void SetSpace(Space sp) {
@@ -174,4 +198,8 @@ public class Asteroid implements Steppable, Transport {
 		space=sp;
 		cnt.SetTab(-1);
 	}
+	public void setLayer(int l){
+		layer=l;
+	}
 }
+

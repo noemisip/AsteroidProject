@@ -411,16 +411,24 @@ public class Controller {
 		inTest=false;
 	}
 	public void SettlerMines(){
+		//A tesztesethez szükséges objektumok létrehozása
 		Settler s = new Settler();
 		Asteroid a = new Asteroid();
 		Carbon c = new Carbon();
+		
+		//Asztreoida beállítása
 		BillOfMaterials b = new BillOfMaterials(); 
 		a.SetMaterial(c);
 		a.AddCreature(s);
+		
+		//Game beállítása
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSteppable(a);
+		
+		//Settler beállítása
 		s.SetAsteroid(a);
 
+		//A teszteset elindítása
 		System.out.println("Settler mines:");
 		tab = 0;
 		inTest=true;
@@ -429,14 +437,23 @@ public class Controller {
 		inTest=false;
 	}
 	public void SolarStormInCaseWhenCreaturesCanHide(){
+		//A tesztesethez szükséges objektumok létrehozása
 		Settler s = new Settler();
 		Asteroid a = new Asteroid();
 		Robot r = new Robot();
+		
+		//Az aszteroida paramétereinek beállítása és a rétegek számának bekérése
 		a.SetMaterial(null);
 		a.AddCreature(s);
 		a.AddCreature(r);
+		
+		//Settler beállítása
 		s.SetAsteroid(a);
+		
+		//Robot beállítása
 		r.SetAsteroid(a);
+		
+		//A teszteset elindítása
 		System.out.println("SolarStorm on an asteroid where Robot and Settler can hide:");
 		tab = 0;
 		inTest=true;
