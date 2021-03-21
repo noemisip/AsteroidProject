@@ -123,21 +123,28 @@ public class Asteroid implements Steppable, Transport {
 	
 	public void RemoveCreature(Creature c) {  //Kivesz egy Creature objektumot a creatures list�b�l.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("RemoveCreature(Creature c)");
 
 		creatures.remove(c);
+
+		cnt.SetTab(-1);
 	}
 	
 	public void Transport(Creature c) {      //Utaztatja a l�nyeket, a l�ny be�ll�tja mag�t az �j aszteroid�ra
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("Transport(Creature c)");
 
 		AddCreature(c);
 		c.SetAsteroid(this);
+
+		cnt.SetTab(-1);
 	}
 	
 	public void SolarStorm() {              //Az aszteroida napviharba ker�l.
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("SolarStorm()");
 
 		if(layer != 0 || material != null){ //Ha a rajta tart�zkod� utaz�k nem tudnak elb�jni, akkor meghalnak.
@@ -145,11 +152,14 @@ public class Asteroid implements Steppable, Transport {
 			    creature.Die();
 			}
 		}
+		cnt.SetTab(-1);
 	}
 
 	public void SetSpace(Space sp) {
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("SetSpace(Space sp)");
 		space=sp;
+		cnt.SetTab(-1);
 	}
 }
