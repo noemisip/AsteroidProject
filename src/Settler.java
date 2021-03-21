@@ -26,7 +26,7 @@ public class Settler extends Creature {
 	public void RestoreMaterial(Material m) { //a telepes visszahelyez egy nyersanyagot az aszteroidára, amin épp áll
 		Controller c = new Controller();
 		c.SetTab(1);
-		c.PrintFunc("RestroreMaterial(m)");
+		c.PrintFunc("RestoreMaterial(m)");
 
 		if(asteroid.GetMaterial()==null && asteroid.GetLayer()==0){ //a telepes csak abban az esetben helyezi el a nyersanyagot, ha
 			RemoveMaterial(m);										//az aszteroida üreges és nincs rajta  kéreg
