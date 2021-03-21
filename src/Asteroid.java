@@ -58,8 +58,8 @@ public class Asteroid implements Steppable, Transport {
 	    return space;
 	}
 	
-	public void DecraseLayer() {             //Cs�kkenti az aszteroida r�tegeinek a sz�m�t.
-	    System.out.println("DecraseLayer()");
+	public void DecreaseLayer() {             //Cs�kkenti az aszteroida r�tegeinek a sz�m�t.
+	    System.out.println("DecreaseLayer()");
 	    if(layer>0){
 	        --layer;
 			System.out.println("The layer is reduced!");
