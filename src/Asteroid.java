@@ -184,7 +184,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.PrintFunc("SolarStorm()");
 
 		if(layer != 0 || material != null){ //Ha a rajta tart�zkod� utaz�k nem tudnak elb�jni, akkor meghalnak.
-			for(Creature creature : creatures){
+			for(Creature creature : creatures) {
 				creature.Die();
 			}
 		}
