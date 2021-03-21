@@ -1,4 +1,4 @@
 public interface Steppable {
-	//absztrakt függvény, illetve a Steppable elé nem kell az abstract?
+	//absztrakt fuggveny
 	public abstract void Step();
 }
