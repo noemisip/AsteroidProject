@@ -68,7 +68,7 @@ public class Controller {
 
 
 	public void SettlerDrills(){
-		// objektumok inicializálása, pálya felépítése
+		// objektumok inicializalasa, palya felepitese
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
 		Ice i = new Ice();
@@ -76,7 +76,7 @@ public class Controller {
 		a.AddCreature(s);
 		s.SetAsteroid(a);
 
-		// A teszteset elindítása a s Settlerre meghívott Drill függvénnyel
+		// A teszteset elinditasa a s Settlerre meghivott Drill fuggvennyel
 		System.out.println("Settler drills: ");
 		tab = 0;
 		inTest=true;
@@ -85,12 +85,12 @@ public class Controller {
 		inTest=false;
 	}
 	public void IceSublimateInSunclose(){
-		// objektumok inicializálása, pálya felépítése
+		// objektumok inicializalasa, palya felepitese
 		Asteroid a = new Asteroid();
 		Ice i = new Ice();
 		a.SetMaterial(i);
 
-		// A teszteset elindítása az a Asteroidára meghívott Step függvénnyel
+		// A teszteset elinditasa az a Asteroidara meghivott Step fuggvennyel
 		System.out.println("Ice sublimates in sunclose: ");
 		tab = 0;
 		inTest=true;
@@ -99,7 +99,7 @@ public class Controller {
 		inTest=false;
 	}
 	public void RobotChoosesToDrill(){
-		// objektumok inicializálása, pálya felépítése
+		// objektumok inicializalasa, palya felepitese
 		Asteroid a = new Asteroid();
 		Robot r = new Robot();
 		Ice i = new Ice();
@@ -107,7 +107,7 @@ public class Controller {
 		a.AddCreature(r);
 		r.SetAsteroid(a);
 
-		// A teszteset elindítása a Robotra meghívott Step függvénnyel
+		// A teszteset elinditasa a Robotra meghivott Step fuggvennyel
 		System.out.println("Robot chooses To Drill: ");
 		tab = 0;
 		inTest=true;
@@ -116,7 +116,7 @@ public class Controller {
 		inTest=false;
 	}
 	public void SettlerRestores(){
-		// objektumok inicializálása, pálya felépítése
+		// objektumok inicializalasa, palya felepitese
 		Asteroid a = new Asteroid();
 		Settler s = new Settler();
 		Ice i = new Ice();
@@ -125,7 +125,7 @@ public class Controller {
 		s.AddMaterial(i);
 		s.SetAsteroid(a);
 
-		// A teszteset elindítása a s Settlerre meghívott RestoreMaterial(i) függvénnyel
+		// A teszteset elinditasa a s Settlerre meghivott RestoreMaterial(i) fuggvennyel
 		System.out.println("Settler restores: ");
 		tab = 0;
 		inTest=true;
@@ -135,15 +135,15 @@ public class Controller {
 
 	}
 	public void SettlerMovesWithGate(){
-		//A teszthez szükséges objektumok létrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt áll kezdetben a telepes
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik át a telepes
-		Gate g1 = new Gate(); //az első aszteroidán található teleportkapu
-		Gate g2 = new Gate(); //a második aszteroidán található teleportkapu
-		Settler s = new Settler(); //a telepes példánya
-		Ice i = new Ice(); //a telepsnél lévő nyersanyag
+		//A teszthez szukseges objektumok letrehozasa
+		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a telepes
+		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a telepes
+		Gate g1 = new Gate(); //az elso aszteroidan talalhato teleportkapu
+		Gate g2 = new Gate(); //a masodik aszteroidan talalhato teleportkapu
+		Settler s = new Settler(); //a telepes peldanya
+		Ice i = new Ice(); //a telepsnel levo nyersanyag
 
-		//teleportkapu-pár elhelyezése az aszteroidákon + párjaik beállítása
+		//teleportkapu-par elhelyezese az aszteroidakon + parjaik beallitasa
 		g1.SetPair(g2);
 		g2.SetPair(g1);
 		g1.SetAsteroid(a1);
@@ -151,17 +151,17 @@ public class Controller {
 		a1.AddNeighbour(g1);
 		a2.AddNeighbour(g2);
 
-		//a settler példány elhelyezése az a1 aszteroidán
+		//a settler peldany elhelyezese az a1 aszteroidan
 		a1.AddCreature(s);
 		s.SetAsteroid(a1);
 		s.AddMaterial(i);
 
-		//Game osztályban való elhelyezés, a későbbi bázis ellenőrzés érdekében
+		//Game osztalyban valo elhelyezes, a kesobbi bazis ellenorzes erdekeben
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSteppable(a1);
 		Game.getInstance().AddSteppable(a2);
 
-		//A teszteset elindítása a settler osztály Move() függgvényének segítségével
+		//A teszteset elinditasa a settler osztaly Move() függgvényének segitsegevel
 		System.out.println("Settler moves with gate and check base:");
 		tab = 0;
 		inTest=true;
@@ -171,23 +171,23 @@ public class Controller {
 
 	}
 	public void SettlerMovesNeighbourAsteroid(){
-		//A teszthez szükséges objektumok létrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt áll kezdetben a telepes
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik át a telepes
-		Settler s = new Settler(); //a telepes példánya
-		Ice i = new Ice(); //a telepsnél lévő nyersanyag
+		//A teszthez szukseges objektumok letrehozása
+		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a telepes
+		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a telepes
+		Settler s = new Settler(); //a telepes peldanya
+		Ice i = new Ice(); //a telepsnel levo nyersanyag
 
-		//a settler példány elhelyezése az a1 aszteroidán
+		//a settler peldany elhelyezese az a1 aszteroidan
 		a1.AddCreature(s);
 		s.SetAsteroid(a1);
 		s.AddMaterial(i);
 
-		//Game osztályban való elhelyezés, a későbbi bázis ellenőrzés érdekében
+		//Game osztalyban valq elhelyezes, a kesobbi bazis ellenorzes erdekeben
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSteppable(a1);
 		Game.getInstance().AddSteppable(a2);
 
-		//A teszteset elindítása a settler osztály Move() függgvényének segítségével
+		//A teszteset elinditasa a settler osztaly Move() fugggvenyenek segitsegevel
 		System.out.println("Settler moves to neighbour asteroid and check base:");
 		tab = 0;
 		inTest=true;
@@ -197,14 +197,14 @@ public class Controller {
 
 	}
 	public void RobotMovesWithGate(){
-		//A teszthez szükséges objektumok létrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt áll kezdetben a telepes
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik át a telepes
-		Gate g1 = new Gate(); //az első aszteroidán található teleportkapu
-		Gate g2 = new Gate(); //a második aszteroidán található teleportkapu
-		Robot r = new Robot(); //robot példánya
+		//A teszthez szukseges objektumok letrehozása
+		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a telepes
+		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a telepes
+		Gate g1 = new Gate(); //az elso aszteroidan talalhato teleportkapu
+		Gate g2 = new Gate(); //a masodik aszteroidan talalhato teleportkapu
+		Robot r = new Robot(); //robot peldanya
 
-		//teleportkapu-pár elhelyezése az aszteroidákon + párjaik beállítása
+		//teleportkapu-par elhelyezese az aszteroidakon + parjaik beallitasa
 		g1.SetPair(g2);
 		g2.SetPair(g1);
 		g1.SetAsteroid(a1);
@@ -212,11 +212,11 @@ public class Controller {
 		a1.AddNeighbour(g1);
 		a2.AddNeighbour(g2);
 
-		//a robot példány elhelyezése az a1 aszteroidán
+		//a robot peldany elhelyezese az a1 aszteroidan
 		a1.AddCreature(r);
 		r.SetAsteroid(a1);
 
-		//A teszteset elindítása a settler osztály Move() függgvényének segítségével
+		//A teszteset elinditasa a settler osztaly Move() függgvenyenek segitsegevel
 		System.out.println("Robot moves with gate:");
 		tab = 0;
 		inTest=true;
@@ -226,16 +226,16 @@ public class Controller {
 
 	}
 	public void RobotMovesNeighbourAsteroid(){
-		//A teszthez szükséges objektumok létrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt áll kezdetben a robot
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik át a robot
-		Robot r = new Robot(); //robot példánya
+		//A teszthez szukseges objektumok letrehozása
+		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a robot
+		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a robot
+		Robot r = new Robot(); //robot peldanya
 
-		//a robot példány elhelyezése az a1 aszteroidán
+		//a robot peldany elhelyezése az a1 aszteroidan
 		a1.AddCreature(r);
 		r.SetAsteroid(a1);
 
-		//A teszteset elindítása a settler osztály Move() függgvényének segítségével
+		//A teszteset elinditasa a settler osztaly Move() fugggvenyenek segitsegevel
 		System.out.println("Robot moves to neighbour asteroid:");
 		tab = 0;
 		inTest=true;
@@ -244,7 +244,7 @@ public class Controller {
 		inTest=false;
 	}
 	public void SolarStormHitsSettlerAsteroid() {
-		//A pálya felépítése a tesztesethez
+		//A palya felepitese a tesztesethez
 		Settler s=new Settler();
 		Space sp=new Space();
 		Robot r=new Robot();
@@ -253,7 +253,7 @@ public class Controller {
 		Asteroid a2=new Asteroid();
 		Iron i=new Iron();
 
-		//s settler és r robot elhelyezése az a jég magú aszteroidán
+		//s settler es r robot elhelyezese az a jeg magu aszteroidan
 		a.SetMaterial(i);
 		a.AddCreature(s);
 		a.AddCreature(r);
@@ -261,14 +261,14 @@ public class Controller {
 		r.SetAsteroid(a);
 		a.SetSpace(sp);
 
-		//Az objektumok űrbe helyezése
+		//Az objektumok urbe helyezese
 		sp.AddAsteroid(a);
 		sp.AddAsteroid(a2);
 		sp.AddCreature(s);
 		sp.AddCreature(s2);
 		sp.AddCreature(r);
 
-		//s2 settler elhelyezése az a2 üres aszteroidán
+		//s2 settler elhelyezese az a2 ures aszteroidan
 		a2.AddCreature(s2);
 		s2.SetAsteroid(a2);
 		a2.SetMaterial(null);
@@ -279,7 +279,7 @@ public class Controller {
 		Game.getInstance().AddSteppable(sp);
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSettler(s2);
-		//A teszteset elindítása az asteroid osztály SolarStorm() függgvényének segítségével
+		//A teszteset elinditasa az asteroid osztaly SolarStorm() fugggvenyenek segitsegevel
 		System.out.println("SolarStorm hits Settler and Robot:");
 		tab = 0;
 		inTest=true;
@@ -288,12 +288,12 @@ public class Controller {
 		inTest=false;
 	}
 	public void RobotCannotMoveAndDies(){
-		//A pálya felépítése a tesztesethez
+		//A palya felepitese a tesztesethez
 		Space sp=new Space();
 		Robot r=new Robot();
 		Asteroid a=new Asteroid();
 
-		//r robot elhelyezése egy olyan a aszteroidára, amelynek nincs szomszédja
+		//r robot elhelyezese egy olyan a aszteroidara, amelynek nincs szomszedja
 		r.SetAsteroid(a);
 		a.AddCreature(r);
 		a.SetSpace(sp);
@@ -305,7 +305,7 @@ public class Controller {
 		Game.getInstance().AddSteppable(r);
 		Game.getInstance().AddSteppable(sp);
 
-		//A teszteset elindítása a robot osztály WhereToMove() függgvényének segítségével
+		//A teszteset elinditasa a robot osztaly WhereToMove() fugggvenyenek segitsegevel
 		System.out.println("Robot cannot move and dies:");
 		tab = 0;
 		inTest=true;
@@ -314,30 +314,30 @@ public class Controller {
 		inTest=false;
 	}
 	public void AsteroidExplosionandGameOver(){
-	    //A teszthez szükséges objektumok létrehozása
-		Asteroid b = new Asteroid();          //Ide kerül a robot, miután felrobbant az "a" aszteroida
+	    //A teszthez szukseges objektumok letrehozasa
+		Asteroid b = new Asteroid();          //Ide kerul a robot, miutan felrobbant az "a" aszteroida
 		Uranium u = new Uranium();
 	    Asteroid a = new Asteroid();          //Ez az aszteroida fog robbanni
 		Space sp = new Space();
-		Robot r = new Robot();               //Az aszteroidán lévő robot
-		Settler s = new Settler();           //Az aszteroidán lévő telepes
+		Robot r = new Robot();               //Az aszteroidan levo robot
+		Settler s = new Settler();           //Az aszteroidan levo telepes
 
-		//Aszteroida beállításai
+		//Aszteroida beallitasai
 		a.SetMaterial(u);
 		a.AddCreature(s);
 		a.AddCreature(r);
 		a.SetSpace(sp);
 
-		//Robot és Settler beállításai
+		//Robot és Settler beallitasai
 		r.SetAsteroid(a);
 		s.SetAsteroid(a);
 
-		//Singleton beállítása
+		//Singleton beallitasa
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSteppable(a);
 		Game.getInstance().AddSteppable(b);
 
-		//A teszteset elindítása 
+		//A teszteset elinditasa
 		System.out.println("Asteroid Explosion and GameOver:");
 		tab = 0;
 		inTest=true;
@@ -346,17 +346,17 @@ public class Controller {
 		inTest=false;
 	}
 	public void CreateGate(){
-	    //A teszthez szükséges objektumok létrehozása
+	    //A teszthez szukseges objektumok letrehozasa
 		Iron i = new Iron();
 		Uranium u = new Uranium();
 		Settler s = new Settler();
 		BillOfMaterials b = new BillOfMaterials();
 
-		//Settler beállításai
+		//Settler beallitasai
 		s.AddMaterial(i);
 		s.AddMaterial(u);
 		
-		//A teszteset elindítása 
+		//A teszteset elinditasa
 		System.out.println("Create Gate:");
 		tab = 0;
 		inTest=true;
@@ -365,7 +365,7 @@ public class Controller {
 		inTest=false;
 	}
 	public void CreateRobot(){
-	    //A teszthez szükséges objektumok létrehozása
+	    //A teszthez szukseges objektumok letrehozasa
 		Iron i = new Iron();
 		Carbon c = new Carbon();
 		Space sp = new Space();
@@ -373,14 +373,14 @@ public class Controller {
 		Settler s = new Settler();
         BillOfMaterials b = new BillOfMaterials();
 
-		//Settler beállításai
+		//Settler beallitasai
 		s.AddMaterial(i);
 		s.AddMaterial(c);
 
 		s.SetAsteroid(a);
 		a.SetSpace(sp);
 
-		//A teszteset elindítása
+		//A teszteset elinditasa
 		System.out.println("Create Robot:");
 		tab = 0;
 		inTest=true;
@@ -389,21 +389,21 @@ public class Controller {
 		inTest=false;
 	}
 	public void PlaceGateandRemovefromSettler(){
-		//A teszthez szükséges objektumok létrehozása
+		//A teszthez szukseges objektumok letrehozasa
 		Asteroid a1 = new Asteroid();
 		Gate g1 = new Gate();
 		Settler s = new Settler();
 		Gate g2 = new Gate();
 
-		//Aszteroida beállítása
+		//Aszteroida beallitasa
 		a1.AddCreature(s);
 
-		//Settler beállításai
+		//Settler beallitasai
 		s.AddGate(g1);
 		s.AddGate(g2);
 		s.SetAsteroid(a1);
 
-		//A teszteset elindítása 
+		//A teszteset elinditasa
 		System.out.println("Place Gate and Remove from Settler:");
 		tab = 0;
 		inTest=true;
@@ -412,24 +412,24 @@ public class Controller {
 		inTest=false;
 	}
 	public void SettlerMines(){
-		//A tesztesethez szükséges objektumok létrehozása
+		//A tesztesethez szukseges objektumok letrehozasa
 		Settler s = new Settler();
 		Asteroid a = new Asteroid();
 		Carbon c = new Carbon();
 		
-		//Asztreoida beállítása
+		//Asztreoida beallitasa
 		BillOfMaterials b = new BillOfMaterials(); 
 		a.SetMaterial(c);
 		a.AddCreature(s);
 		
-		//Game beállítása
+		//Game beallitasa
 		Game.getInstance().AddSettler(s);
 		Game.getInstance().AddSteppable(a);
 		
-		//Settler beállítása
+		//Settler beallitasa
 		s.SetAsteroid(a);
 
-		//A teszteset elindítása
+		//A teszteset elinditasa
 		System.out.println("Settler mines:");
 		tab = 0;
 		inTest=true;
@@ -438,23 +438,23 @@ public class Controller {
 		inTest=false;
 	}
 	public void SolarStormInCaseWhenCreaturesCanHide(){
-		//A tesztesethez szükséges objektumok létrehozása
+		//A tesztesethez szukseges objektumok letrehozasa
 		Settler s = new Settler();
 		Asteroid a = new Asteroid();
 		Robot r = new Robot();
 		
-		//Az aszteroida paramétereinek beállítása és a rétegek számának bekérése
+		//Az aszteroida parametereinek beallitasa es a retegek szamanak bekerese
 		a.SetMaterial(null);
 		a.AddCreature(s);
 		a.AddCreature(r);
 		
-		//Settler beállítása
+		//Settler beallitasa
 		s.SetAsteroid(a);
 		
-		//Robot beállítása
+		//Robot beallitasa
 		r.SetAsteroid(a);
 		
-		//A teszteset elindítása
+		//A teszteset elinditasa
 		System.out.println("SolarStorm on an asteroid where Robot and Settler can hide:");
 		tab = 0;
 		inTest=true;
