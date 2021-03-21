@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Asteroid implements Steppable, Transport {
-	private int layer;                      //Az aszteroida aktu�lis r�tegeinek sz�ma.
-	private boolean closeToSun;             //Igaz, ha az aszteroida �ppen napk�zelben van.
-	private Space space;                    //Ebben tal�lhat� meg az aszteroida.    
-	private ArrayList<Creature> creatures;             //Az aszteroid�n tal�lhat� Creature oszt�lyb�l sz�rmaz� objektumok list�ja.
-	private Material material;              //Az aszteroid�ban tal�lhat� nyersanyag. Ha �reges, ennek az �rt�ke null.
-	private ArrayList<Transport> neighbours;           //Azok az aszteroid�k, amelyekre a telepes eljuthat az adott aszteroid�r�l
+	private int layer;                      //Az aszteroida aktuális rétegeinek száma.
+	private boolean closeToSun;             //Igaz, ha az aszteroida éppen napközelben van.
+	private Space space;                    //Ebben található meg az aszteroida.
+	private ArrayList<Creature> creatures;             //Az aszteroidán található Creature osztályból származó objektumok listája.
+	private Material material;              //Az aszteroidában található nyersanyag. Ha üreges, ennek az értéke null.
+	private ArrayList<Transport> neighbours;           //Azok az aszteroidák, amelyekre a telepes eljuthat az adott aszteroidáról
 
 	public Asteroid(){
 		Controller cnt = new Controller();
@@ -16,7 +16,7 @@ public class Asteroid implements Steppable, Transport {
 		neighbours= new ArrayList<Transport>();
 		cnt.SetTab(-1);
 	}
-	public void AddCreature(Creature c) {   //Hozz�ad egy Creature objektumot a creatures list�hoz.
+	public void AddCreature(Creature c) {   //Hozzáad egy Creature objektumot a creatures listához.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("AddCreature(Creature c)");
@@ -24,7 +24,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(-1);
 	}
 
-	public void AddNeighbour(Transport t) { //Hozz�ad egy aszteroid�t a neighbours list�hoz.
+	public void AddNeighbour(Transport t) { //Hozzáad egy aszteroidát a neighbours listához.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("AddNeighbour(Transport t)");
@@ -40,7 +40,7 @@ public class Asteroid implements Steppable, Transport {
 		return this;
 	}
 
-	public boolean GetCloseToSun() {           //Igazzal t�r vissza, ha az aszteroida napk�zelben van.
+	public boolean GetCloseToSun() {           //Igazzal tér vissza, ha az aszteroida napközelben van.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetCloseToSun()");
@@ -48,7 +48,7 @@ public class Asteroid implements Steppable, Transport {
 		return closeToSun;
 	}
 
-	public ArrayList<Creature> GetCreatures() {     //Visszaadja az aszteroid�n l�v� l�nyeket.
+	public ArrayList<Creature> GetCreatures() {     //Visszaadja az aszteroidán lévő lényeket.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetCreatures() : ArrayList<Creature>");
@@ -56,7 +56,7 @@ public class Asteroid implements Steppable, Transport {
 		return creatures;
 	}
 
-	public int GetLayer() {                   //Visszaadja az aszteroid�n l�v� aktu�lis r�tegek sz�m�t.
+	public int GetLayer() {                   //Visszaadja az aszteroidán lévő aktuális rétegek számát.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetLayer() : int");
@@ -66,7 +66,7 @@ public class Asteroid implements Steppable, Transport {
 		return b;
 	}
 
-	public Material GetMaterial() {          //Visszaadja az aszteroid�ban tal�lhat� nyersanyagot.
+	public Material GetMaterial() {          //Visszaadja az aszteroidában található nyersanyagot.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetMaterial() : material");
@@ -74,7 +74,7 @@ public class Asteroid implements Steppable, Transport {
 		return material;
 	}
 
-	public ArrayList<Transport> GetNeighbours() {  //Visszaadja azon aszteroid�k t�mbj�t, ahova mehet a l�ny
+	public ArrayList<Transport> GetNeighbours() {  //Visszaadja azon aszteroidák tömbjét, ahova mehet a lény
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetNeighbours() : ArrayList<Transport>");
@@ -82,7 +82,7 @@ public class Asteroid implements Steppable, Transport {
 		return neighbours;
 	}
 
-	public Space GetSpace() {                //Visszaadja az �rt.
+	public Space GetSpace() {                //Visszaadja az űrt.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetSpace() : Space");
@@ -90,7 +90,7 @@ public class Asteroid implements Steppable, Transport {
 		return space;
 	}
 
-	public void DecreaseLayer() {             //Cs�kkenti az aszteroida r�tegeinek a sz�m�t.
+	public void DecreaseLayer() {             //Csökkenti az aszteroida rétegeinek a számát.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 
@@ -112,7 +112,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(-1);
 	}
 
-	public void SetCloseToSun(boolean b) {    //Be�ll�tja az aszteroida napk�zels�g�t.
+	public void SetCloseToSun(boolean b) {    //Beállítja az aszteroida napközelségét.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("SetCloseToSun(boolen b)");
@@ -121,7 +121,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(-1);
 	}
 
-	public void SetMaterial(Material m) {      //Be�ll�tja az aszteroid�ban tal�lhat� nyersanyagot.
+	public void SetMaterial(Material m) {      //Beállítja az aszteroidában található nyersanyagot.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("SetMaterial(Material m)");
@@ -138,7 +138,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.PrintFunc("the asteroid is in sunclose?(0-No, 1-Yes):");
 		int  a = new Scanner(System.in).nextInt();
 		if(a==0){
-			SetCloseToSun(false);              // beállítja az aszteroida napk�zels�g�t
+			SetCloseToSun(false);              // beállítja az aszteroida napközelségét
 		}else {SetCloseToSun(true);}
 		cnt.PrintFunc("How many layers does the Asteroid have?:");
 		int  b = new Scanner(System.in).nextInt();
@@ -149,7 +149,7 @@ public class Asteroid implements Steppable, Transport {
 
 	}
 
-	public void RemoveNeighbour(Asteroid t) { //Kivesz egy aszteroid�t a neighbours list�b�l.
+	public void RemoveNeighbour(Asteroid t) { //Kivesz egy aszteroidát a neighbours listából.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("RemoveNeighbour(Asteroid t)");
@@ -157,7 +157,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(-1);
 	}
 
-	public void RemoveCreature(Creature c) {  //Kivesz egy Creature objektumot a creatures list�b�l.
+	public void RemoveCreature(Creature c) {  //Kivesz egy Creature objektumot a creatures listából.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("RemoveCreature(Creature c)");
@@ -166,7 +166,7 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(-1);
 	}
 
-	public void Transport(Creature c) {      //Utaztatja a l�nyeket, a l�ny be�ll�tja mag�t az �j aszteroid�ra
+	public void Transport(Creature c) {      //Utaztatja a lényeket, a lény beállítja magát az új aszteroidára
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("Transport(Creature c)");
@@ -176,12 +176,12 @@ public class Asteroid implements Steppable, Transport {
 		cnt.SetTab(-1);
 	}
 
-	public void SolarStorm() {              //Az aszteroida napviharba ker�l.
+	public void SolarStorm() {              //Az aszteroida napviharba kerül.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("SolarStorm()");
 
-		if(layer != 0 || material != null){ //Ha a rajta tart�zkod� utaz�k nem tudnak elb�jni, akkor meghalnak.
+		if(layer != 0 || material != null){ //Ha a rajta tartózkodó utazók nem tudnak elbújni, akkor meghalnak.
 
 			while(creatures.size()!=0) creatures.get(0).Die();
 		}
