@@ -1,7 +1,6 @@
 public interface Transport {
-	//A Transport elé nem kell abstract?
-	//Abstract függvény, az aszteroidák közötti közlekedés lebonyolítására
+	//Abstract fuggveny, az aszteroidak kozotti kozlekedes lebonyolitasara
 	public abstract void Transport(Creature c);
-	//Abstract függvény, hogy a Transportok aszteroidáját lekérjük
+	//Abstract fuggveny, hogy a Transportok aszteroidajat lekerjuk
 	public abstract Asteroid GetAsteroid();
 }
