@@ -30,9 +30,10 @@ public class Game {
 	//ellenőrzi, hogy a játékban vannak-e még életben telepesek, ha nem, meghívja a játékot befejező EndGame() függvényt
 	public void CheckSettlers() {
 		Controller cnt = new Controller();
+		cnt.SetTab(1);
 		cnt.PrintFunc("CheckSettlers()");
-
 		EndGame(true);
+		cnt.SetTab(-1);
 	}
 	
 	//megviszgálja, hogy megvannak-e az űrbázis felépítéséhez szükséges nyersanyagok, ha igen meghívja a játékot befejező EndGame() függvényt

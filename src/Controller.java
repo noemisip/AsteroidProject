@@ -253,7 +253,7 @@ public class Controller {
 		Asteroid a2=new Asteroid();
 		Iron i=new Iron();
 
-		//s settler és r robot elhelyezése az a jég megú aszteroidán
+		//s settler és r robot elhelyezése az a jég magú aszteroidán
 		a.SetMaterial(i);
 		a.AddCreature(s);
 		a.AddCreature(r);

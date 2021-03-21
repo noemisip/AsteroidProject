@@ -35,7 +35,7 @@ public class BillOfMaterials {
 		//Feltölti a materialList-et a robot megépítéséhez szükséges alapanyagokkal
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
-		cnt.PrintFunc("SetupRobot():");
+		cnt.PrintFunc("SetupRobot()");
 		//A teszt folyamán a robot építéséhez egy Iron és egy Carbon szükséges
 		//Ezekkel tölti fel a materialListet
 		materialList.add(new Iron());
@@ -47,7 +47,7 @@ public class BillOfMaterials {
 		//Feltölti a materialList-et a teleportkapu megépítéséhez szükséges alapanyagokkal
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
-		cnt.PrintFunc("SetUpGate():");
+		cnt.PrintFunc("SetUpGate()");
 
 		//A teszt folyamán a teleportkapu építéséhez egy Uranium és egy Iron szükséges
 		//Ezekkel tölti fel a materialListet
@@ -60,7 +60,7 @@ public class BillOfMaterials {
 		//Feltölti a materialList-et az ûrbázis megépítéséhez szükséges alapanyagokkal
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
-		cnt.PrintFunc("SetUpBase():");
+		cnt.PrintFunc("SetUpBase()");
 
 		//A teszt folyamán a teleportkapu építéséhez egy Carbon szükséges
 		//Ezzel tölti fel a materialListet
@@ -72,7 +72,7 @@ public class BillOfMaterials {
 		//A paraméterül kapott telepes material listájából kitörli a materialList-ben található alapanyagokat
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
-		cnt.PrintFunc("RemoveMaterials(Settler s):");
+		cnt.PrintFunc("RemoveMaterials(Settler s)");
 
 		//A materialList összes elemét kitörli a settler materialjai közül egyenként
 		for (int m=0;m< materialList.size();m++)
@@ -85,7 +85,7 @@ public class BillOfMaterials {
 		//Kitörli a materialList-bõl a paraméterként kapott materialt.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
-		cnt.PrintFunc("RemoveMaterialFromList(Material m):");
+		cnt.PrintFunc("RemoveMaterialFromList(Material m)");
 		materialList.remove(m);
 		cnt.SetTab(-1);
 	}
