@@ -20,7 +20,7 @@ public abstract class Creature {
 		Controller c = new Controller();
 		c.InsertTab("Drill()");
 
-		asteroid.DecraseLayer();
+		asteroid.DecreaseLayer();
 	}
 
 	public abstract void Move(Asteroid a); //a creature a kiválasztott aszteroidára mozog
