@@ -41,9 +41,9 @@ public class Game {
 		cnt.PrintFunc("CheckBase(Asteroid a)");
 
 		ArrayList<Creature> creatures = a.GetCreatures();
-		ArrayList<Material> materials = new ArrayList<>();
+		ArrayList<Material> materials ;
 		for (Creature c : creatures) { 
-			materials.addAll(c.GetMaterials());
+			materials= c.GetMaterials();
 			bill.SetUpBase();
 			boolean result = bill.CheckMaterials(materials); 
 			if (result)
