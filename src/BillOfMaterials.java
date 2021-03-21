@@ -18,7 +18,7 @@ public class BillOfMaterials {
 		{
 			int j=0;
 			//A settler alapanyagait hasonlítja a saját materialListjével
-			while(!materials.get(i).IsEquales(materialList.get(j)) && j<materialList.size()) j++;
+			while(j<materialList.size() && !materials.get(i).IsEquales(materialList.get(j))) j++;
 			//Ha megáll a ciklus, és a j még kisebb, mint a lista mérete, akkor talált egyezést, így törölni kell
 			//a materialListbõl
 			if(j<materialList.size()) RemoveMaterialFromList(materialList.get(j));
