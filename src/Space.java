@@ -11,38 +11,51 @@ public class Space implements Steppable {
 	}
 	//hozzáadja a paraméterként megkapott Astreoid példányt az asteroids listához
 	public void AddAsteroid(Asteroid a) {
-		Controller c = new Controller();
-		c.PrintFunc("AddAsteroid(Asteroid a)");
-		asteroids.add(a); 
+		Controller cnt = new Controller();
+        cnt.SetTab(1);
+        cnt.PrintFunc("AddAsteroid(Asteroid a)");
+        asteroids.add(a); 
+		cnt.SetTab(-1);		
 	}
 
 	//kiveszi a paraméterként megkapott Astreoid példányt az asteroids listából
 	public void RemoveAsteroid(Asteroid a) {
-		Controller c = new Controller();
-		c.PrintFunc("RemoveAsteroid(Asteroid a)");
-		asteroids.remove(a);
-	}
+		Controller cnt = new Controller();
+        cnt.SetTab(1);
+        cnt.PrintFunc("RemoveAsteroid(Asteroid a)");
+        asteroids.remove(a);
+        cnt.SetTab(-1);
+    }
 
 	//hozzáadja a paraméterként megkapott Creature példányt az creatures listához
 	public void AddCreature(Creature c) {
 		Controller cnt = new Controller();
-		cnt.PrintFunc("AddCreature(Creature c)");
-		creatures.add(c);
+        cnt.SetTab(1);
+        cnt.PrintFunc("AddCreature(Creature c)");
+        creatures.add(c);
+    	cnt.SetTab(-1);
 	}
 
 	//kiveszi a paraméterként megkapott Creature példányt az creatures listából
 	public void RemoveCreature(Creature c) {
 		Controller cnt = new Controller();
-		cnt.PrintFunc("RemoveCreature(Creature c)");
-		creatures.remove(c);
+        cnt.SetTab(1);
+        cnt.PrintFunc("RemoveCreature(Creature c)");
+        creatures.remove(c);
+    	cnt.SetTab(-1);		
 	}
 
-	//minden körben eldöbti, hogy lesz-e napvihar, azaz random meghívja az aszteroidák SolarStorm() függvényét	
+	//minden körben eldönti, hogy lesz-e napvihar, azaz random meghívja az aszteroidák SolarStorm() fÃ¼ggvÃ©nyÃ©t	
 	public void Step() {
-		Controller c = new Controller();
-		c.PrintFunc("Step()");
-		for (Asteroid a : asteroids) {
+		Controller cnt = new Controller();
+        cnt.SetTab(1);
+        cnt.PrintFunc("Step()");
+        creatures.remove(c);
+        
+    	for (Asteroid a : asteroids) {
 			a.SolarStorm();
 		}
+    	
+    	cnt.SetTab(-1);
 	}
 }
