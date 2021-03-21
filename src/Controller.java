@@ -268,7 +268,7 @@ public class Controller {
 		sp.AddCreature(s2);
 		sp.AddCreature(r);
 
-		//s2 settler elhelyezése az a2 üres magú aszteroidán
+		//s2 settler elhelyezése az a2 üres aszteroidán
 		a2.AddCreature(s2);
 		s2.SetAsteroid(a2);
 		a2.SetMaterial(null);
