@@ -1,26 +1,26 @@
 
 public class Ice extends Material {
-	// Akkor hívódik meg ha ásnak az aszteroidán
+	// Akkor hivodik meg ha asnak az aszteroidan
 	public void ReactToMine(Asteroid a, Settler s) {
 		Controller c = new Controller();
 		c.SetTab(1);
 		c.PrintFunc("ReactToMine(Asteroid a, Settler s)");
-		a.SetMaterial(null); // kiszedi az aszteroidából az eddig bennelévő anyagot, így üres lesz
-		s.AddMaterial(this); //hozzáadja a kibányászott anyagot a settler materialjaihoz
+		a.SetMaterial(null); // kiszedi az aszteroidabol az eddig bennelevo anyagot, így ures lesz
+		s.AddMaterial(this); //hozzaadja a kibanyaszott anyagot a settler materialjaihoz
 		c.SetTab(-1);
 	}
 	
 	public void ReactToSunclose(Asteroid a) {
-		// Akkor hívódik meg, ha az aszteroida napközelben van
+		// Akkor hivodik meg, ha az aszteroida napkozelben van
 		Controller c = new Controller();
 		c.SetTab(1);
 		c.PrintFunc(" ReactToSunclose(Asteroid a)");
-		a.SetMaterial(null); // a jég eltűnik az aszteroidából, üres lesz
+		a.SetMaterial(null); // a jeg eltunik az aszteroidából, ures lesz
 		c.SetTab(-1);
 	}
 	
 	public boolean IsEquales(Material m) {
-		// ellenőrzi, hogy a megadott material ugyanolyan fajta- e, mint az osztály
+		// ellenorzi, hogy a megadott material ugyanolyan fajta- e, mint az osztaly
 		Controller c = new Controller();
 		c.SetTab(1);
 		c.PrintFunc("IsEquales(Material m): : true/false");
