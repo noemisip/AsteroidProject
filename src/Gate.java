@@ -1,9 +1,9 @@
 
-public class Gate implements Transport {    // A teleportkaput reprezent�l� oszt�ly.
-	private Asteroid asteroid;              //Az az aszteroida, amire a Gate p�ld�nyt elhelyezt�k.
-	private Gate pair;                      //Az adott kapu p�rja. 
+public class Gate implements Transport {    // A teleportkaput reprezentáló osztály.
+	private Asteroid asteroid;              //Az az aszteroida, amire a Gate példányt elhelyezték.
+	private Gate pair;                      //Az adott kapu párja. 
 
-	public void SetPair(Gate g) {           //Be�ll�tja, hogy melyik kapup�r a p�rja.
+	public void SetPair(Gate g) {           //Beállítja, hogy melyik kapupár a párja.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("SetPair()");
@@ -11,7 +11,7 @@ public class Gate implements Transport {    // A teleportkaput reprezent�l� 
 		cnt.SetTab(-1);
 	}
 
-	public Gate GetPair() {                 //Visszaadja az adott kapu p�rj�t
+	public Gate GetPair() {                 //Visszaadja az adott kapu párját
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetPair() : Gate");
@@ -19,7 +19,7 @@ public class Gate implements Transport {    // A teleportkaput reprezent�l� 
 		return pair;
 	}
 
-	public void SetAsteroid(Asteroid a) {   //Be�ll�tja, hogy melyik aszteroid�n �ll a kapu.
+	public void SetAsteroid(Asteroid a) {   //Beállítja, hogy melyik aszteroidán áll a kapu.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("SetAsteroid(Asteroid a)");
@@ -27,7 +27,7 @@ public class Gate implements Transport {    // A teleportkaput reprezent�l� 
 		cnt.SetTab(-1);
 	}
 
-	public Asteroid GetAsteroid() {        //Az asteroid param�ter �rt�k�t adja vissza.
+	public Asteroid GetAsteroid() {        //Az asteroid paraméter értékét adja vissza.
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("GetAsteroid(): Asteroid");
@@ -35,7 +35,7 @@ public class Gate implements Transport {    // A teleportkaput reprezent�l� 
 		return asteroid;
 	}
 
-	public void Transport(Creature c) {    //k�t aszteroida k�z�tti mozg�s teleportkapu �ltal
+	public void Transport(Creature c) {    //két aszteroida közötti mozgás teleportkapu által
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
 		cnt.PrintFunc("Transport(Creature c)");
