@@ -10,8 +10,9 @@ public class BillOfMaterials {
 	}
 	public boolean CheckMaterials(ArrayList<Material> materials) {
 		//Összehasonlítja a paraméterül kapott material listával a saját materialList-jét.
-		Controller c = new Controller();
-		c.PrintFunc("CheckMaterials(ArrayList<Material> materials;) : true/false");
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("CheckMaterials(ArrayList<Material> materials;) : true/false");
 		int i=0;
 		while(materialList.size()!=0 && i<materials.size())
 		{
@@ -23,6 +24,7 @@ public class BillOfMaterials {
 			if(j<materialList.size()) RemoveMaterialFromList(materialList.get(j));
 			i++;
 		}
+		cnt.SetTab(-1);
 		//Ha a BillOfMaterials materialListájából az összes alapanyag kitörlõdött,
 		//akkor a settlernek van elég alapanyaga, így építhet.
 		if(materialList.size()==0) return true;
@@ -31,48 +33,60 @@ public class BillOfMaterials {
 	
 	public void SetUpRobot() {
 		//Feltölti a materialList-et a robot megépítéséhez szükséges alapanyagokkal
-		Controller c = new Controller();
-		c.PrintFunc("SetupRobot()");
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("SetupRobot():");
 		//A teszt folyamán a robot építéséhez egy Iron és egy Carbon szükséges
 		//Ezekkel tölti fel a materialListet
 		materialList.add(new Iron());
 		materialList.add(new Carbon());
+		cnt.SetTab(-1);
 	}
 	
 	public void SetUpGate() {
 		//Feltölti a materialList-et a teleportkapu megépítéséhez szükséges alapanyagokkal
-		Controller c = new Controller();
-		c.PrintFunc("SetUPGate()");
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("SetUpGate():");
+
 		//A teszt folyamán a teleportkapu építéséhez egy Uranium és egy Iron szükséges
 		//Ezekkel tölti fel a materialListet
 		materialList.add(new Uranium());
 		materialList.add(new Iron());
+		cnt.SetTab(-1);
 	}
 	
 	public void SetUpBase() {
 		//Feltölti a materialList-et az ûrbázis megépítéséhez szükséges alapanyagokkal
-		Controller c = new Controller();
-		c.PrintFunc("SetUpBase()");
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("SetUpBase():");
+
 		//A teszt folyamán a teleportkapu építéséhez egy Carbon szükséges
 		//Ezzel tölti fel a materialListet
 		materialList.add(new Carbon());
+		cnt.SetTab(-1);
 	}
 	
 	public void RemoveMaterials(Settler s) {
 		//A paraméterül kapott telepes material listájából kitörli a materialList-ben található alapanyagokat
-		Controller c = new Controller();
-		c.PrintFunc("RemoveMaterials(s)");
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("RemoveMaterials(Settler s):");
+
 		//A materialList összes elemét kitörli a settler materialjai közül egyenként
 		for (int m=0;m< materialList.size();m++)
 		{
 			s.RemoveMaterial(materialList.get(m));
-		}
+		}cnt.SetTab(-1);
 	}
 	
 	public void RemoveMaterialFromList(Material m) {
 		//Kitörli a materialList-bõl a paraméterként kapott materialt.
-		Controller c = new Controller();
-		c.PrintFunc("RemoveMaterials(s)");
+		Controller cnt = new Controller();
+		cnt.SetTab(1);
+		cnt.PrintFunc("RemoveMaterialFromList(Material m):");
 		materialList.remove(m);
+		cnt.SetTab(-1);
 	}
 }
