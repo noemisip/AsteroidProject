@@ -22,8 +22,7 @@ public class Carbon extends Material {
 		// ellenőrzi, hogy a megadott material ugyanolyan fajta- e, mint az osztály
 		Controller c = new Controller();
 		c.SetTab(1);
-		c.PrintFunc("IsEquales(Material m)");
-		c.PrintFunc("true/false");
+		c.PrintFunc("IsEquales(Material m): : true/false");
 		c.SetTab(-1);
 		return m.getClass()==this.getClass();
 	}
