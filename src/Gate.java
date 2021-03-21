@@ -5,7 +5,7 @@ public class Gate implements Transport {    // A teleportkaput reprezent�l� 
 
 	public void SetPair(Gate g) {           //Be�ll�tja, hogy melyik kapup�r a p�rja.
 		Controller cnt = new Controller();
-		cnt.PrintFunc("SetPair()");
+		cnt.PrintFunc("SetPair(Gate g)");
 	    pair = g; 
 	}
 	

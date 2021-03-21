@@ -50,12 +50,10 @@ public class Space implements Steppable {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
         cnt.PrintFunc("Step()");
-        creatures.remove(c);
         
     	for (Asteroid a : asteroids) {
 			a.SolarStorm();
 		}
-    	
     	cnt.SetTab(-1);
 	}
 }
