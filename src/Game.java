@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Game {
 
-	private boolean onGame = true; //azt mutatja, hogy tart-e még a játék, alapból true értket kap
-	private Space space; //a játékszítere, a világűr
-	private static ArrayList<Steppable> steppable; //a játékban résztvevő léptethető dolgok listája
-	private static ArrayList<Settler> settlers; //a játékban résztvevő léptethető telepesek listája
-	private static BillOfMaterials bill; //a bázis megépítéséhez szükséges nyersanyagok meglétét ellenőrzi
+	private boolean onGame = true; //azt mutatja, hogy tart-e meg a jatek, alapbol true ertket kap
+	private Space space; //a jatekszintere, a vilagur
+	private static ArrayList<Steppable> steppable; //a jatekban resztvevo leptetheto dolgok listaja
+	private static ArrayList<Settler> settlers; //a jatekban resztvevo leptetheto telepesek listaja
+	private static BillOfMaterials bill; //a bazis megepitesehez szukseges nyersanyagok megletet ellenorzi
 
 
 	private static Game INSTANCE;
@@ -14,7 +14,7 @@ public class Game {
 	private Game() {
 	}
 
-	//mivel a Game osztály egy singleton, ezért létrehozzunk az egyetlen példány, amivel dolgozni fogunk
+	//mivel a Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
 	public static Game getInstance() {
 		steppable = new ArrayList<Steppable>();
 		settlers = new ArrayList<Settler>();
@@ -27,7 +27,7 @@ public class Game {
 		return INSTANCE;
 	}
 	
-	//ellenőrzi, hogy a játékban vannak-e még életben telepesek, ha nem, meghívja a játékot befejező EndGame() függvényt
+	//ellenorzi, hogy a jatekban vannak-e meg eletben telepesek, ha nem, meghivja a jatekot befejezo EndGame() fuggvenyt
 	public void CheckSettlers() {
 		Controller cnt = new Controller();
 		cnt.SetTab(1);
@@ -36,7 +36,7 @@ public class Game {
 		cnt.SetTab(-1);
 	}
 	
-	//megviszgálja, hogy megvannak-e az űrbázis felépítéséhez szükséges nyersanyagok, ha igen meghívja a játékot befejező EndGame() függvényt
+	//megviszgalja, hogy megvannak-e az urbazis felepitesehez szukseges nyersanyagok, ha igen meghivja a jatekot befejezo EndGame() fuggvenyt
 	public void CheckBase(Asteroid a) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -57,7 +57,7 @@ public class Game {
 
 	}
 	
-	//a játék befejezésekor meghívodó függvény
+	//a jatek befejezesekor meghivodo fuggveny
 	public void EndGame(boolean result) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -66,7 +66,7 @@ public class Game {
 			
 	}
 
-	//a játék kezdetekor meghívodó függvény	
+	//a jatek kezdetekor meghivodo fuggveny	
 	public void StartGame() {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -75,7 +75,7 @@ public class Game {
 
 	}
 	
-	//egy kör a játékban: először a telepesek cselekvései vegződnek el, majd a Steppeble objektumok lépései
+	//egy kor a jatekban: eloszor a telepesek cselekvesei vegzodnek el, majd a Steppeble objektumok lepesei
 	public void Round() {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -93,7 +93,7 @@ public class Game {
 		cnt.SetTab(-1);
 	}
 
-	//egy telepes által végrehajtható műveletek 
+	//egy telepes altal vegrehajthato muveletek 
 	public void Action(Settler s) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -102,7 +102,7 @@ public class Game {
 
 	}
 
-	//egy telepes halÃ¡lakor kiveszi a settlers listÃ¡bÃ³l	
+	//egy telepes halalakor kiveszi a settlers listabol	
 	public void RemoveSettler(Settler s) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -111,7 +111,7 @@ public class Game {
         cnt.SetTab(-1);
 	}
 	
-	//egy telepest hozzáad a settlers listához
+	//egy telepest hozzaad a settlers listahoz
 	public void AddSettler(Settler s) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -120,7 +120,7 @@ public class Game {
 		cnt.SetTab(-1);
 	}
 	
-	//kiveszi a steppable listához a paraméterként megkapott Steppable példányt
+	//kiveszi a steppable listahoz a parameterkent megkapott Steppable peldanyt
 	public void RemoveSteppable(Steppable s) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -129,7 +129,7 @@ public class Game {
 		cnt.SetTab(-1);
 	}
 	
-	//hozzáadja a steppable listához a paraméterként megkapott Steppable példányt
+	//hozzáadja a steppable listahoz a parameterkent megkapott Steppable peldanyt
 	public void AddSteppable(Steppable s) {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
@@ -138,7 +138,7 @@ public class Game {
 		cnt.SetTab(-1);		
 	}
 	
-	//addig hívogatja meg a Round() függvényt amíg az onGame attribútum igaz
+	//addig hivogatja meg a Round() fuggvenyt amig az onGame attributum igaz
 	public void OnGame() {
 		Controller cnt = new Controller();
         cnt.SetTab(1);
