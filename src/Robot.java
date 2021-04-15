@@ -1,33 +1,31 @@
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Robot extends Creature implements Steppable {
 
 	public void WhereToMove() { //A robot eldonti, hogy melyik aszteroidara mozogjon
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("WhereToMove()");
-
-		ArrayList<Transport> a = asteroid.GetNeighbours(); //lekerdezi annak az aszteroidanak a szomszedait, amin epp all
+		ArrayList<Transport> a = asteroid.GetNeighbours();
+		Random r = new Random();
+		int chosen = r.nextInt(a.size()+ 1);//lekerdezi annak az aszteroidanak a szomszedait, amin epp all
 		if(a.size()==0) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
-		else Move(a.get(0).GetAsteroid()); //a robot mozog
-		c.SetTab(-1);
+		else Move(a.get(chosen).GetAsteroid()); //a robot mozog
 	}
 
 	public void Drill(){
-
+		if ( asteroid.getLayer() != 0){
+			asteroid.DecreaseLayer();
+		}
 	}
 
 	public void AddMaterial(Material m){
-
 	}
 
 	public int NextStep() {//a robot eldonti, hogy a kovetkezo lepesben mit csinaljon
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("NextStep(): 0");
-		c.SetTab(-1);
-		return 0; //az egyszeruseg kedveert most csak 0-val ter vissza
+		Random r = new Random();
+		int random = r.nextInt(2);
+		return random;
+
 	}
 
 	public void Step() { //a robot vegrehajtja a kivalasztott muveletet
