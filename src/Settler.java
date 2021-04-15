@@ -11,6 +11,9 @@ public class Settler extends Creature {
 		bill = new BillOfMaterials();
 	}
 
+	public void Drill(){
+
+	}
 	public void RestoreMaterial(Material m) { //a telepes visszahelyez egy nyersanyagot az aszteroidara, amin epp all
 		Controller c = new Controller();
 		c.SetTab(1);
@@ -106,7 +109,7 @@ public class Settler extends Creature {
 		Controller c = new Controller();
 		c.SetTab(1);
 		c.PrintFunc("AddGate(g)");
-
+		// listája elejéra rakja a gate-t
 		gates.add(g);
 		c.SetTab(-1);
 	}
