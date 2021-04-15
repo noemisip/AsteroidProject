@@ -29,58 +29,36 @@ public class Game {
 	
 	//ellenorzi, hogy a jatekban vannak-e meg eletben telepesek, ha nem, meghivja a jatekot befejezo EndGame() fuggvenyt
 	public void CheckSettlers() {
-		Controller cnt = new Controller();
-		cnt.SetTab(1);
-		cnt.PrintFunc("CheckSettlers()");
-		EndGame(true);
-		cnt.SetTab(-1);
+		if(settlers.size()==0)
+		EndGame(false);
 	}
 	
 	//megviszgalja, hogy megvannak-e az urbazis felepitesehez szukseges nyersanyagok, ha igen meghivja a jatekot befejezo EndGame() fuggvenyt
 	public void CheckBase(Asteroid a) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("CheckBase(Asteroid a)");
-        
-		ArrayList<Creature> creatures = new ArrayList<>();
-		creatures = a.GetCreatures();
-		ArrayList<Material> materials = new ArrayList<>();
-		for (Creature c : creatures) { 
-			materials = c.GetMaterials(); 
-			bill.SetUpBase();
-			boolean result = bill.CheckMaterials(materials); 
-			if (result)
-				EndGame(true);
+		ArrayList<Creature> asteroidcreatures= a.GetCreatures();
+		bill.SetUpBase();
+		for(int i=0;i<asteroidcreatures.size();i++){
+			ArrayList creaturesmaterials=asteroidcreatures.get(i).GetMaterials();
+			if(bill.CheckMaterials(creaturesmaterials)) EndGame(true);
 		}
-		
-		cnt.SetTab(-1);
 
 	}
 	
 	//a jatek befejezesekor meghivodo fuggveny
 	public void EndGame(boolean result) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("EndGame(booelan result)");
-        cnt.SetTab(-1);
-			
+		//Nyertek vs vesztettek
+		onGame=false;
 	}
 
 	//a jatek kezdetekor meghivodo fuggveny	
 	public void StartGame() {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("StartGame()");
-        cnt.SetTab(-1);
-
+		//játéktér felépítése
+		onGame=true;
+		OnGame();
 	}
 	
 	//egy kor a jatekban: eloszor a telepesek cselekvesei vegzodnek el, majd a Steppeble objektumok lepesei
 	public void Round() {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("Round()");
-        
 		while (onGame) {
 			for (Settler s : settlers) {
 				Action(s);
@@ -89,61 +67,35 @@ public class Game {
 				st.Step();
 			}
 		}
-		
-		cnt.SetTab(-1);
 	}
 
 	//egy telepes altal vegrehajthato muveletek 
 	public void Action(Settler s) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("Action(Settler s)");
-        cnt.SetTab(-1);
-
+		//beolvasás a controllerről
 	}
 
 	//egy telepes halalakor kiveszi a settlers listabol	
 	public void RemoveSettler(Settler s) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("RemoveSettler(Settler s)");
         settlers.remove(s);
-        cnt.SetTab(-1);
 	}
 	
 	//egy telepest hozzaad a settlers listahoz
 	public void AddSettler(Settler s) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("AddSettler(Settler s)");
 		settlers.add(s);
-		cnt.SetTab(-1);
 	}
 	
 	//kiveszi a steppable listahoz a parameterkent megkapott Steppable peldanyt
 	public void RemoveSteppable(Steppable s) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc(" RemoveSteppable(Steppable s)");
         steppable.remove(s);
-		cnt.SetTab(-1);
 	}
 	
 	//hozzáadja a steppable listahoz a parameterkent megkapott Steppable peldanyt
 	public void AddSteppable(Steppable s) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("AddSteppable(Steppable s)");
         steppable.add(s);
-		cnt.SetTab(-1);		
 	}
 	
 	//addig hivogatja meg a Round() fuggvenyt amig az onGame attributum igaz
 	public void OnGame() {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("OnGame()");
         Round();
-		cnt.SetTab(-1);		
 	}
 }
