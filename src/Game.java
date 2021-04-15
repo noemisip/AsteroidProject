@@ -98,4 +98,8 @@ public class Game {
 	public void OnGame() {
         Round();
 	}
+
+	public void StepSpace(Space sp){
+		space=sp;
+	}
 }
