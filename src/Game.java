@@ -99,7 +99,7 @@ public class Game {
         Round();
 	}
 
-	public void StepSpace(Space sp){
+	public void SetSpace(Space sp){
 		space=sp;
 	}
 }
