@@ -2,20 +2,18 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Robot extends Creature implements Steppable {
+public class Robot extends Creature implements Steppable,AI {
 
 	public void WhereToMove() { //A robot eldonti, hogy melyik aszteroidara mozogjon
-		ArrayList<Transport> a = asteroid.GetNeighbours();
+		ArrayList<Transport> a = asteroid.GetNeighbours();//lekerdezi annak az aszteroidanak a szomszedait, amin epp all
 		Random r = new Random();
-		int chosen = r.nextInt(a.size()+ 1);//lekerdezi annak az aszteroidanak a szomszedait, amin epp all
+		int chosen = r.nextInt(a.size()+ 1);
 		if(a.size()==0) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
-		else Move(a.get(chosen).GetAsteroid()); //a robot mozog
+		else Move(a.get(chosen).GetAsteroid()); //a robot mozog a random kivalasztott aszteroidara
 	}
 
-	public void Drill(){
-		if ( asteroid.getLayer() != 0){
+	public void Drill(){ // a robot fur
 			asteroid.DecreaseLayer();
-		}
 	}
 
 	public void AddMaterial(Material m){
@@ -25,57 +23,48 @@ public class Robot extends Creature implements Steppable {
 		Random r = new Random();
 		int random = r.nextInt(2);
 		return random;
-
 	}
 
 	public void Step() { //a robot vegrehajtja a kivalasztott muveletet
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("Step()");
-
 		int result = NextStep();
 		if(result == 0) Drill();
 		else if(result==1) WhereToMove();
-		c.SetTab(-1);
 	}
 	
 	public void Die() { // a robot meghal
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("Die()");
 
-		asteroid.RemoveCreature(this); //a robot kitorlodik az aszterodia creture listajabol
+		asteroid.RemoveCreature(this);//a robot kitorlodik az aszterodia creture listajabol
 		asteroid.GetSpace().RemoveCreature(this); //a robot megkerdezi az aszteroidat, hogy melyik spaceben van és kitorlodik az space creture listajabol
 		Game.getInstance().RemoveSteppable(this); //a robot kitorlodik az space steppable listajabol
 
-		c.SetTab(-1);
 	}
 	
 	public void Move(Asteroid a) { //a robot a kiavlasztott aszteroidara mozog
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("Move(a)");
-
-		asteroid.GetNeighbours(); //a robot megkapja, hogy melyik transport objektum fogja atvinni a masik aszteroidára
-		a.Transport(this); //meghivja az objektum transport fuggvenyet
-		asteroid.RemoveCreature(this); //a robot kitorlodik az aszterodia creture listajabol
-		c.SetTab(-1);
+		ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes ellenorzi, hogy at tud-e menni arra az aszteroidara
+		boolean move = false;
+		Transport tr = null;
+		for(Transport t : neighbours){
+			if(t.GetAsteroid() == a) {
+				move = true;
+				tr=t;
+				break;
+			}
+		}
+		if(move){
+			tr.Transport(this); //meghivja az objektum transport fuggvenyet
+			asteroid.RemoveCreature(this); //a telepes kitorlodik az aszterodia creture listajabol
+			Game.getInstance().CheckBase(asteroid); //a jatek ellenorzi, hogy fel tudják-e epiteni a telpesek a bazist az aszteroida
+		}
 	}
 	
 	public void AsteroidExplosion() { //a robot reagal az aszteroida felrobbanasara
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("AsteroidExplosion()");
 
-		WhereToMove();
-		c.SetTab(-1);
+		if( asteroid.GetNeighbours().size() == 0) Die();
+		else WhereToMove();
+
 	}
 	
 	public ArrayList<Material> GetMaterials() { //a robot megmondja, hogy milyen nyersanyagok vannak nala
-		Controller c = new Controller();
-		c.SetTab(1);
-		c.PrintFunc("GetMaterials() : null");
-		c.SetTab(-1);
-		return null; // a robotnál nincs nyersanyag
+		return null;
 	}
 }
