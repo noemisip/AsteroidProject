@@ -1,10 +1,9 @@
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Set;
+
+import static java.lang.Integer.parseInt;
 
 public class Controller {
-	static  int tab;
-	static boolean inTest;
 	private HashMap<String, Object> hash = new HashMap<String, Object>();
 
 
@@ -136,23 +135,64 @@ public class Controller {
 		}
 	}
 	public void Setup(String[] cmd){
+		int k=0;
 		if(cmd.length==1){
 			Space sp = new Space();
 			Game.getInstance().SetSpace(sp);
+			return;
 		}
-		else if(cmd[1].equals("asteroid")){}
-		else if(cmd[1].equals("settler")){}
-		else if(cmd[1].equals("ufo")){}
-		else if(cmd[1].equals("gate")){}
+		else if(cmd[2].equals("r")){
+
+		}
+		else{
+			k = parseInt(cmd[2]);
+		}
+		if(cmd[1].equals("asteroid")){
+			for(int i=0; i<k; i++){
+				Asteroid a = new Asteroid();
+				hash.put("a", a);
+			}
+		}
+		else if(cmd[1].equals("settler")){
+			for(int i=0; i<k; i++){
+				Settler s = new Settler();
+				hash.put("s", s);
+			}
+		}
+		else if(cmd[1].equals("ufo")){
+			for(int i=0; i<k; i++){
+				Ufo u = new Ufo();
+				hash.put("u", u);
+			}
+		}
+		else if(cmd[1].equals("gate")){
+			for(int i=0; i<k; i++){
+				Gate g1 = new Gate();
+				Gate g2 = new Gate();
+				g1.SetPair(g2);
+				g2.SetPair(g1);
+				hash.put("g", g1);
+				hash.put("g", g2);
+			}
+		}
 	}
 	public void Set(String[] cmd){
-
+		if(cmd[1].contains("asteroid")){
+			Asteroid a = (Asteroid) hash.get(cmd[1]);
+			a.SetMaterial();
+			a.SetLayer(parseInt(cmd[3]));
+			a.SetCloseToSun(cmd[4].equals("true"));
+		}
+		else if(cmd[1].contains("settler")){}
+		else if(cmd[1].contains("ufo")){}
+		else if(cmd[1].contains("uranium")){}
 	}
 	public void Help(){
 
 	}
 	public void SolarStorm(String[] cmd){
-
+		Asteroid a = (Asteroid)hash.get(cmd[1]);
+		a.SolarStorm();
 	}
 
 }
