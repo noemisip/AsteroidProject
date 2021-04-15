@@ -14,6 +14,14 @@ public class Robot extends Creature implements Steppable {
 		c.SetTab(-1);
 	}
 
+	public void Drill(){
+
+	}
+
+	public void AddMaterial(Material m){
+
+	}
+
 	public int NextStep() {//a robot eldonti, hogy a kovetkezo lepesben mit csinaljon
 		Controller c = new Controller();
 		c.SetTab(1);
