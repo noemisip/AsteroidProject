@@ -1,4 +1,5 @@
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Space implements Steppable {
 	
@@ -11,49 +12,32 @@ public class Space implements Steppable {
 	}
 	//hozzaadja a parameterkent megkapott Astreoid peldanyt az asteroids listahoz
 	public void AddAsteroid(Asteroid a) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("AddAsteroid(Asteroid a)");
-        asteroids.add(a); 
-		cnt.SetTab(-1);		
+        asteroids.add(a);
 	}
 
 	//kiveszi a parameterkent megkapott Astreoid peldanyt az asteroids listabol
 	public void RemoveAsteroid(Asteroid a) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("RemoveAsteroid(Asteroid a)");
         asteroids.remove(a);
-        cnt.SetTab(-1);
     }
 
 	//hozzaadja a parameterkent megkapott Creature peldanyt az creatures listahoz
 	public void AddCreature(Creature c) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("AddCreature(Creature c)");
         creatures.add(c);
-    	cnt.SetTab(-1);
 	}
 
 	//kiveszi a parameterkent megkapott Creature peldanyt az creatures listabol
 	public void RemoveCreature(Creature c) {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("RemoveCreature(Creature c)");
         creatures.remove(c);
-    	cnt.SetTab(-1);		
 	}
 
 	//minden korben eldonti, hogy lesz-e napvihar, azaz random meghivja az aszteroidak SolarStorm() fuggvenyet	
 	public void Step() {
-		Controller cnt = new Controller();
-        cnt.SetTab(1);
-        cnt.PrintFunc("Step()");
-        
-    	for (Asteroid a : asteroids) {
-			a.SolarStorm();
+		Random rand = new Random();
+		int solarstormhappens = rand.nextInt(1);
+		int selectedasteroid=0;
+		if(solarstormhappens==1) {
+			selectedasteroid=rand.nextInt(asteroids.size()-1);
+			asteroids.get(selectedasteroid).SolarStorm(2);
 		}
-    	cnt.SetTab(-1);
 	}
 }
