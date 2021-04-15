@@ -7,46 +7,26 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 	private boolean kerge;                   //kapu kergesége
 
 	public void SetPair(Gate g) {           //Beallitja, hogy melyik kapupar a parja.
-		Controller cnt = new Controller();
-		cnt.SetTab(1);
-		cnt.PrintFunc("SetPair()");
 		pair = g;
-		cnt.SetTab(-1);
 	}
 
 	public Gate GetPair() {                 //Visszaadja az adott kapu parjat
-		Controller cnt = new Controller();
-		cnt.SetTab(1);
-		cnt.PrintFunc("GetPair() : Gate");
-		cnt.SetTab(-1);
 		return pair;
 	}
 
 	public void SetAsteroid(Asteroid a) {   //Beallitja, hogy melyik aszteroidan all a kapu.
-		Controller cnt = new Controller();
-		cnt.SetTab(1);
-		cnt.PrintFunc("SetAsteroid(Asteroid a)");
 		asteroid = a;
-		cnt.SetTab(-1);
 	}
 
 	public Asteroid GetAsteroid() {        //Az asteroid parameter erteket adja vissza.
-		Controller cnt = new Controller();
-		cnt.SetTab(1);
-		cnt.PrintFunc("GetAsteroid(): Asteroid");
-		cnt.SetTab(-1);
 		return asteroid;
 	}
 
 	public void Transport(Creature c) {    //ket aszteroida kozotti mozgas teleportkapu altal
-		Controller cnt = new Controller();
-		cnt.SetTab(1);
-		cnt.PrintFunc("Transport(Creature c)");
 		asteroid.AddCreature(c);
 		c.SetAsteroid(asteroid);
-		cnt.SetTab(-1);
-
 	}
+
 	public void SetKerge(boolean b) {
 		kerge=b;
 	}
@@ -54,24 +34,29 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 		ArrayList<Transport> asteroids=this.asteroid.GetNeighbours();
 		Random rand = new Random();
 		int rand_int = rand.nextInt(asteroids.size());
-		Move(asteroids.get(rand_int));
-
+		Asteroid nexAsteroid = asteroids.get(rand_int).GetAsteroid();
+		Move(nexAsteroid);
 	}
 	public int NextStep() {
 		Random rand = new Random();
 		int rand_int = rand.nextInt(2);
 		return rand_int;
 	}
-	public void Move(Transport t) {  //t amire utazik
-		Gate g = null;
-		Asteroid a = null;
-		for(int i=0;i<t.GetAsteroid().GetNeighbours().size();i++) {
-			if (t.GetAsteroid().GetNeighbours().get(i) == pair.GetPair()) {  //ha benne van a szomszédjai listájában, tehát kapun keresztül utazik meg a getpair kaput ad vissza
-				TransportGate(pair.GetPair());
+	public void Move(Asteroid a) {  //t amire utazik
+//		for(int i=0;i<a.GetNeighbours().size();i++) {
+//			if (a.GetAsteroid().GetNeighbours().get(i) == pair.GetPair()) {  //ha benne van a szomszédjai listájában, tehát kapun keresztül utazik meg a getpair kaput ad vissza
+//				TransportGate(pair.GetPair());
+//			}
+//		}
+		ArrayList<Transport> neighbours = asteroid.GetNeighbours();
+		Transport tr = null;
+		for(Transport t : neighbours){
+			if(t.GetAsteroid() == a) {
+				tr=t;
+				break;
 			}
 		}
-
-
+		tr.TransportGate(this);
 	}
 	public void Step() {
 		int next = NextStep();
@@ -88,13 +73,12 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 	}
 
 	public void TransportGate(Gate g){
-		if(pair==g){
-			return;
+		if(pair!=g) {
+			Asteroid a = g.GetPair().GetAsteroid();
+			a.RemoveNeighbour(g);
+			asteroid.AddNeighbour(g.GetPair());
+			g.SetAsteroid(asteroid);
 		}
-		asteroid.RemoveNeighbour(g.GetPair().GetAsteroid());
-		pair.GetPair().GetAsteroid().AddNeighbour(g.GetPair().GetAsteroid());
-		g.SetAsteroid(g.GetPair().GetAsteroid());
-
 	}
 
 }

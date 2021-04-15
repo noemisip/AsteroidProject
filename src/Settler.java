@@ -90,11 +90,23 @@ public class Settler extends Creature {
 	
 	public void Move(Asteroid a) { //a telepes a kivalasztott aszteroidara mozog
 		Asteroid al = asteroid;
-		asteroid.GetNeighbours(); //a telepes megkapja, hogy melyik transport objektum fogja atvinni a masik aszteroidara
-		a.Transport(this); //meghivja az objektum transport fuggvenyet
-		al.RemoveCreature(this); //a telepes kitorlodik az aszterodia creture listajabol
-		Game.getInstance().CheckBase(asteroid); //a jatek ellenorzi, hogy fel tudják-e epiteni a telpesek a bazist az aszteroidan
+		ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes ellenorzi, hogy at tud-e menni arra az aszteroidara
+		boolean move = false;
+		Transport tr = null;
+		for(Transport t : neighbours){
+			if(t.GetAsteroid() == a) {
+				move = true;
+				tr=t;
+				break;
+			}
+		}
+		if(move){
+			tr.Transport(this); //meghivja az objektum transport fuggvenyet
+			al.RemoveCreature(this); //a telepes kitorlodik az aszterodia creture listajabol
+			Game.getInstance().CheckBase(asteroid); //a jatek ellenorzi, hogy fel tudják-e epiteni a telpesek a bazist az aszteroida
+		}
 	}
+
 	
 	public void AsteroidExplosion() { //a telepes reagal az aszteroida felrobbanasara
 		Die();

@@ -78,7 +78,7 @@ public class Asteroid implements Steppable, Transport {
 		if(layer==0 && closeToSun==true) material.ReactToSunclose(this);
 	}
 
-	public void RemoveNeighbour(Asteroid t) { //Kivesz egy aszteroidat a neighbours listabol.
+	public void RemoveNeighbour(Transport t) { //Kivesz egy aszteroidat a neighbours listabol.
 		neighbours.remove(t);
 	}
 
@@ -91,7 +91,7 @@ public class Asteroid implements Steppable, Transport {
 		c.SetAsteroid(this);
 	}
 
-	public void TransportGate(Gate g) {      //Utaztatja a lenyeket, a leny beallitja magat az uj aszteroidara
+	public void TransportGate(Gate g) {      //Utaztatja a kapukat, a kapu beallitja magat az uj aszteroidara
 		AddNeighbour(g.GetPair());
 		g.SetAsteroid(this);
 	}

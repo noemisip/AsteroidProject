@@ -74,7 +74,7 @@ public class Controller {
 	}
 	public void Move(String[] cmd){
 		Creature c = (Creature) hash.get(cmd[1]);
-		c.Move((Transport) hash.get(cmd[2]));
+		c.Move((Asteroid) hash.get(cmd[2]));
 	}
 	public void Drill(String[] cmd){
 		Settler s = (Settler) hash.get(cmd[1]);
