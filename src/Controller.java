@@ -1,478 +1,198 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class Controller {
-	static  int tab;
-	static boolean inTest;
+	private HashMap<String, Object> hash = new HashMap<String, Object>();
 
-	public boolean menu() {
-		boolean test = true;
-		System.out.println("1. Settler drills");
-		System.out.println("2. Ice sublimates in sunclose");
-		System.out.println("3. Robot chooses to drill");
-		System.out.println("4. Settler restores");
-		System.out.println("5. Robot cannot move and dies");
-		System.out.println("6. Settler moves with gate and check base");
-		System.out.println("7. Settler moves to neighbour asteroid and check base");
-		System.out.println("8. Create Robot");
-		System.out.println("9. Create Gate");
-		System.out.println("10. Place Gate and Remove from Settler");
-		System.out.println("11. Robot moves with gate");
-		System.out.println("12. Robot moves to neighbour asteroid");
-		System.out.println("13. Settler mines");
-		System.out.println("14. SolarStorm on an asteroid where Robot and Settler can hide");
-		System.out.println("15. SolarStorm hits Settler and Robot");
-		System.out.println("16. Asteroid Explosion and Game Over");
-		System.out.println("17. Exit");
 
-		int  x = new Scanner(System.in).nextInt();
-
-		switch(x){
-			case 1: SettlerDrills();
-					break;
-			case 2: IceSublimateInSunclose(); 
-					break;
-			case 3: RobotChoosesToDrill();
-					break;
-			case 4: SettlerRestores();
-					break;
-			case 5: RobotCannotMoveAndDies();
-					break;
-			case 6: SettlerMovesWithGate();
-					break;
-			case 7:SettlerMovesNeighbourAsteroid();
-					break;
-			case 8: CreateRobot();
-					break;
-			case 9: CreateGate();
-					break;
-			case 10: PlaceGateandRemovefromSettler();
-					break;
-			case 11: RobotMovesWithGate();
-					break;
-			case 12: RobotMovesNeighbourAsteroid();
-					break;
-			case 13: SettlerMines();
-					break;
-			case 14: SolarStormInCaseWhenCreaturesCanHide();
-					break;
-			case 15: SolarStormHitsSettlerAsteroid();
-					break;
-			case 16: AsteroidExplosionandGameOver();
-						break;
-			case 17: test=false;
-					break;
-			default: break;
+	public void ReadFromConsole() {
+		Scanner s = new Scanner(System.in);
+		String[] cmd = {""};
+		while(s.hasNextLine()) {
+			String line = s.nextLine();
+			if(!line.isEmpty()) cmd=line.split(",");
 		}
-		return test;
+		switch (cmd[0]){
+			case "place" :
+				Place(cmd);
+				break;
+			case "kerge" :
+				Kerge_Gate(cmd);
+				break;
+			case "move" :
+				Move(cmd);
+				break;
+			case "drill" :
+				Drill(cmd);
+				break;
+			case "mine" :
+				Mine(cmd);
+				break;
+			case "create" :
+				Create(cmd);
+				break;
+			case "restore" :
+				Restore(cmd);
+				break;
+			case "settler" :
+				Settler_Properties(cmd);
+				break;
+			case "asteroid" :
+				Asteroid_Properties(cmd);
+				break;
+			case "open" :
+				Open(cmd);
+				break;
+			case "check" :
+				Check(cmd);
+				break;
+			case "setup" :
+				Setup(cmd);
+				break;
+			case "set" :
+				Set(cmd);
+				break;
+			case "help" :
+				Help();
+				break;
+			case "SolarStorm" :
+				SolarStorm(cmd);
+				break;
+			default : break;
+		}
+
 	}
-
-
-	public void SettlerDrills(){
-		// objektumok inicializalasa, palya felepitese
-		Asteroid a = new Asteroid();
-		Settler s = new Settler();
-		Ice i = new Ice();
-		a.SetMaterial(i);
-		a.AddCreature(s);
-		s.SetAsteroid(a);
-
-		// A teszteset elinditasa a s Settlerre meghivott Drill fuggvennyel
-		System.out.println("Settler drills: ");
-		tab = 0;
-		inTest=true;
+	public void Place(String[] cmd){
+		Settler s = (Settler) hash.get(cmd[1]);
+		Gate g = (Gate) hash.get(cmd[2]);
+		s.PlaceGate(g);
+	}
+	public void Kerge_Gate(String[] cmd){ //TODO
+		Gate g = (Gate) hash.get(cmd[1]);
+	}
+	public void Move(String[] cmd){
+		Creature c = (Creature) hash.get(cmd[1]);
+		c.Move((Transport) hash.get(cmd[2]));
+	}
+	public void Drill(String[] cmd){
+		Settler s = (Settler) hash.get(cmd[1]);
 		s.Drill();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
 	}
-	public void IceSublimateInSunclose(){
-		// objektumok inicializalasa, palya felepitese
-		Asteroid a = new Asteroid();
-		Ice i = new Ice();
-		a.SetMaterial(i);
-
-		// A teszteset elinditasa az a Asteroidara meghivott Step fuggvennyel
-		System.out.println("Ice sublimates in sunclose: ");
-		tab = 0;
-		inTest=true;
-		a.Step();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void RobotChoosesToDrill(){
-		// objektumok inicializalasa, palya felepitese
-		Asteroid a = new Asteroid();
-		Robot r = new Robot();
-		Ice i = new Ice();
-		a.SetMaterial(i);
-		a.AddCreature(r);
-		r.SetAsteroid(a);
-
-		// A teszteset elinditasa a Robotra meghivott Step fuggvennyel
-		System.out.println("Robot chooses To Drill: ");
-		tab = 0;
-		inTest=true;
-		r.Step();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void SettlerRestores(){
-		// objektumok inicializalasa, palya felepitese
-		Asteroid a = new Asteroid();
-		Settler s = new Settler();
-		Ice i = new Ice();
-		a.SetMaterial(null);
-		a.AddCreature(s);
-		s.AddMaterial(i);
-		s.SetAsteroid(a);
-
-		// A teszteset elinditasa a s Settlerre meghivott RestoreMaterial(i) fuggvennyel
-		System.out.println("Settler restores: ");
-		tab = 0;
-		inTest=true;
-		s.RestoreMaterial(i);
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-
-	}
-	public void SettlerMovesWithGate(){
-		//A teszthez szukseges objektumok letrehozasa
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a telepes
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a telepes
-		Gate g1 = new Gate(); //az elso aszteroidan talalhato teleportkapu
-		Gate g2 = new Gate(); //a masodik aszteroidan talalhato teleportkapu
-		Settler s = new Settler(); //a telepes peldanya
-		Ice i = new Ice(); //a telepsnel levo nyersanyag
-
-		//teleportkapu-par elhelyezese az aszteroidakon + parjaik beallitasa
-		g1.SetPair(g2);
-		g2.SetPair(g1);
-		g1.SetAsteroid(a1);
-		g2.SetAsteroid(a2);
-		a1.AddNeighbour(g1);
-		a2.AddNeighbour(g2);
-
-		//a settler peldany elhelyezese az a1 aszteroidan
-		a1.AddCreature(s);
-		s.SetAsteroid(a1);
-		s.AddMaterial(i);
-
-		//Game osztalyban valo elhelyezes, a kesobbi bazis ellenorzes erdekeben
-		Game.getInstance().AddSettler(s);
-		Game.getInstance().AddSteppable(a1);
-		Game.getInstance().AddSteppable(a2);
-
-		//A teszteset elinditasa a settler osztaly Move() függgvényének segitsegevel
-		System.out.println("Settler moves with gate and check base:");
-		tab = 0;
-		inTest=true;
-		s.Move(a2);
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-
-	}
-	public void SettlerMovesNeighbourAsteroid(){
-		//A teszthez szukseges objektumok letrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a telepes
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a telepes
-		Settler s = new Settler(); //a telepes peldanya
-		Ice i = new Ice(); //a telepsnel levo nyersanyag
-
-		//a settler peldany elhelyezese az a1 aszteroidan
-		a1.AddCreature(s);
-		s.SetAsteroid(a1);
-		s.AddMaterial(i);
-
-		//Game osztalyban valq elhelyezes, a kesobbi bazis ellenorzes erdekeben
-		Game.getInstance().AddSettler(s);
-		Game.getInstance().AddSteppable(a1);
-		Game.getInstance().AddSteppable(a2);
-
-		//A teszteset elinditasa a settler osztaly Move() fugggvenyenek segitsegevel
-		System.out.println("Settler moves to neighbour asteroid and check base:");
-		tab = 0;
-		inTest=true;
-		s.Move(a2);
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-
-	}
-	public void RobotMovesWithGate(){
-		//A teszthez szukseges objektumok letrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a telepes
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a telepes
-		Gate g1 = new Gate(); //az elso aszteroidan talalhato teleportkapu
-		Gate g2 = new Gate(); //a masodik aszteroidan talalhato teleportkapu
-		Robot r = new Robot(); //robot peldanya
-
-		//teleportkapu-par elhelyezese az aszteroidakon + parjaik beallitasa
-		g1.SetPair(g2);
-		g2.SetPair(g1);
-		g1.SetAsteroid(a1);
-		g2.SetAsteroid(a2);
-		a1.AddNeighbour(g1);
-		a2.AddNeighbour(g2);
-
-		//a robot peldany elhelyezese az a1 aszteroidan
-		a1.AddCreature(r);
-		r.SetAsteroid(a1);
-
-		//A teszteset elinditasa a settler osztaly Move() függgvenyenek segitsegevel
-		System.out.println("Robot moves with gate:");
-		tab = 0;
-		inTest=true;
-		r.Move(a2);
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-
-	}
-	public void RobotMovesNeighbourAsteroid(){
-		//A teszthez szukseges objektumok letrehozása
-		Asteroid a1 = new Asteroid(); //1. aszteroida, itt all kezdetben a robot
-		Asteroid a2 = new Asteroid(); //2.a szteroida, ide utazik at a robot
-		Robot r = new Robot(); //robot peldanya
-
-		//a robot peldany elhelyezése az a1 aszteroidan
-		a1.AddCreature(r);
-		r.SetAsteroid(a1);
-
-		//A teszteset elinditasa a settler osztaly Move() fugggvenyenek segitsegevel
-		System.out.println("Robot moves to neighbour asteroid:");
-		tab = 0;
-		inTest=true;
-		r.Move(a2);
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void SolarStormHitsSettlerAsteroid() {
-		//A palya felepitese a tesztesethez
-		Settler s=new Settler();
-		Space sp=new Space();
-		Robot r=new Robot();
-		Asteroid a=new Asteroid();
-		Settler s2=new Settler();
-		Asteroid a2=new Asteroid();
-		Iron i=new Iron();
-
-		//s settler es r robot elhelyezese az a jeg magu aszteroidan
-		a.SetMaterial(i);
-		a.AddCreature(s);
-		a.AddCreature(r);
-		s.SetAsteroid(a);
-		r.SetAsteroid(a);
-		a.SetSpace(sp);
-
-		//Az objektumok urbe helyezese
-		sp.AddAsteroid(a);
-		sp.AddAsteroid(a2);
-		sp.AddCreature(s);
-		sp.AddCreature(s2);
-		sp.AddCreature(r);
-
-		//s2 settler elhelyezese az a2 ures aszteroidan
-		a2.AddCreature(s2);
-		s2.SetAsteroid(a2);
-		a2.SetMaterial(null);
-
-		Game.getInstance().AddSteppable(a);
-		Game.getInstance().AddSteppable(a2);
-		Game.getInstance().AddSteppable(r);
-		Game.getInstance().AddSteppable(sp);
-		Game.getInstance().AddSettler(s);
-		Game.getInstance().AddSettler(s2);
-		//A teszteset elinditasa az asteroid osztaly SolarStorm() fugggvenyenek segitsegevel
-		System.out.println("SolarStorm hits Settler and Robot:");
-		tab = 0;
-		inTest=true;
-		a.SolarStorm();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void RobotCannotMoveAndDies(){
-		//A palya felepitese a tesztesethez
-		Space sp=new Space();
-		Robot r=new Robot();
-		Asteroid a=new Asteroid();
-
-		//r robot elhelyezese egy olyan a aszteroidara, amelynek nincs szomszedja
-		r.SetAsteroid(a);
-		a.AddCreature(r);
-		a.SetSpace(sp);
-
-		sp.AddAsteroid(a);
-		sp.AddCreature(r);
-
-		Game.getInstance().AddSteppable(a);
-		Game.getInstance().AddSteppable(r);
-		Game.getInstance().AddSteppable(sp);
-
-		//A teszteset elinditasa a robot osztaly WhereToMove() fugggvenyenek segitsegevel
-		System.out.println("Robot cannot move and dies:");
-		tab = 0;
-		inTest=true;
-		r.WhereToMove();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void AsteroidExplosionandGameOver(){
-	    //A teszthez szukseges objektumok letrehozasa
-		Asteroid b = new Asteroid();          //Ide kerul a robot, miutan felrobbant az "a" aszteroida
-		Uranium u = new Uranium();
-	    Asteroid a = new Asteroid();          //Ez az aszteroida fog robbanni
-		Space sp = new Space();
-		Robot r = new Robot();               //Az aszteroidan levo robot
-		Settler s = new Settler();           //Az aszteroidan levo telepes
-
-		//Aszteroida beallitasai
-		a.SetMaterial(u);
-		a.AddCreature(s);
-		a.AddCreature(r);
-		a.SetSpace(sp);
-
-		//Robot és Settler beallitasai
-		r.SetAsteroid(a);
-		s.SetAsteroid(a);
-
-		//Singleton beallitasa
-		Game.getInstance().AddSettler(s);
-		Game.getInstance().AddSteppable(a);
-		Game.getInstance().AddSteppable(b);
-
-		//A teszteset elinditasa
-		System.out.println("Asteroid Explosion and GameOver:");
-		tab = 0;
-		inTest=true;
-		a.Step();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void CreateGate(){
-	    //A teszthez szukseges objektumok letrehozasa
-		Iron i = new Iron();
-		Uranium u = new Uranium();
-		Settler s = new Settler();
-		BillOfMaterials b = new BillOfMaterials();
-
-		//Settler beallitasai
-		s.AddMaterial(i);
-		s.AddMaterial(u);
-		
-		//A teszteset elinditasa
-		System.out.println("Create Gate:");
-		tab = 0;
-		inTest=true;
-		s.CreateGate();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void CreateRobot(){
-	    //A teszthez szukseges objektumok letrehozasa
-		Iron i = new Iron();
-		Carbon c = new Carbon();
-		Space sp = new Space();
-		Asteroid a = new Asteroid();
-		Settler s = new Settler();
-        BillOfMaterials b = new BillOfMaterials();
-
-		//Settler beallitasai
-		s.AddMaterial(i);
-		s.AddMaterial(c);
-
-		s.SetAsteroid(a);
-		a.SetSpace(sp);
-
-		//A teszteset elinditasa
-		System.out.println("Create Robot:");
-		tab = 0;
-		inTest=true;
-		s.CreateRobot();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void PlaceGateandRemovefromSettler(){
-		//A teszthez szukseges objektumok letrehozasa
-		Asteroid a1 = new Asteroid();
-		Gate g1 = new Gate();
-		Settler s = new Settler();
-		Gate g2 = new Gate();
-
-		//Aszteroida beallitasa
-		a1.AddCreature(s);
-
-		//Settler beallitasai
-		s.AddGate(g1);
-		s.AddGate(g2);
-		s.SetAsteroid(a1);
-
-		//A teszteset elinditasa
-		System.out.println("Place Gate and Remove from Settler:");
-		tab = 0;
-		inTest=true;
-		s.PlaceGate();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-	public void SettlerMines(){
-		//A tesztesethez szukseges objektumok letrehozasa
-		Settler s = new Settler();
-		Asteroid a = new Asteroid();
-		Carbon c = new Carbon();
-		
-		//Asztreoida beallitasa
-		BillOfMaterials b = new BillOfMaterials(); 
-		a.SetMaterial(c);
-		a.AddCreature(s);
-		
-		//Game beallitasa
-		Game.getInstance().AddSettler(s);
-		Game.getInstance().AddSteppable(a);
-		
-		//Settler beallitasa
-		s.SetAsteroid(a);
-
-		//A teszteset elinditasa
-		System.out.println("Settler mines:");
-		tab = 0;
-		inTest=true;
+	public void Mine(String[] cmd){
+		Settler s = (Settler) hash.get(cmd[1]);
 		s.Mine();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
 	}
-	public void SolarStormInCaseWhenCreaturesCanHide(){
-		//A tesztesethez szukseges objektumok letrehozasa
-		Settler s = new Settler();
-		Asteroid a = new Asteroid();
-		Robot r = new Robot();
-		
-		//Az aszteroida parametereinek beallitasa es a retegek szamanak bekerese
-		a.SetMaterial(null);
-		a.AddCreature(s);
-		a.AddCreature(r);
-		
-		//Settler beallitasa
-		s.SetAsteroid(a);
-		
-		//Robot beallitasa
-		r.SetAsteroid(a);
-		
-		//A teszteset elinditasa
-		System.out.println("SolarStorm on an asteroid where Robot and Settler can hide:");
-		tab = 0;
-		inTest=true;
-		a.SolarStorm();
-		System.out.println("-----Teszteset vege----");
-		inTest=false;
-	}
-
-	public void PrintFunc(String s){
-		if(inTest) {
-			for (int i = 0; i < tab; i++) {
-				System.out.print("\t");
-			}
-			System.out.println(s);
+	public void Create(String[] cmd){
+		if(cmd[1].equals("robot")){
+			Settler s = (Settler) hash.get(cmd[2]);
+			s.CreateRobot();
+		}
+		else if(cmd[1].equals("gate")){
+			Settler s = (Settler) hash.get(cmd[3]);
+			s.CreateGate();
+			hash.put(cmd[1], s.GetGate(0));
+			hash.put(cmd[2], s.GetGate(1));
 		}
 	}
-	public void SetTab(int i){
-		tab+=i;
+	public void Restore(String[] cmd){
+		Settler s = (Settler) hash.get(cmd[1]);
+		Material m = null;
+		switch (cmd[2]){
+			case "iron":
+				m = new Iron();
+				break;
+			case "ice":
+				m = new Ice();
+				break;
+			case "carbon":
+				m = new Carbon();
+				break;
+			case "uranium":
+				m = new Uranium();
+				break;
+			default:break;
+		}
+		s.RemoveMaterial(m);
+	}
+	public void Settler_Properties(String[] cmd){
+		Settler s = (Settler) hash.get(cmd[2]);
+	}
+	public void Asteroid_Properties(String[] cmd){
+		Asteroid a = (Asteroid) hash.get(cmd[2]);
+	}
+	public void Open(String[] cmd){
+
+	}
+	public void Check(String[] cmd){
+		if(cmd[1].equals("settlers")){
+			Game.getInstance().CheckSettlers();
+		}
+		else if(cmd[1].equals("base")){
+			Asteroid a = (Asteroid) hash.get(cmd[2]);
+			Game.getInstance().CheckBase(a);
+		}
+	}
+	public void Setup(String[] cmd){
+		int k=0;
+		if(cmd.length==1){
+			Space sp = new Space();
+			Game.getInstance().SetSpace(sp);
+			return;
+		}
+		else if(cmd[2].equals("r")){
+
+		}
+		else{
+			k = parseInt(cmd[2]);
+		}
+		if(cmd[1].equals("asteroid")){
+			for(int i=0; i<k; i++){
+				Asteroid a = new Asteroid();
+				hash.put("a", a);
+			}
+		}
+		else if(cmd[1].equals("settler")){
+			for(int i=0; i<k; i++){
+				Settler s = new Settler();
+				hash.put("s", s);
+			}
+		}
+		else if(cmd[1].equals("ufo")){
+			for(int i=0; i<k; i++){
+				Ufo u = new Ufo();
+				hash.put("u", u);
+			}
+		}
+		else if(cmd[1].equals("gate")){
+			for(int i=0; i<k; i++){
+				Gate g1 = new Gate();
+				Gate g2 = new Gate();
+				g1.SetPair(g2);
+				g2.SetPair(g1);
+				hash.put("g", g1);
+				hash.put("g", g2);
+			}
+		}
+	}
+	public void Set(String[] cmd){
+		if(cmd[1].contains("asteroid")){
+			Asteroid a = (Asteroid) hash.get(cmd[1]);
+			a.SetMaterial();
+			a.SetLayer(parseInt(cmd[3]));
+			a.SetCloseToSun(cmd[4].equals("true"));
+		}
+		else if(cmd[1].contains("settler")){}
+		else if(cmd[1].contains("ufo")){}
+		else if(cmd[1].contains("uranium")){}
+	}
+	public void Help(){
+
+	}
+	public void SolarStorm(String[] cmd){
+		Asteroid a = (Asteroid)hash.get(cmd[1]);
+		a.SolarStorm();
 	}
 
 }
