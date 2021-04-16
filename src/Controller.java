@@ -327,31 +327,30 @@ public class Controller {
                 return;
             }
             Material m = null;
-            switch (cmd[2]) {
-                case "iron":
-                    m = new Iron();
-                    hash.put("iron"+ironCnt, m);
-                    ironCnt++;
-                    break;
-                case "ice":
-                    m = new Ice();
-                    hash.put("ice"+iceCnt, m);
-                    iceCnt++;
-                    break;
-                case "carbon":
-                    m = new Carbon();
-                    hash.put("carbon"+carbonCnt, m);
-                    carbonCnt++;
-                    break;
-                case "uranium":
-                    m = new Uranium();
-                    hash.put("uranium"+uraniumCnt, m);
-                    uraniumCnt++;
-                    break;
-                case "-": break;
-                default:
-                    addOutput("Unsuccessful");
-                    return;
+            String str= cmd[2];
+            if(str.contains("iron")){
+                m = new Iron();
+                hash.put("iron"+ironCnt, m);
+                ironCnt++;
+            }
+            else if(str.contains("ice")){
+                m = new Ice();
+                hash.put("ice"+iceCnt, m);
+                iceCnt++;
+            }
+            else if(str.contains("carbon")){
+                m = new Carbon();
+                hash.put("carbon"+carbonCnt, m);
+                carbonCnt++;
+            }
+            else if(str.contains("uranium")){
+                m = new Uranium();
+                hash.put("uranium"+uraniumCnt, m);
+                uraniumCnt++;
+            }
+            else{
+                addOutput("Unsuccessful");
+                return;
             }
             a.SetMaterial(m);
             int l =0;
@@ -424,13 +423,11 @@ public class Controller {
                         m = new Carbon();
                         hash.put("carbon"+carbonCnt, m);
                         carbonCnt++;
-                        break;
                     }
                     else if(str.contains("uranium")){
                         m = new Uranium();
                         hash.put("uranium"+uraniumCnt, m);
                         uraniumCnt++;
-                        break;
                     }
                     else{
                         addOutput("Unsuccessful");

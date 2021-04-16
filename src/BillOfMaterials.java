@@ -12,10 +12,11 @@
 			{
 				int j=0;
 				//A settler alapanyagait hasonlitja a sajat materialListjevel
-				while(!materials.get(i).IsEquales(materialList.get(j)) && j<materialList.size()) j++;
+				while(j<materialList.size() && !materials.get(i).IsEquales(materialList.get(j))) j++;
 				//Ha megall a ciklus, es a j meg kisebb, mint a lista merete, akkor talalt egyezest, igy torolni kell
 				//a materialListbol
 				if(j<materialList.size()) RemoveMaterialFromList(materialList.get(j));
+				i++;
 			}
 			//Ha a BillOfMaterials materialListajabol az osszes alapanyag kitorlodott,
 			//akkor a settlernek van eleg alapanyaga, igy epithet.
@@ -41,10 +42,14 @@
 		
 		public void SetUpBase() {
 			//Feltolti a materialList-et az urbazis megepitesehez szukseges alapanyagokkal
-			Controller c = new Controller();
 			//A teszt folyaman a teleportkapu epitesehez egy Carbon szukseges
 			//Ezzel tolti fel a materialListet
-			materialList.add(new Carbon());
+			for(int i=0; i<3; i++) {
+				materialList.add(new Carbon());
+				materialList.add(new Ice());
+				materialList.add(new Iron());
+				materialList.add(new Uranium());
+			}
 		}
 		
 		public void RemoveMaterials(Settler s) {
