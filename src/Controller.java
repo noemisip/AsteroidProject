@@ -128,12 +128,15 @@ public class Controller {
 
     public void Create(String[] cmd) {
         if (cmd[1].equals("robot")) {
-            Settler s = (Settler) hash.get(cmd[2]);
+            Settler s = (Settler) hash.get(cmd[3]);
             if(s==null){
                 addOutput("Unsuccessful");
                 return;
             }
             s.CreateRobot();
+            int num = s.GetAsteroid().GetCreatures().size();
+            if(s.GetAsteroid().GetCreatures().size()>num)
+                hash.put(cmd[2], s.GetAsteroid().GetCreatures().get(s.GetAsteroid().GetCreatures().size()-1));
         } else if (cmd[1].equals("gate")) {
             Settler s = (Settler) hash.get(cmd[4]);
             if(s==null){
