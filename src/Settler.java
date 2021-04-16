@@ -56,11 +56,11 @@ public class Settler extends Creature {
 		}
 	}
 	
-	public void PlaceGate() { //a telepes lehelyez egy kaput az aszteroidara
-		Gate g2=gates.get(0).GetPair();
+	public void PlaceGate(Gate g) { //a telepes lehelyez egy kaput az aszteroidara
+		Gate g2=g.GetPair();
 		asteroid.AddNeighbour(g2); //az aszteroida új szomszedot kap a kapun keresztul
-		gates.get(0).SetAsteroid(asteroid); //beallitja, hogy a kapu melyik aszteroidan helyezkedik el
-		RemoveGate(gates.get(0)); //a telepes kitolri a kaput a listjabol
+		g.SetAsteroid(asteroid); //beallitja, hogy a kapu melyik aszteroidan helyezkedik el
+		RemoveGate(g); //a telepes kitolri a kaput a listjabol
 	}
 
 	
@@ -69,12 +69,16 @@ public class Settler extends Creature {
 	}
 	
 	public void RemoveMaterial(Material m) { //a telepes kitorol egy nyerssanyagot a listajabol
-		Controller c = new Controller();
+		for( int i = 0; i< materials.size(); i++){
+			if(m == materials.get(i)) {
+				materials.remove( materials.get(i));
+				break;
+			}
+		}
 	}
 	
 	public void AddGate(Gate g) { //a telepes egy kaput keszitett es felveszi a listajaba
-		// listája elejéra rakja a gate-t
-		gates.add(g);
+		gates.add(0,g);
 	}
 	
 	public ArrayList<Material> GetMaterials() { //a telepes visszaadja a nala levo nyersanyagok listajat
