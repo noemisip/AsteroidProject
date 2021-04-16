@@ -34,8 +34,9 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 		ArrayList<Transport> asteroids=this.asteroid.GetNeighbours();
 		Random rand = new Random();
 		int rand_int = rand.nextInt(asteroids.size());
-		Asteroid nexAsteroid = asteroids.get(rand_int).GetAsteroid();
-		Move(nexAsteroid);
+		Asteroid nextAsteroid;
+		nextAsteroid = asteroids.get(rand_int).GetAsteroid();
+		Move(nextAsteroid);
 	}
 	public int NextStep() {
 		Random rand = new Random();
@@ -67,7 +68,9 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 	public void SolarStorm(int a){
 		SetKerge(true);
 	}
-	public void RemoveNeighbour(Asteroid a){
+
+
+	public void RemoveNeighbour(Transport t){
 		asteroid=null;
 		pair.SetPair(null);
 	}

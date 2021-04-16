@@ -1,8 +1,14 @@
 public interface Transport {
-	//Abstract fuggveny, az aszteroidak kozotti kozlekedes lebonyolitasara
+
 	public abstract void Transport(Creature c);
-	//Abstract fuggveny, hogy a Transportok aszteroidajat lekerjuk
+
+	public abstract void TransportGate(Gate gate);
+
 	public abstract Asteroid GetAsteroid();
 
-	void TransportGate(Gate gate);
+	public abstract void SolarStorm(int c);
+
+	public abstract void RemoveNeighbour(Transport t);
+
+
 }
