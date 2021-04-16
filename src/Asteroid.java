@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Asteroid implements Steppable, Transport {
 	private int layer;                      //Az aszteroida aktualis retegeinek szama.
@@ -15,6 +14,7 @@ public class Asteroid implements Steppable, Transport {
 		neighbours= new ArrayList<Transport>();
 		space=sp;
 	}
+	public Asteroid(){}
 	public void AddCreature(Creature c) {   //Hozzaad egy Creature objektumot a creatures listahoz.
 		creatures.add(c);
 	}
@@ -52,7 +52,7 @@ public class Asteroid implements Steppable, Transport {
 	}
 
 	public void DecreaseLayer() {             //Csokkenti az aszteroida retegeinek a szamat.
-		if(layer>0) setLayer(layer-1);
+		if(layer>0) SetLayer(layer-1);
 	}
 
 	public void Explosion() {                //Felrobban az aszteroida.
@@ -105,8 +105,9 @@ public class Asteroid implements Steppable, Transport {
 		for(int i=0;i<neighbours.size();i++) neighbours.get(0).GetAsteroid().SolarStorm(count-1);
 	}
 
-	public void setLayer(int l){
+	public void SetLayer(int l){
 		layer=l;
 	}
+
 }
 
