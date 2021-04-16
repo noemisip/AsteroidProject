@@ -55,8 +55,8 @@ public class Settler extends Creature {
 			AddGate(g2);
 		}
 	}
-	//TODO
-	public void PlaceGate(Gate g) { //a telepes lehelyez egy kaput az aszteroidara
+	
+	public void PlaceGate() { //a telepes lehelyez egy kaput az aszteroidara
 		Gate g2=gates.get(0).GetPair();
 		asteroid.AddNeighbour(g2); //az aszteroida új szomszedot kap a kapun keresztul
 		gates.get(0).SetAsteroid(asteroid); //beallitja, hogy a kapu melyik aszteroidan helyezkedik el
@@ -115,6 +115,4 @@ public class Settler extends Creature {
 	public void RemoveGate(Gate g){ //a telpes kitorol egy kaput a lsitajabol
 		gates.remove(g);
 	}
-
-	public Gate GetGate(int i){ return gates.get(i);};
 }
