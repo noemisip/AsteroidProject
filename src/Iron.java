@@ -1,10 +1,10 @@
 
 public class Iron extends Material {
 	// Akkor hivodik meg ha asnak az aszteroidan
-	public void ReactToMine(Asteroid a, Settler s) {
+	public void ReactToMine(Asteroid a, Ceature c) {
 		Controller c = new Controller();
 		a.SetMaterial(null); // kiszedi az aszteroidabol az eddig bennelevo anyagot, igy ures lesz
-		s.AddMaterial(this); //hozzaadja a kibanyaszott anyagot a settler materialjaihoz
+		c.AddMaterial(this); //hozzaadja a kibanyaszott anyagot a settler materialjaihoz
 	}
 	
 	public void ReactToSunclose(Asteroid a) {
