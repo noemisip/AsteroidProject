@@ -7,6 +7,7 @@ import static java.lang.Integer.parseInt;
 
 public class Controller {
     private HashMap<String, Object> hash = new HashMap<String, Object>();
+    private Space sp;
     private int settlerCnt =1;
     private int gateCnt = 1;
     private int asteroidCnt = 1;
@@ -15,6 +16,7 @@ public class Controller {
     private int ironCnt =1;
     private int iceCnt =1;
     private int carbonCnt =1;
+    private int robotCnt =1;
     private ArrayList<String> output = new ArrayList<String>();
 
     public void ReadFromConsole() {
@@ -133,7 +135,7 @@ public class Controller {
             }
             s.CreateRobot();
         } else if (cmd[1].equals("gate")) {
-            Settler s = (Settler) hash.get(cmd[3]);
+            Settler s = (Settler) hash.get(cmd[4]);
             if(s==null){
                 addOutput("Unsuccessful");
                 return;
@@ -167,7 +169,7 @@ public class Controller {
             default:
                 break;
         }
-        s.RemoveMaterial(m);
+        s.RestoreMaterial(m);
     }
 
     public void Settler_Properties(String[] cmd) {
@@ -188,10 +190,12 @@ public class Controller {
         if(s.GetGateList().size()==0) gates="-";
         else {
             for (Gate g : s.GetGateList()) {
-                materials += getKey(g) + ";";
+                gates += getKey(g) + ";";
             }
             gates = gates.substring(0, gates.length() - 1);
         }
+        String asteroid;
+        if(s.GetAsteroid()==null)
         addOutput(cmd[2]+": "+ getKey(s.GetAsteroid())+" " + materials + " " + gates );
     }
 
@@ -258,7 +262,7 @@ public class Controller {
         String objects="";
         //Setup space------------------------------------
         if (cmd.length == 1) {
-            Space sp = new Space();
+            sp = new Space();
             Game.getInstance().SetSpace(sp);
             addOutput("Created sp game");
             return;
@@ -276,7 +280,7 @@ public class Controller {
         //setup asteroid --------------------------------------
         if (cmd[1].equals("asteroid")) {
             for (int i = 0; i < k; i++) {
-                Asteroid a = new Asteroid();
+                Asteroid a = new Asteroid(sp);
                 hash.put("asteroid"+asteroidCnt, a);
                 objects+="asteroid"+asteroidCnt+";";
                 asteroidCnt++;
@@ -290,6 +294,8 @@ public class Controller {
                 hash.put("settler"+settlerCnt, s);
                 objects+="settler"+settlerCnt+";";
                 settlerCnt++;
+                Game.getInstance().AddSettler(s);
+                sp.AddCreature(s);
             }
         }
         //setup ufo --------------------------------------
@@ -299,6 +305,19 @@ public class Controller {
                 hash.put("ufo"+ufoCnt, u);
                 objects+="ufo"+ufoCnt+";";
                 ufoCnt++;
+                Game.getInstance().AddSteppable(u);
+                sp.AddCreature(u);
+            }
+        }
+        //setup robot --------------------------------------
+        else if (cmd[1].equals("robot")) {
+            for (int i = 0; i < k; i++) {
+                Robot r = new Robot();
+                hash.put("robot"+robotCnt, r);
+                objects+="robot"+robotCnt+";";
+                robotCnt++;
+                Game.getInstance().AddSteppable(r);
+                sp.AddCreature(r);
             }
         }
         //setup gate --------------------------------------
@@ -347,8 +366,9 @@ public class Controller {
                 m = new Uranium();
                 hash.put("uranium"+uraniumCnt, m);
                 uraniumCnt++;
-            }
-            else{
+            } else if (str.equals("-")) {
+                m= null;
+            } else {
                 addOutput("Unsuccessful");
                 return;
             }
@@ -399,10 +419,13 @@ public class Controller {
                 addOutput("Unsuccessful");
                 return;
             }
-            Asteroid a = (Asteroid) hash.get(cmd[2]);
-            if(a==null){
-                addOutput("Unsuccessful");
-                return;
+            Asteroid a=null;
+            if(!cmd[2].equals("-")) {
+                 a= (Asteroid) hash.get(cmd[2]);
+                if (a == null) {
+                    addOutput("Unsuccessful");
+                    return;
+                }
             }
             s.SetAsteroid(a);
             if (!cmd[3].equals("-")) {
@@ -457,10 +480,19 @@ public class Controller {
             }
             u.SetAsteroid((Asteroid) hash.get(cmd[2]));
         }
+        //set robot----------------------------------------------------------------
+        else if (cmd[1].contains("robot")) {
+            Robot r = (Robot) hash.get(cmd[1]);
+            if(r==null){
+                addOutput("Unsuccessful");
+                return;
+            }
+            r.SetAsteroid((Asteroid) hash.get(cmd[2]));
+        }
         //set uranium------------------------------------------------------------
         else if (cmd[1].contains("uranium")) {
-            Uranium u = (Uranium)hash.get(cmd[1]);
             Asteroid a = (Asteroid) hash.get(cmd[2]);
+            Uranium u = (Uranium)a.GetMaterial();
             if(u==null || a==null){
                 addOutput("Unsuccessful");
                 return;
@@ -470,7 +502,23 @@ public class Controller {
         }
     }
     public void Help() {
-
+        System.out.println( "place <settlername> <gatename> \n A megadott settler peldany lehelyezi a megadott nevu gatejet arra az aszteroidara, ahol eppen all.");
+        System.out.println("move <creaturename> <asteroidname/r> \n A megadott creature peldany atmegy a megadott aszteroidara. (r betu beirasa eseten random aszteroidara).");
+        System.out.println("create <robot/gate> <newinstancename> <settlername> \n Letrehozza a megadott settler peldany a megadott nevu robotot/gatet.");
+        System.out.println("mine <settlername/ufoname> \n A megadott settler peldany/ ufo peldany banyaszik.");
+        System.out.println("create <robot/gate> <newinstancename> <settlername> \n Letrehozza a megadott settler peldany a megadott nevu robotot/gatet.");
+        System.out.println("restore <settlername> <materialtype> \n A megadott nevu settler peldany lehelyez egy megadott tipusu materialt, arra az aszteroidara, amin all.");
+        System.out.println("settler properties <settlername> \n A megadott settler peldany aszteroidaja, materiallistaja es gatjei kilistazodnak.");
+        System.out.println("asteroid properties <asteroidname> \n A megadott aszteroida peldany anyaga, retege, sunclose tulajdonsaga, szomszedai, es a rajta allo creature-ok kilistazodnak.");
+        System.out.println("open <filename> \n Beolvassa a megadott nevu fajlt.");
+        System.out.println("check settlers \n Kiirja hany telepes van eletben, majd kilistazza a peldanyok nevet.");
+        System.out.println("check base <asteroidname> \n Megnezi hogy van-e eleg anyag a nyereshez az aszteroidan es kiirja mibol hany van.");
+        System.out.println("setup <asteroid/settler/ufo> <number/r> \n Letrehoz megadott szamu aszteroidat/telepest/ufot.");
+        System.out.println("setup \n Letrehoz egy game es egy space peldanyt.");
+        System.out.println("set <asteroidname> <materialtype> <layer> <sunclose> <neighbour1;neighbour2> <creature1;creature2> \n Beallitja a megadott aszteroida peldany parametereit.");
+        System.out.println("set <settlername> <asteroidname> <material1;material2;material3> <gate1;gate2;gate3> \n Beallitja a megadott settler peldany parametereit.");
+        System.out.println("set <ufoname> <asteroidname> \n Beallitja a megadott ufo peldany parametereit.");
+        System.out.println("help \n Kiirja milyen parancsok erhetoek el.");
     }
     public void SolarStorm (String[]cmd){
         Asteroid a = (Asteroid) hash.get(cmd[1]);

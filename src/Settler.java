@@ -70,7 +70,7 @@ public class Settler extends Creature {
 	
 	public void RemoveMaterial(Material m) { //a telepes kitorol egy nyerssanyagot a listajabol
 		for( int i = 0; i< materials.size(); i++){
-			if(m == materials.get(i)) {
+			if(m.IsEquales(materials.get(i))) {
 				materials.remove( materials.get(i));
 				break;
 			}

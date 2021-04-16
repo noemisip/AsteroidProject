@@ -106,6 +106,7 @@ public class Asteroid implements Steppable, Transport {
 		}
 		if(count>0)
 		for(int i=0;i<neighbours.size();i++) neighbours.get(0).GetAsteroid().SolarStorm(count-1);
+
 	}
 
 	public void SetLayer(int l){
