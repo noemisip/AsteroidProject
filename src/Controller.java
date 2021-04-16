@@ -19,6 +19,10 @@ public class Controller {
     private int robotCnt =1;
     private ArrayList<String> output = new ArrayList<String>();
 
+    public HashMap<String, Object> GetHash(){return hash;}
+
+    public int GetrobotCnt() {return robotCnt;}
+
     public void ReadFromConsole() {
         Scanner s = new Scanner(System.in);
         String[] cmd = {""};
@@ -99,13 +103,38 @@ public class Controller {
     }
 
     public void Move(String[] cmd) {
-        Creature c = (Creature) hash.get(cmd[1]);
-        Asteroid a = (Asteroid) hash.get(cmd[2]);
-        if(c==null || a==null) {
-            addOutput("Unsuccessful");
-            return;
+        Asteroid a;
+        if(cmd[1].contains("robot") || cmd[1].contains("ufo")){
+
+            if(!(cmd[2].equals("-"))){
+                Creature c = (Creature) hash.get(cmd[1]);
+                a= (Asteroid) hash.get(cmd[2]);
+                if(c==null || a==null) {
+                    addOutput("Unsuccessful");
+                    return;
+                }
+                else c.Move(a);
+            }
+            else{
+                AI ai=(AI) hash.get(cmd[1]);
+                ai.WhereToMove();
+
+            }
         }
-        c.Move(a);
+
+        Creature c = (Creature) hash.get(cmd[1]);
+
+        if(!(cmd[2].equals("-"))) {
+            a = (Asteroid) hash.get(cmd[2]);
+            if(c==null || a==null) {
+                addOutput("Unsuccessful");
+                return;
+            }
+        }
+
+
+
+        //c.Move(a);
     }
 
     public void Drill(String[] cmd) {
@@ -133,8 +162,8 @@ public class Controller {
                 addOutput("Unsuccessful");
                 return;
             }
-            s.CreateRobot();
             int num = s.GetAsteroid().GetCreatures().size();
+            s.CreateRobot();
             if(s.GetAsteroid().GetCreatures().size()>num)
                 hash.put(cmd[2], s.GetAsteroid().GetCreatures().get(s.GetAsteroid().GetCreatures().size()-1));
         } else if (cmd[1].equals("gate")) {
@@ -419,6 +448,7 @@ public class Controller {
                     else {
                         if(!a.GetCreatures().contains((Creature) hash.get(n)))
                             a.AddCreature((Creature) hash.get(n));
+                        ((Creature) hash.get(n)).SetAsteroid(a);
                     }
                 }
             }

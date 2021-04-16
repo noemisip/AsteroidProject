@@ -64,6 +64,11 @@ public class Ufo extends Creature implements Steppable,AI {
         return null;
     }
 
+    @Override
+    public Asteroid GetAsteroid() {
+        return asteroid;
+    }
+
     public void Drill(){
     }
 

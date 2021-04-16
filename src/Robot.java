@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Robot extends Creature implements Steppable {
+public class Robot extends Creature implements Steppable,AI {
 
 	public void WhereToMove() { //A robot eldonti, hogy melyik aszteroidara mozogjon
 		ArrayList<Transport> a = asteroid.GetNeighbours();
@@ -52,5 +52,10 @@ public class Robot extends Creature implements Steppable {
 	
 	public ArrayList<Material> GetMaterials() { //a robot megmondja, hogy milyen nyersanyagok vannak nala
 		return null; // a robotnál nincs nyersanyag
+	}
+
+	@Override
+	public Asteroid GetAsteroid() {
+		return asteroid;
 	}
 }
