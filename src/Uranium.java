@@ -4,13 +4,13 @@ public class Uranium  extends Material {
 	private int cnt = 0;
 	
 	// Akkor hivodik meg ha asnak az aszteroidan
-	public void ReactToMine(Asteroid a, Settler s) {
+	public void ReactToMine(Asteroid a, Creature c) {
 		Controller c = new Controller();
 		a.SetMaterial(null); // kiszedi az aszteroidabol az eddig bennelevo anyagot, igy ures lesz
-		s.AddMaterial(this); //hozzaadja a kibanyaszott anyagot a settler materialjaihoz
+		c.AddMaterial(this); //hozzaadja a kibanyaszott anyagot a settler materialjaihoz
 	}
 	
-	public void ReactToSunclose(Asteroid a, Creature c) {
+	public void ReactToSunclose(Asteroid a) {
 		// Akkor hivodik meg, ha az aszteroida napkozelben van
 		Controller c = new Controller();
 		if(a.getMaterial().getCnt() < 2)
@@ -25,11 +25,11 @@ public class Uranium  extends Material {
 		return m.getClass()==this.getClass();
 	}
 	
-	void setCnt(int cnt) {
+	void SetCnt(int cnt) {
 		this.cnt -= cnt;
 	}
 	
-	int getCnt() {
+	int GetCnt() {
 		return this.cnt;
 	}
 	
