@@ -5,10 +5,14 @@ import static java.lang.Integer.parseInt;
 
 public class Controller {
     private HashMap<String, Object> hash = new HashMap<String, Object>();
-    private int settlerCnt =0;
-    private int gateCnt = 0;
-    private int asteroidCnt = 0;
-    private int ufoCnt =0;
+    private int settlerCnt =1;
+    private int gateCnt = 1;
+    private int asteroidCnt = 1;
+    private int ufoCnt =1;
+    private int uraniumCnt =1;
+    private int ironCnt =1;
+    private int iceCnt =1;
+    private int carbonCnt =1;
 
     public void ReadFromConsole() {
         Scanner s = new Scanner(System.in);
@@ -81,25 +85,41 @@ public class Controller {
 
     public void Move(String[] cmd) {
         Creature c = (Creature) hash.get(cmd[1]);
-        c.Move((Asteroid) hash.get(cmd[2]));
+        Asteroid a = (Asteroid) hash.get(cmd[2]);
+        if(c==null || a==null) {
+            return;
+        }
+        c.Move(a);
     }
 
     public void Drill(String[] cmd) {
         Settler s = (Settler) hash.get(cmd[1]);
+        if(s==null){
+            return;
+        }
         s.Drill();
     }
 
     public void Mine(String[] cmd) {
         Settler s = (Settler) hash.get(cmd[1]);
+        if(s==null){
+            return;
+        }
         s.Mine();
     }
 
     public void Create(String[] cmd) {
         if (cmd[1].equals("robot")) {
             Settler s = (Settler) hash.get(cmd[2]);
+            if(s==null){
+                return;
+            }
             s.CreateRobot();
         } else if (cmd[1].equals("gate")) {
             Settler s = (Settler) hash.get(cmd[3]);
+            if(s==null){
+                return;
+            }
             s.CreateGate();
             hash.put(cmd[1], s.GetGate(0));
             hash.put(cmd[2], s.GetGate(1));
@@ -199,15 +219,23 @@ public class Controller {
             switch (cmd[2]) {
                 case "iron":
                     m = new Iron();
+                    hash.put("iron"+ironCnt, m);
+                    ironCnt++;
                     break;
                 case "ice":
                     m = new Ice();
+                    hash.put("ice"+iceCnt, m);
+                    iceCnt++;
                     break;
                 case "carbon":
                     m = new Carbon();
+                    hash.put("carbon"+carbonCnt, m);
+                    carbonCnt++;
                     break;
                 case "uranium":
                     m = new Uranium();
+                    hash.put("uranium"+uraniumCnt, m);
+                    uraniumCnt++;
                     break;
                 default:
                     break;

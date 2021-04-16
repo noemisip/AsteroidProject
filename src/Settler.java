@@ -119,4 +119,8 @@ public class Settler extends Creature {
 	public void RemoveGate(Gate g){ //a telpes kitorol egy kaput a lsitajabol
 		gates.remove(g);
 	}
+
+	public Gate GetGate(int i){
+		return gates.get(0);
+	}
 }
