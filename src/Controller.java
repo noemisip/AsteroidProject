@@ -401,6 +401,7 @@ public class Controller {
                         return;
                     }
                     else {
+                        if(!a.GetNeighbours().contains((Transport) hash.get(s)))
                         a.AddNeighbour((Transport) hash.get(s));
                     }
                 }
@@ -413,7 +414,8 @@ public class Controller {
                         return;
                     }
                     else {
-                        a.AddCreature((Creature) hash.get(n));
+                        if(!a.GetCreatures().contains((Creature) hash.get(n)))
+                            a.AddCreature((Creature) hash.get(n));
                     }
                 }
             }
