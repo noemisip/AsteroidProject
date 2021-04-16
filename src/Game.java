@@ -102,4 +102,7 @@ public class Game {
 	public void SetSpace(Space sp){
 		space=sp;
 	}
+
+	public ArrayList<Settler> GetSettlers(){ return settlers;}
+	public boolean GetOnGame(){ return onGame;}
 }

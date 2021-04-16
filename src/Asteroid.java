@@ -14,7 +14,10 @@ public class Asteroid implements Steppable, Transport {
 		neighbours= new ArrayList<Transport>();
 		space=sp;
 	}
-	public Asteroid(){}
+	public Asteroid(){
+		creatures = new ArrayList<Creature>();
+		neighbours= new ArrayList<Transport>();
+	}
 	public void AddCreature(Creature c) {   //Hozzaad egy Creature objektumot a creatures listahoz.
 		creatures.add(c);
 	}

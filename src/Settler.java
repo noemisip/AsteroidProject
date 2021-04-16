@@ -123,4 +123,7 @@ public class Settler extends Creature {
 	public Gate GetGate(int i){
 		return gates.get(0);
 	}
+
+	public Asteroid GetAsteroid(){ return asteroid;}
+	public ArrayList<Gate> GetGateList(){return gates; }
 }

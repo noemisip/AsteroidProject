@@ -3,11 +3,10 @@
 	public class BillOfMaterials {
 		//private Material GateList;
 		//ezt a listat a SetUP() metodusok toltik fel, attol fuggoen, hogy robot, teleportkapu, vagy bazis epiteset vizsgaljuk
-		private ArrayList<Material> materialList;
+		private ArrayList<Material> materialList = new ArrayList<Material>();
 		
 		public boolean CheckMaterials(ArrayList<Material> materials) {
 			//osszehasonlitja a parameterul kapott material listaval a sajat materialList-jet.
-			Controller c = new Controller();
 			int i=0;
 			while(materialList.size()!=0 && i<materials.size())
 			{
@@ -26,7 +25,6 @@
 		
 		public void SetUpRobot() {
 			//Feltolti a materialList-et a robot megepitesehez szukseges alapanyagokkal
-			Controller c = new Controller();
 			//A teszt folyaman a robot epitesehez egy Iron es egy Carbon szukseges
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Iron());
@@ -35,7 +33,6 @@
 		
 		public void SetUpGate() {
 			//Feltolti a materialList-et a teleportkapu megepitesehez szukseges alapanyagokkal
-			Controller c = new Controller();
 			//A teszt folyaman a teleportkapu epitesehez egy Uranium es egy Iron szukseges
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Uranium());
@@ -52,7 +49,6 @@
 		
 		public void RemoveMaterials(Settler s) {
 			//A parameterul kapott telepes material listajabol kitorli a materialList-ben talalhato alapanyagokat
-			Controller c = new Controller();
 			//A materialList osszes elemet kitorli a settler materialjai kozul egyenkent
 			for (int m=0;m< materialList.size();m++)
 			{
@@ -62,7 +58,6 @@
 		
 		public void RemoveMaterialFromList(Material m) {
 			//Kitorli a materialList-bol a parameterkent kapott materialt.
-			Controller c = new Controller();
 			materialList.remove(m);
 		}
 	}
