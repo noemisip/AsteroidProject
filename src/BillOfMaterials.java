@@ -39,6 +39,7 @@
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Uranium());
 			materialList.add(new Iron());
+			materialList.add(new Iron());
 			materialList.add(new Ice());
 		}
 		

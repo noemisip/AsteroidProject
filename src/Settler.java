@@ -43,16 +43,18 @@ public class Settler extends Creature {
 	}
 	
 	public void CreateGate() { //a telepes letrehoz egy teleportkapu-part
-		bill.SetUpGate(); //bill attributum material listajat beallítja a kapuhoz szuksegesekre
-		if(bill.CheckMaterials(materials)){ //elenorzi, hogy megvan-e a szukséges mennyisegu nyersanyag
-			bill.SetUpGate(); //bill attributum material listajat beallitja a kapuhoz szuksegesekre
-			bill.RemoveMaterials(this); //kitorli a telepestol a felhasznalt nyersanyagokat, majd letrehozza a ket kaput és hozzaadja a listajahoz
-			Gate g1 = new Gate();
-			Gate g2 = new Gate();
-			g1.SetPair(g2);
-			g2.SetPair(g1);
-			AddGate(g1);
-			AddGate(g2);
+		if(gates.size()<2) {
+			bill.SetUpGate(); //bill attributum material listajat beallítja a kapuhoz szuksegesekre
+			if (bill.CheckMaterials(materials)) { //elenorzi, hogy megvan-e a szukséges mennyisegu nyersanyag
+				bill.SetUpGate(); //bill attributum material listajat beallitja a kapuhoz szuksegesekre
+				bill.RemoveMaterials(this); //kitorli a telepestol a felhasznalt nyersanyagokat, majd letrehozza a ket kaput és hozzaadja a listajahoz
+				Gate g1 = new Gate();
+				Gate g2 = new Gate();
+				g1.SetPair(g2);
+				g2.SetPair(g1);
+				AddGate(g1);
+				AddGate(g2);
+			}
 		}
 	}
 	
@@ -121,7 +123,7 @@ public class Settler extends Creature {
 	}
 
 	public Gate GetGate(int i){
-		return gates.get(0);
+		return gates.size()==0? null: gates.get(i);
 	}
 
 	public Asteroid GetAsteroid(){ return asteroid;}

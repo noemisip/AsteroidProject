@@ -140,9 +140,12 @@ public class Controller {
                 addOutput("Unsuccessful");
                 return;
             }
+            int num = s.GetGateList().size();
             s.CreateGate();
-            hash.put(cmd[1], s.GetGate(0));
-            hash.put(cmd[2], s.GetGate(1));
+            if(s.GetGateList().size()>num) {
+                hash.put(cmd[2], s.GetGate(0));
+                hash.put(cmd[3], s.GetGate(1));
+            }
         }
     }
 
@@ -195,8 +198,9 @@ public class Controller {
             gates = gates.substring(0, gates.length() - 1);
         }
         String asteroid;
-        if(s.GetAsteroid()==null)
-        addOutput(cmd[2]+": "+ getKey(s.GetAsteroid())+" " + materials + " " + gates );
+        if(s.GetAsteroid()==null) asteroid="-";
+        else asteroid=getKey(s.GetAsteroid());
+        addOutput(cmd[2]+": "+ asteroid+" " + materials + " " + gates );
     }
 
     public void Asteroid_Properties(String[] cmd) {
@@ -267,15 +271,17 @@ public class Controller {
             addOutput("Created sp game");
             return;
         }
-        else if (cmd[2].equals("r")) {
-            k= new Random().nextInt();
-        }
-        else {
-            k = parseInt(cmd[2]);
-            if(k<0){
-                addOutput("Unsuccessful");
-                return;
-            }
+        else if (cmd.length >2 ){
+                if( cmd[2].equals("r")) {
+                    k = new Random().nextInt();
+                }
+                else {
+                    k = parseInt(cmd[2]);
+                    if (k < 0) {
+                        addOutput("Unsuccessful");
+                        return;
+                    }
+                }
         }
         //setup asteroid --------------------------------------
         if (cmd[1].equals("asteroid")) {
@@ -428,6 +434,7 @@ public class Controller {
                 }
             }
             s.SetAsteroid(a);
+            if(a!=null && !a.GetCreatures().contains(s)) a.AddCreature(s);
             if (!cmd[3].equals("-")) {
                 String[] materials = cmd[3].split(";");
                 for (String str : materials) {
