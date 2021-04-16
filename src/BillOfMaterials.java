@@ -30,6 +30,7 @@
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Iron());
 			materialList.add(new Carbon());
+			materialList.add(new Uranium());
 		}
 		
 		public void SetUpGate() {
@@ -38,6 +39,7 @@
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Uranium());
 			materialList.add(new Iron());
+			materialList.add(new Ice());
 		}
 		
 		public void SetUpBase() {
