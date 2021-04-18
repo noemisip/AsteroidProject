@@ -13,5 +13,7 @@ public abstract class Creature {
 	}
 	public abstract void AddMaterial ( Material m); // materialt ad hozza annak a creaturnek a listajahoz akinek van
 	public abstract ArrayList<Material> GetMaterials(); //visszaadja a creaturenel levo nyersanyagok listajat
-	public abstract Asteroid GetAsteroid();
+	public  Asteroid GetAsteroid(){
+		return asteroid;
+	};
 }

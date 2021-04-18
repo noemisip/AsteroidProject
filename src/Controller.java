@@ -19,9 +19,6 @@ public class Controller {
     private int robotCnt =1;
     private ArrayList<String> output = new ArrayList<String>();
 
-    public HashMap<String, Object> GetHash(){return hash;}
-
-    public int GetrobotCnt() {return robotCnt;}
 
     public void ReadFromConsole() {
         Scanner s = new Scanner(System.in);

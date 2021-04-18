@@ -54,8 +54,5 @@ public class Robot extends Creature implements Steppable,AI {
 		return null; // a robotnál nincs nyersanyag
 	}
 
-	@Override
-	public Asteroid GetAsteroid() {
-		return asteroid;
-	}
+
 }

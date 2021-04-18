@@ -17,8 +17,8 @@ public class Settler extends Creature {
 
 	public void RestoreMaterial(Material m) { //a telepes visszahelyez egy nyersanyagot az aszteroidara, amin epp all
 		if(asteroid.GetMaterial()==null && asteroid.GetLayer()==0){ //a telepes csak abban az esetben helyezi el a nyersanyagot, ha
-			RemoveMaterial(m);										//az aszteroida ureges és nincs rajta  kereg
-			asteroid.SetMaterial(m);
+													//az aszteroida ureges és nincs rajta  kereg
+			asteroid.SetMaterial(RemoveMaterial(m));
 		}
 	}
 
@@ -70,13 +70,15 @@ public class Settler extends Creature {
 		materials.add(m);
 	}
 	
-	public void RemoveMaterial(Material m) { //a telepes kitorol egy nyerssanyagot a listajabol
+	public Material RemoveMaterial(Material m) { //a telepes kitorol egy nyerssanyagot a listajabol
 		for( int i = 0; i< materials.size(); i++){
 			if(m.IsEquales(materials.get(i))) {
+				Material temp = materials.get(i);
 				materials.remove( materials.get(i));
-				break;
+				return temp;
 			}
 		}
+		return null;
 	}
 	
 	public void AddGate(Gate g) { //a telepes egy kaput keszitett es felveszi a listajaba
@@ -126,6 +128,5 @@ public class Settler extends Creature {
 		return gates.size()==0? null: gates.get(i);
 	}
 
-	public Asteroid GetAsteroid(){ return asteroid;}
 	public ArrayList<Gate> GetGateList(){return gates; }
 }
