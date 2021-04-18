@@ -91,6 +91,11 @@ public class Asteroid implements Steppable, Transport {
 		neighbours.remove(t);
 	}
 
+	@Override
+	public Transport GetPair() {
+		return this;
+	}
+
 	public void RemoveCreature(Creature c) {  //Kivesz egy Creature objektumot a creatures listabol.
 		creatures.remove(c);
 	}

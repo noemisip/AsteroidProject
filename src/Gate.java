@@ -52,12 +52,12 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 		ArrayList<Transport> neighbours = asteroid.GetNeighbours();
 		Transport tr = null;
 		for(Transport t : neighbours){
-			if(t.GetAsteroid() == a) {
+			if(t.GetAsteroid() == a && t.GetPair()!=this) {
 				tr=t;
 				break;
 			}
 		}
-		tr.TransportGate(this);
+		if(tr!=null) tr.TransportGate(this);
 	}
 	public void Step() {
 		int next = NextStep();
@@ -77,8 +77,8 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 
 	public void TransportGate(Gate g){
 		if(pair!=g) {
-			Asteroid a = g.GetPair().GetAsteroid();
-			a.RemoveNeighbour(g);
+			Asteroid a = g.GetAsteroid();
+			a.RemoveNeighbour(g.GetPair());
 			asteroid.AddNeighbour(g.GetPair());
 			g.SetAsteroid(asteroid);
 		}

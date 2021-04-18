@@ -9,6 +9,7 @@ public interface Transport {
 	public abstract void SolarStorm(int c);
 
 	public abstract void RemoveNeighbour(Transport t);
+	public abstract Transport GetPair();
 
 
 }
