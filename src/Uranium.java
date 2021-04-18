@@ -16,7 +16,6 @@ public class Uranium  extends Material {
 			cnt++;
 		if(cnt == 2)
 			a.Explosion();
-
 	}
 
 	public boolean IsEquales(Material m) {

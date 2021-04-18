@@ -1,4 +1,4 @@
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -13,13 +13,106 @@ public class Controller {
     private int gateCnt = 1;
     private int asteroidCnt = 1;
     private int ufoCnt =1;
-    private int uraniumCnt =1;
+   private int uraniumCnt =1;
     private int ironCnt =1;
     private int iceCnt =1;
     private int carbonCnt =1;
     private int robotCnt =1;
     private ArrayList<String> output = new ArrayList<String>();
+    private ArrayList<String> ideal_output=new ArrayList<String>();
+    private ArrayList<String> input = new ArrayList<String>();
 
+    public void Menu(){
+        Scanner s = new Scanner(System.in);
+
+        while (s.hasNextLine()) {
+            String in=s.nextLine();
+            if(in.equals("Test")){
+             //System.out.println("jaj");
+                Scanner i = new Scanner(System.in);
+                String[] cmd = {""}; output.clear();ideal_output.clear();input.clear();
+                settlerCnt =1;
+               gateCnt = 1;
+                asteroidCnt = 1;
+                ufoCnt =1;
+                uraniumCnt =1;
+                ironCnt =1;
+                iceCnt =1;
+                carbonCnt =1;
+                robotCnt =1;
+                String text=i.nextLine();cmd = text.split(" ");
+                if(cmd[0].equals("open")) Open(cmd[1]);
+            }
+
+        }
+    }
+
+
+    public void ReadFromInput() {
+        String[] cmd = {""};
+       for(int i=0;i<input.size();i++) {
+           String line = input.get(i);
+           if (!line.isEmpty()) cmd = line.split(" ");
+            switch (cmd[0]) {
+                case "place":
+                    Place(cmd);
+                    break;
+                case "kerge":
+                    Kerge_Gate(cmd);
+                    break;
+                case "move":
+                    Move(cmd);
+                    break;
+                case "drill":
+                    Drill(cmd);
+                    break;
+                case "mine":
+                    Mine(cmd);
+                    break;
+                case "create":
+                    Create(cmd);
+                    break;
+                case "restore":
+                    Restore(cmd);
+                    break;
+                case "settler":
+                    Settler_Properties(cmd);
+                    break;
+                case "asteroid":
+                    Asteroid_Properties(cmd);
+                    break;
+               /* case "open":
+                    Open(cmd);
+                    break;*/
+                case "check":
+                    Check(cmd);
+                    break;
+                case "setup":
+                    Setup(cmd);
+                    break;
+                case "set":
+                    Set(cmd);
+                    break;
+                case "help":
+                    Help();
+                    break;
+                case "SolarStorm":
+                    SolarStorm(cmd);
+                    break;
+                default:
+                    break;
+            }
+        }printOutput();
+        boolean good=true;
+        if(output.size()==ideal_output.size())
+        for(int i=0;i<output.size();i++){
+            if(!(output.get(i).equals(ideal_output.get(i)))) good=false;
+        }
+        if(good) System.out.println("Successful test");
+        else System.out.println("Unsuccessful test");
+        hash.clear();
+        Game.getInstance().GetSettlers().clear();
+    }
 
     public void ReadFromConsole() {
         Scanner s = new Scanner(System.in);
@@ -56,9 +149,9 @@ public class Controller {
                 case "asteroid":
                     Asteroid_Properties(cmd);
                     break;
-                case "open":
+               /* case "open":
                     Open(cmd);
-                    break;
+                    break;*/
                 case "check":
                     Check(cmd);
                     break;
@@ -281,10 +374,6 @@ public class Controller {
         addOutput(cmd[2]+": "+ material+" " +a.GetLayer()+" "+a.GetCloseToSun()+" "+ neighbours + " " + creatures );
     }
 
-    public void Open(String[] cmd) {
-        //TODO
-    }
-
     public void Check(String[] cmd) {
         if (cmd[1].equals("settlers")) {
             if(Game.getInstance().GetSettlers().size()==0) {
@@ -299,6 +388,7 @@ public class Controller {
                 addOutput(Game.getInstance().GetSettlers().size() + " " + settlers);
             }
         }
+
         else if (cmd[1].equals("base")) {
             Asteroid a = (Asteroid) hash.get(cmd[2]);
             if(a==null){
@@ -422,7 +512,7 @@ public class Controller {
                 hash.put("uranium"+uraniumCnt, m);
                 uraniumCnt++;
             } else if (str.equals("-")) {
-                m= a.GetMaterial();
+                m=a.GetMaterial();
             } else {
                 addOutput("Unsuccessful");
                 return;
@@ -561,8 +651,8 @@ public class Controller {
                 addOutput("Unsuccessful");
                 return;
             }
-            a.SetMaterial(u);
-            u.SetCnt(parseInt(cmd[3]));
+
+            a.SetMaterial(u); u.SetCnt(parseInt(cmd[3]));
         }
     }
     public void Help() {
@@ -608,6 +698,38 @@ public class Controller {
             if(hash.get(k).equals(value)) return k;
         }
         return null;
+    }
+
+    public void Open(String cmd)
+    {
+        try
+        {
+           // File file=new File("Demo.txt");
+            FileReader fr=new FileReader(cmd);
+            BufferedReader br=new BufferedReader(fr);
+            StringBuffer sb=new StringBuffer();
+            String line;
+            while((line=br.readLine())!=null)
+            {
+                input.add(line);
+            }
+            fr.close();
+            for(int i=0;i<input.size();i++){
+                if(input.get(i).equals("*")){
+                    input.remove(i);
+                    int j=0;
+                    while(input.size()!=i){
+                        ideal_output.add(input.get(i));
+                        input.remove(i);
+                    }
+                }
+            }
+            ReadFromInput();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }
