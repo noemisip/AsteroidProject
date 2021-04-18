@@ -6,10 +6,12 @@ public class Robot extends Creature implements Steppable,AI {
 
 	public void WhereToMove() { //A robot eldonti, hogy melyik aszteroidara mozogjon
 		ArrayList<Transport> a = asteroid.GetNeighbours();
-		Random r = new Random();
-		int chosen = r.nextInt(a.size()+ 1);//lekerdezi annak az aszteroidanak a szomszedait, amin epp all
 		if(a.size()==0) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
-		else Move(a.get(chosen).GetAsteroid()); //a robot mozog
+		else {
+			Random r = new Random();
+			int chosen = r.nextInt(a.size());//lekerdezi annak az aszteroidanak a szomszedait, amin epp all
+			Move(a.get(chosen).GetAsteroid()); //a robot mozog
+		}
 	}
 
 	public void Drill(){

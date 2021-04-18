@@ -60,14 +60,18 @@ public class Asteroid implements Steppable, Transport {
 
 	public void Explosion() {                //Felrobban az aszteroida.
 		while(creatures.size()!=0) creatures.get(0).AsteroidExplosion();
-		neighbours=null;
+		for(Transport t: neighbours){
+			t.RemoveNeighbour(this);
+		}
+			neighbours=null;
 	}
 
 	public void SetCloseToSun(boolean b) {    //Beallitja az aszteroida napkozelseget.
+		closeToSun=b;
 		if(b && layer==0 && material !=null){
 			material.ReactToSunclose(this);
 		}
-		closeToSun=b;
+
 	}
 
 	public void SetMaterial(Material m) {      //Beallitja az aszteroidaban talalhato nyersanyagot.

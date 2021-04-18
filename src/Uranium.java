@@ -1,3 +1,4 @@
+import java.awt.*;
 
 public class Uranium  extends Material {
 
@@ -12,9 +13,10 @@ public class Uranium  extends Material {
 	public void ReactToSunclose(Asteroid a) {
 		// Akkor hivodik meg, ha az aszteroida napkozelben van
 		if(cnt < 2)
-			SetCnt(1);
+			cnt++;
 		if(cnt == 2)
 			a.Explosion();
+
 	}
 
 	public boolean IsEquales(Material m) {
@@ -23,7 +25,7 @@ public class Uranium  extends Material {
 	}
 
 	void SetCnt(int cnt) {
-		this.cnt -= cnt;
+		this.cnt = cnt;
 	}
 
 	int GetCnt() {

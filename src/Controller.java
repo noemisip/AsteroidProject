@@ -1,3 +1,4 @@
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -262,14 +263,14 @@ public class Controller {
         if(a.GetMaterial()==null) material="-";
         else material = getKey(a.GetMaterial());
         String neighbours="";
-        if(a.GetNeighbours().size()==0) neighbours="-";
+        if(a.GetNeighbours()==null || a.GetNeighbours().size()==0) neighbours="-"; //szomszedok kiirasa
         else {
             for (Transport t : a.GetNeighbours()) {
                 neighbours += getKey(t) + ";";
             }
             neighbours = neighbours.substring(0, neighbours.length() - 1);
         }
-        String creatures="";
+        String creatures=""; //creaturek kiirasa
         if(a.GetCreatures().size()==0) creatures="-";
         else {
             for (Creature c : a.GetCreatures()) {
@@ -286,12 +287,11 @@ public class Controller {
 
     public void Check(String[] cmd) {
         if (cmd[1].equals("settlers")) {
-            //Game.getInstance().CheckSettlers();
-            String settlers="";
-            if(Game.getInstance().GetSettlers()==null) {
+            if(Game.getInstance().GetSettlers().size()==0) {
                 addOutput("0");
             }
             else {
+                String settlers="";
                 for (Settler s : Game.getInstance().GetSettlers()) {
                     settlers += getKey(s) + ";";
                 }
@@ -400,7 +400,7 @@ public class Controller {
                 addOutput("Unsuccessful");
                 return;
             }
-            Material m;
+            Material m ; //beallitja az aszteroidaban talalhato nyersanyagot
             String str= cmd[2];
             if(str.contains("iron")){
                 m = new Iron();
@@ -422,13 +422,13 @@ public class Controller {
                 hash.put("uranium"+uraniumCnt, m);
                 uraniumCnt++;
             } else if (str.equals("-")) {
-                m= null;
+                m= a.GetMaterial();
             } else {
                 addOutput("Unsuccessful");
                 return;
             }
             a.SetMaterial(m);
-            int l =0;
+            int l =0; //beallitja az aszteroida kergenek vastagsagat
             if(!cmd[3].equals("-")) {
                 l = parseInt(cmd[3]);
             }
@@ -437,7 +437,7 @@ public class Controller {
                 return;
             }
             a.SetLayer(l);
-            if(!(cmd[4].equals("true") || cmd[4].equals("false"))){
+            if(!(cmd[4].equals("true") || cmd[4].equals("false"))){ //beallitja, hogy napkozelben van-e az aszteroida
                 addOutput("Unsuccessful");
                 return;
             }
@@ -450,7 +450,7 @@ public class Controller {
                         return;
                     }
                     else {
-                        if(!a.GetNeighbours().contains((Transport) hash.get(s)))
+                        if(a.GetNeighbours()!=null &&!a.GetNeighbours().contains((Transport) hash.get(s)))
                         a.AddNeighbour((Transport) hash.get(s));
                         if(s.contains("gate")){
                             Gate g = (Gate) hash.get(s);
@@ -462,14 +462,15 @@ public class Controller {
             if (!cmd[6].equals("-")) {
                 String[] creatures = cmd[6].split(";");
                 for (String n : creatures) {
-                    if(n==null){
+                    if((Creature) hash.get(n)==null){
                         addOutput("Unsuccessful");
                         return;
                     }
                     else {
-                        if(!a.GetCreatures().contains((Creature) hash.get(n)))
+                        if(!a.GetCreatures().contains((Creature) hash.get(n))) {
                             a.AddCreature((Creature) hash.get(n));
-                        ((Creature) hash.get(n)).SetAsteroid(a);
+                            ((Creature) hash.get(n)).SetAsteroid(a);
+                        }
                     }
                 }
             }

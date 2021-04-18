@@ -1,11 +1,12 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Game {
 
 	private boolean onGame = true; //azt mutatja, hogy tart-e meg a jatek, alapbol true ertket kap
 	private Space space; //a jatekszintere, a vilagur
-	private static ArrayList<Steppable> steppable; //a jatekban resztvevo leptetheto dolgok listaja
-	private static ArrayList<Settler> settlers; //a jatekban resztvevo leptetheto telepesek listaja
+	private static ArrayList<Steppable> steppable= new ArrayList<Steppable>();; //a jatekban resztvevo leptetheto dolgok listaja
+	private static ArrayList<Settler> settlers = new ArrayList<Settler>(); //a jatekban resztvevo leptetheto telepesek listaja
 	private static BillOfMaterials bill; //a bazis megepitesehez szukseges nyersanyagok megletet ellenorzi
 
 
@@ -16,10 +17,7 @@ public class Game {
 
 	//mivel a Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
 	public static Game getInstance() {
-		steppable = new ArrayList<Steppable>();
-		settlers = new ArrayList<Settler>();
 		bill=  new BillOfMaterials();
-
 		if(INSTANCE == null) {
 			INSTANCE = new Game(); 
 		}
