@@ -64,6 +64,9 @@ public class Asteroid implements Steppable, Transport {
 	}
 
 	public void SetCloseToSun(boolean b) {    //Beallitja az aszteroida napkozelseget.
+		if(b && layer==0){
+			material.ReactToSunclose(this);
+		}
 		closeToSun=b;
 	}
 
@@ -73,12 +76,11 @@ public class Asteroid implements Steppable, Transport {
 
 	public void Step() {
 		Random rand = new Random();
-		int randsunclose=rand.nextInt(1);
+		int randsunclose=rand.nextInt(2);
 		if(randsunclose==1) {
-			if (closeToSun == true) closeToSun = false;
-			else closeToSun = true;           // beallitja az aszteroida napkozelseget
+			SetCloseToSun(true);          // beallitja az aszteroida napkozelseget
 		}
-		if(layer==0 && closeToSun==true) material.ReactToSunclose(this);
+		else SetCloseToSun(false);
 	}
 
 	public void RemoveNeighbour(Transport t) { //Kivesz egy aszteroidat a neighbours listabol.

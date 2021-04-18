@@ -25,6 +25,7 @@ public class Ufo extends Creature implements Steppable,AI {
 
     }
     public void Move(Asteroid a){
+        Asteroid al = asteroid;
         ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes ellenorzi, hogy at tud-e menni arra az aszteroidara
         boolean move = false;
         Transport tr = null;
@@ -37,10 +38,8 @@ public class Ufo extends Creature implements Steppable,AI {
         }
         if(move){
             tr.Transport(this); //meghivja az objektum transport fuggvenyet
-            asteroid.RemoveCreature(this); //a telepes kitorlodik az aszterodia creture listajabol
-            Game.getInstance().CheckBase(asteroid); //a jatek ellenorzi, hogy fel tudják-e epiteni a telpesek a bazist az aszteroida
+            al.RemoveCreature(this); //az ufo kitorlodik az aszterodia creture listajabol
         }
-
     }
    public void WhereToMove(){
        ArrayList<Transport> a = asteroid.GetNeighbours();//lekerdezi annak az aszteroidanak a szomszedait, amin epp all

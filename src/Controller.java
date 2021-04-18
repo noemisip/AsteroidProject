@@ -100,9 +100,8 @@ public class Controller {
     }
 
     public void Move(String[] cmd) {
-        Asteroid a;
+        Asteroid a ;
         if(cmd[1].contains("robot") || cmd[1].contains("ufo")){
-
             if(!(cmd[2].equals("-"))){
                 Creature c = (Creature) hash.get(cmd[1]);
                 a= (Asteroid) hash.get(cmd[2]);
@@ -115,23 +114,18 @@ public class Controller {
             else{
                 AI ai=(AI) hash.get(cmd[1]);
                 ai.WhereToMove();
-
             }
         }
+        if(cmd[1].contains("settler")) {
+            Settler s = (Settler) hash.get(cmd[1]);
 
-        Creature c = (Creature) hash.get(cmd[1]);
-
-        if(!(cmd[2].equals("-"))) {
             a = (Asteroid) hash.get(cmd[2]);
-            if(c==null || a==null) {
+            if (s == null || a == null) {
                 addOutput("Unsuccessful");
-                return;
+                    return;
             }
+            s.Move(a);
         }
-
-
-
-        //c.Move(a);
     }
 
     public void Drill(String[] cmd) {
@@ -261,7 +255,7 @@ public class Controller {
     }
 
     public void Open(String[] cmd) {
-
+        //TODO
     }
 
     public void Check(String[] cmd) {
@@ -380,7 +374,7 @@ public class Controller {
                 addOutput("Unsuccessful");
                 return;
             }
-            Material m = null;
+            Material m;
             String str= cmd[2];
             if(str.contains("iron")){
                 m = new Iron();
@@ -422,7 +416,7 @@ public class Controller {
                 return;
             }
             a.SetCloseToSun(cmd[4].equals("true"));
-            if (!cmd[5].equals("-")) {
+            if (!cmd[5].equals("-")) { //szomszedok hozzaadasa----------------------
                 String[] neighbours = cmd[5].split(";");
                 for (String s : neighbours) {
                     if(s==null){
@@ -432,6 +426,10 @@ public class Controller {
                     else {
                         if(!a.GetNeighbours().contains((Transport) hash.get(s)))
                         a.AddNeighbour((Transport) hash.get(s));
+                        if(s.contains("gate")){
+                            Gate g = (Gate) hash.get(s);
+                            g.GetPair().SetAsteroid(a);
+                        }
                     }
                 }
             }

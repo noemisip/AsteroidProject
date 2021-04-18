@@ -41,9 +41,21 @@ public class Robot extends Creature implements Steppable,AI {
 	}
 	
 	public void Move(Asteroid a) { //a robot a kiavlasztott aszteroidara mozog
-		asteroid.GetNeighbours(); //a robot megkapja, hogy melyik transport objektum fogja atvinni a masik aszteroidára
-		a.Transport(this); //meghivja az objektum transport fuggvenyet
-		asteroid.RemoveCreature(this); //a robot kitorlodik az aszterodia creture listajabol
+		Asteroid al = asteroid;
+		ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes ellenorzi, hogy at tud-e menni arra az aszteroidara
+		boolean move = false;
+		Transport tr = null;
+		for(Transport t : neighbours){
+			if(t.GetAsteroid() == a) {
+				move = true;
+				tr=t;
+				break;
+			}
+		}
+		if(move){
+			tr.Transport(this); //meghivja az objektum transport fuggvenyet
+			al.RemoveCreature(this); //az ufo kitorlodik az aszterodia creture listajabol
+		}
 	}
 	
 	public void AsteroidExplosion() { //a robot reagal az aszteroida felrobbanasara
