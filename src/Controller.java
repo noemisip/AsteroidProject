@@ -101,7 +101,22 @@ public class Controller {
 
     public void Move(String[] cmd) {
         Asteroid a ;
-        if(cmd[1].contains("robot") || cmd[1].contains("ufo")){
+        if(cmd[1].contains("gate")){
+            if(!(cmd[2].equals("-"))){
+                Gate c = (Gate) hash.get(cmd[1]);
+                a= (Asteroid) hash.get(cmd[2]);
+                if(c==null || a==null) {
+                    addOutput("Unsuccessful");
+                    return;
+                }
+                else c.Move(a);
+            }
+            else{
+                AI ai=(AI) hash.get(cmd[1]);
+                ai.WhereToMove();
+            }
+        }
+        else if(cmd[1].contains("robot") || cmd[1].contains("ufo")){
             if(!(cmd[2].equals("-"))){
                 Creature c = (Creature) hash.get(cmd[1]);
                 a= (Asteroid) hash.get(cmd[2]);
