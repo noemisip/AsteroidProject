@@ -64,7 +64,7 @@ public class Asteroid implements Steppable, Transport {
 	}
 
 	public void SetCloseToSun(boolean b) {    //Beallitja az aszteroida napkozelseget.
-		if(b && layer==0){
+		if(b && layer==0 && material !=null){
 			material.ReactToSunclose(this);
 		}
 		closeToSun=b;
@@ -97,6 +97,7 @@ public class Asteroid implements Steppable, Transport {
 	}
 
 	public void TransportGate(Gate g) {      //Utaztatja a kapukat, a kapu beallitja magat az uj aszteroidara
+		g.GetAsteroid().RemoveNeighbour(g.GetPair());
 		AddNeighbour(g.GetPair());
 		g.SetAsteroid(this);
 	}

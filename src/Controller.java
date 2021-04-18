@@ -144,7 +144,7 @@ public class Controller {
     }
 
     public void Drill(String[] cmd) {
-        Settler s = (Settler) hash.get(cmd[1]);
+        Creature s = (Creature) hash.get(cmd[1]);
         if(s==null){
             addOutput("Unsuccessful");
             return;
@@ -153,12 +153,23 @@ public class Controller {
     }
 
     public void Mine(String[] cmd) {
-        Settler s = (Settler) hash.get(cmd[1]);
-        if(s==null){
-            addOutput("Unsuccessful");
-            return;
+        if(cmd[1].contains("ufo")){
+            Ufo u = (Ufo) hash.get(cmd[1]);
+            if(u==null){
+                addOutput("Unsuccessful");
+                return;
+            }
+            u.Mine();
         }
-        s.Mine();
+        else if(cmd[1].contains("settler")) {
+            Settler s = (Settler) hash.get(cmd[1]);
+            if (s == null) {
+                addOutput("Unsuccessful");
+                return;
+            }
+            s.Mine();
+        }
+        else addOutput("Unsuccessful");
     }
 
     public void Create(String[] cmd) {
