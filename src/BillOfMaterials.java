@@ -1,7 +1,6 @@
 	import java.util.ArrayList;
 
 	public class BillOfMaterials {
-		//private Material GateList;
 		//ezt a listat a SetUP() metodusok toltik fel, attol fuggoen, hogy robot, teleportkapu, vagy bazis epiteset vizsgaljuk
 		private ArrayList<Material> materialList = new ArrayList<Material>();
 		
@@ -26,7 +25,7 @@
 		
 		public void SetUpRobot() {
 			//Feltolti a materialList-et a robot megepitesehez szukseges alapanyagokkal
-			//A teszt folyaman a robot epitesehez egy Iron es egy Carbon szukseges
+			//A teszt folyaman a robot epitesehez egy Iron, egy Uranium es egy Carbon szukseges
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Iron());
 			materialList.add(new Carbon());
@@ -35,7 +34,7 @@
 		
 		public void SetUpGate() {
 			//Feltolti a materialList-et a teleportkapu megepitesehez szukseges alapanyagokkal
-			//A teszt folyaman a teleportkapu epitesehez egy Uranium es egy Iron szukseges
+			//A teszt folyaman a teleportkapu epitesehez egy Uranium, egy Ice es ket Iron szukseges
 			//Ezekkel tolti fel a materialListet
 			materialList.add(new Uranium());
 			materialList.add(new Iron());
@@ -45,7 +44,7 @@
 		
 		public void SetUpBase() {
 			//Feltolti a materialList-et az urbazis megepitesehez szukseges alapanyagokkal
-			//A teszt folyaman a teleportkapu epitesehez egy Carbon szukseges
+			//A teszt folyaman a teleportkapu epitesehez minden nyersanyagbol 3 szukseges
 			//Ezzel tolti fel a materialListet
 			for(int i=0; i<3; i++) {
 				materialList.add(new Carbon());
