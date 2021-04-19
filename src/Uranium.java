@@ -22,11 +22,13 @@ public class Uranium  extends Material {
 		// ellenorzi, hogy a megadott material ugyanolyan fajta- e, mint az osztaly
 		return m.getClass()==this.getClass();
 	}
-
+	
+	//megnoveli a cnt attributum erteket a paameterkent megadott ertekkel
 	void SetCnt(int cnt) {
 		this.cnt = cnt;
 	}
-
+	
+	//visszaadja a cnt attributum erteket
 	int GetCnt() {
 		return cnt;
 	}
