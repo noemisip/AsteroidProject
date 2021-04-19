@@ -5,13 +5,13 @@ public class Settler extends Creature {
 	private ArrayList<Gate> gates; //a telepesnel levo kapuk
 	private BillOfMaterials bill; //a robot és kapu epítesehez szukseseg nyersanyagok megepiteset segito objektum
 
-	public Settler(){
+	public Settler(){ // listak letrehozasa a konstruktorba
 		materials= new ArrayList<Material>();
 		gates = new ArrayList<Gate>();
 		bill = new BillOfMaterials();
 	}
 
-	public void Drill(){
+	public void Drill(){ //a telepes fur
 		asteroid.DecreaseLayer();
 	}
 
@@ -22,7 +22,7 @@ public class Settler extends Creature {
 		}
 	}
 
-	public void Mine() { //e telepes bányászik az aszteroidán
+	public void Mine() { //a telepes banyaszik az aszteroidán
 		Material m = asteroid.GetMaterial();
 		if(asteroid.GetLayer()==0 && materials.size()<10 && m!=null) { //ellenorzi, hogy tud-e banyaszni
 			m.ReactToMine(asteroid, this);
@@ -98,10 +98,10 @@ public class Settler extends Creature {
 	
 	public void Move(Asteroid a) { //a telepes a kivalasztott aszteroidara mozog
 		Asteroid al = asteroid;
-		ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes ellenorzi, hogy at tud-e menni arra az aszteroidara
+		ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes szomszedainak listaja
 		boolean move = false;
 		Transport tr = null;
-		for(Transport t : neighbours){
+		for(Transport t : neighbours){ // ha a paramterkent kapott aszteroida benne van a neighbours listajaban akkr mozog
 			if(t.GetAsteroid() == a) {
 				move = true;
 				tr=t;
@@ -110,14 +110,14 @@ public class Settler extends Creature {
 		}
 		if(move){
 			tr.Transport(this); //meghivja az objektum transport fuggvenyet
-			al.RemoveCreature(this); //a telepes kitorlodik az aszterodia creture listajabol
+			al.RemoveCreature(this); //a telepes kitorlodik az aszterodia creature listajabol
 			Game.getInstance().CheckBase(asteroid); //a jatek ellenorzi, hogy fel tudják-e epiteni a telpesek a bazist az aszteroida
 		}
 	}
 
 	
 	public void AsteroidExplosion() { //a telepes reagal az aszteroida felrobbanasara
-		Die();
+		Die(); 
 	}
 
 	public void RemoveGate(Gate g){ //a telpes kitorol egy kaput a lsitajabol
@@ -125,8 +125,8 @@ public class Settler extends Creature {
 	}
 
 	public Gate GetGate(int i){
-		return gates.size()==0? null: gates.get(i);
+		return gates.size()==0? null: gates.get(i); //visszaadja a megadott sorszamu gatet a telepes gate listajabol
 	}
 
-	public ArrayList<Gate> GetGateList(){return gates; }
+	public ArrayList<Gate> GetGateList(){return gates; } //a telepes gate listajat adja vissza
 }
