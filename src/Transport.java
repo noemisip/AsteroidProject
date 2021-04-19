@@ -1,5 +1,5 @@
 public interface Transport {
-
+        //absztrakt fuggvenyek
 	public abstract void Transport(Creature c);
 
 	public abstract void TransportGate(Gate gate);
