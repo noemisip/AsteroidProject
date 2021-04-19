@@ -1,0 +1,15 @@
+setup
+setup ufo 1
+setup asteroid 1
+set asteroid1 iron 1 false - ufo1
+mine ufo1
+asteroid properties asteroid1
+set asteroid1 - 0 false - ufo1
+mine ufo1
+asteroid properties asteroid1
+*
+Created sp game
+Created ufo1
+Created asteroid1
+asteroid1: iron1 1 false - ufo1
+asteroid1: - 0 false - ufo1

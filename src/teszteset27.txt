@@ -1,0 +1,16 @@
+setup
+setup asteroid 2
+setup robot 1
+setup gate
+set asteroid1 carbon 3 false gate2 robot1
+set asteroid2 carbon 3 false gate1 -
+move robot1 asteroid2
+asteroid properties asteroid1
+asteroid properties asteroid2
+*
+Created sp game
+Created asteroid1;asteroid2
+Created robot1
+Created gate1;gate2
+asteroid1: carbon1 3 false gate2 -
+asteroid2: carbon2 3 false gate1 robot1

@@ -1,0 +1,9 @@
+setup
+setup settler 1
+set settler1 - ice1 -
+create gate gate1 gate2 settler1
+settler properties settler1
+*
+Created sp game
+Created settler1
+settler1: - ice1 -

@@ -1,0 +1,14 @@
+setup
+setup settler 1
+setup asteroid 1
+setup gate
+set settler1 asteroid1 iron1;iron2;ice1;uranium1;carbon1 gate1;gate2
+place settler1 gate1
+create gate gate3 gate4 settler1
+settler properties settler1
+*
+Created sp game
+Created settler1
+Created asteroid1
+Created gate1;gate2
+settler1: asteroid1 carbon1 gate3;gate4;gate2

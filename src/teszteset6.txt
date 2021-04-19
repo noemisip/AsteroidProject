@@ -1,0 +1,16 @@
+setup
+setup settler 1
+setup asteroid 1
+set settler1 asteroid1 - -
+set asteroid1 - 3 false - settler1
+mine settler1
+asteroid properties asteroid1
+set asteroid1 - 0 false - settler1
+asteroid properties asteroid1
+mine settler1
+*
+Created sp game
+Created settler1
+Created asteroid1
+asteroid1: - 3 false - settler1
+asteroid1: - 0 false - settler1

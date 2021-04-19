@@ -1,0 +1,11 @@
+setup
+setup asteroid 1
+setup robot 1
+set asteroid1 carbon 3 false - robot1
+drill robot1
+asteroid properties asteroid1
+*
+Created sp game
+Created asteroid1
+Created robot1
+asteroid1: carbon1 2 false - robot1

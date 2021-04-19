@@ -1,0 +1,15 @@
+setup
+setup settler 1
+setup asteroid 1
+setup gate
+set settler1 asteroid1 - gate1;gate2
+place settler1 gate1
+settler properties settler1
+asteroid properties asteroid1
+*
+Created sp game
+Created settler1
+Created asteroid1
+Created gate1;gate2
+settler1: asteroid1 - gate2
+asteroid1: - 0 false gate2 settler1

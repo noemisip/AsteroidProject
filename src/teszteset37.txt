@@ -1,0 +1,17 @@
+setup
+setup gate
+setup gate
+setup asteroid 2
+set asteroid1 - 1 false gate1;gate4 -
+set asteroid2 - 1 false gate2;gate3 -
+kerge gate1
+move gate1 asteroid1
+asteroid properties asteroid1
+asteroid properties asteroid2
+*
+Created sp game
+Created gate1;gate2
+Created gate3;gate4
+Created asteroid1;asteroid2
+asteroid1: - 1 false gate1;gate4;gate2 -
+asteroid2: - 1 false gate3 -

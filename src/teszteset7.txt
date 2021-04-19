@@ -1,0 +1,12 @@
+setup
+setup asteroid 2
+set asteroid1 uranium 0 true asteroid2 -
+set asteroid2 - 0 true asteroid1 -
+set uranium asteroid1 2
+asteroid properties asteroid1
+asteroid properties asteroid2
+*
+Created sp game
+Created asteroid1;asteroid2
+asteroid1: uranium1 0 true asteroid2 -
+asteroid2: - 0 true asteroid1 -
