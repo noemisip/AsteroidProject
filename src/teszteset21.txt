@@ -1,0 +1,11 @@
+setup
+setup settler 1
+setup gate
+set settler1 - iron1;iron2;ice1;uranium1 gate1;gate2
+create gate gate3 gate4 settler1
+settler properties settler1
+*
+Created sp game
+Created settler1
+Created gate1;gate2
+settler1: - iron1;iron2;ice1;uranium1 gate2;gate1

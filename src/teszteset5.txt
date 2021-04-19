@@ -1,0 +1,17 @@
+setup
+setup settler 2
+setup asteroid 1
+set asteroid1 carbon 0 false - settler1;settler2
+set settler1 asteroid1 iron1;iron2;iron3;ice1;ice2;ice3;carbon2;carbon3 -
+set settler2 asteroid1 uranium1;uranium2;uranium3 -
+mine settler1
+asteroid properties asteroid1
+settler properties settler1
+check base asteroid1
+*
+Created sp game
+Created settler1;settler2
+Created asteroid1
+asteroid1: - 0 false - settler1;settler2
+settler1: asteroid1 iron1;iron2;iron3;ice1;ice2;ice3;carbon2;carbon3;carbon1 -
+Win

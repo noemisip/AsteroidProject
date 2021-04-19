@@ -4,7 +4,7 @@ import java.util.Random;
 public class Gate implements Transport,Steppable,AI {    // A teleportkaput reprezentalo osztaly.
 	private Asteroid asteroid;              //Az az aszteroida, amire a Gate peldanyt elhelyeztek.
 	private Gate pair;                      //Az adott kapu parja.
-	private boolean kerge;                   //kapu kergesége
+	private boolean kerge;                   //kapu kergesege
 
 	public void SetPair(Gate g) {           //Beallitja, hogy melyik kapupar a parja.
 		pair = g;
@@ -23,64 +23,60 @@ public class Gate implements Transport,Steppable,AI {    // A teleportkaput repr
 	}
 
 	public void Transport(Creature c) {    //ket aszteroida kozotti mozgas teleportkapu altal
-		asteroid.AddCreature(c);
-		c.SetAsteroid(asteroid);
+		asteroid.AddCreature(c);       //hozzaadja a lenyt az aszteroidahoz
+		c.SetAsteroid(asteroid);        //beallitja a leny aszteroidajat az ujra
 	}
 
-	public void SetKerge(boolean b) {
+	public void SetKerge(boolean b) {        //atallitja a kapu kergeseget a parameterben megadottal
 		kerge=b;
 	}
-	public void WhereToMove() {
-		ArrayList<Transport> asteroids=this.asteroid.GetNeighbours();
+	public void WhereToMove() {       //a kapu ha kerge elofordulhat hogy kovetkezo lepeskent atmegy egy masik aszteroidara
+		ArrayList<Transport> asteroids=this.asteroid.GetNeighbours(); //aszteroida szomszedai kozul kivalaszt random modon egyet,ahova mennyi fog a kapu
 		Random rand = new Random();
 		int rand_int = rand.nextInt(asteroids.size());
 		Asteroid nextAsteroid;
-		nextAsteroid = asteroids.get(rand_int).GetAsteroid();
-		Move(nextAsteroid);
+		nextAsteroid = asteroids.get(rand_int).GetAsteroid();         
+		Move(nextAsteroid);          //a kapu atmozog a parameterkent megadott aszteroidara
 	}
-	public int NextStep() {
+	public int NextStep() {                  //eldonti, mi tortenjen a kovetkezo lepesben
 		Random rand = new Random();
 		int rand_int = rand.nextInt(2);
 		return rand_int;
 	}
-	public void Move(Asteroid a) {  //t amire utazik
-//		for(int i=0;i<a.GetNeighbours().size();i++) {
-//			if (a.GetAsteroid().GetNeighbours().get(i) == pair.GetPair()) {  //ha benne van a szomszédjai listájában, tehát kapun keresztül utazik meg a getpair kaput ad vissza
-//				TransportGate(pair.GetPair());
-//			}
-//		}
+	public void Move(Asteroid a) {  //a kapu mozgasat megvalosito metodus
+
 		ArrayList<Transport> neighbours = asteroid.GetNeighbours();
 		Transport tr = null;
-		for(Transport t : neighbours){
+		for(Transport t : neighbours){          //vegigmegyunk az aktualis aszteroida szomszedjain es megnezzuk,hogy kapun akar e atmenni es ha igen akkor megnezzuk, hogy az nem e a parja, mert a parjan keresztul nem utazhat
 			if(t.GetAsteroid() == a && t.GetPair()!=this) {
 				tr=t;
 				break;
 			}
 		}
-		if(tr!=null) tr.TransportGate(this);
+		if(tr!=null) tr.TransportGate(this);       //atkerul a kapu egy masik aszteroidara
 	}
-	public void Step() {
+	public void Step() {                    //eldonti,hogy a kovetkezo lepesben mit csinaljon a nextstep fuggvennyel majd vegre is hajtja
 		int next = NextStep();
 		if(kerge==true && next==1){
 			WhereToMove();
 		}
 	}
-	public void SolarStorm(int a){
+	public void SolarStorm(int a){          //napvihar eseten a kapu kerge lesz
 		SetKerge(true);
 	}
 
 
-	public void RemoveNeighbour(Transport t){
+	public void RemoveNeighbour(Transport t){      //kapu eltavolitasa az aktualis aszteroidarol
 		asteroid=null;
-		pair.SetPair(null);
+		pair.SetPair(null);                  //parjat nullra allitjuk
 	}
 
-	public void TransportGate(Gate g){
+	public void TransportGate(Gate g){                      //kapu-kapun keresztul mozgasaert felelos metodus
 		if(pair!=g) {
-			Asteroid a = g.GetAsteroid();
-			a.RemoveNeighbour(g.GetPair());
-			asteroid.AddNeighbour(g.GetPair());
-			g.SetAsteroid(asteroid);
+			Asteroid a = g.GetAsteroid();           
+			a.RemoveNeighbour(g.GetPair());             //toroljuk a kaput az eddigi aszteroidarol
+			asteroid.AddNeighbour(g.GetPair());         //hozzaadjuk az aszteroidahoz az uj kapu parjat
+			g.SetAsteroid(asteroid);                   //beallitjuk a kapu uj aszteroidajat
 		}
 	}
 

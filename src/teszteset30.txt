@@ -1,0 +1,14 @@
+setup
+setup asteroid 2
+setup ufo 1
+set asteroid1 carbon 3 false asteroid2 ufo1
+set asteroid2 carbon 3 false asteroid1 -
+move ufo1 asteroid2
+asteroid properties asteroid1
+asteroid properties asteroid2
+*
+Created sp game
+Created asteroid1;asteroid2
+Created ufo1
+asteroid1: carbon1 3 false asteroid2 -
+asteroid2: carbon2 3 false asteroid1 ufo1
