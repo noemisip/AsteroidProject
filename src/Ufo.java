@@ -3,22 +3,22 @@ import java.util.Random;
 
 public class Ufo extends Creature implements Steppable,AI {
 
-    private ArrayList<Material> materials;
+    private ArrayList<Material> materials; // az ufo material listája
 
-    Ufo(){
-        materials = new ArrayList<Material>();
+    Ufo(){ // konstruktor amibe letrehozodik a material lista
+        materials = new ArrayList<Material>(); 
     }
-    public void AddMaterial( Material m){
+    public void AddMaterial( Material m){// a material listahoz hozzadjuk a parameterkent kapott materialt
         materials.add(m);
     }
-    public void Mine(){
+    public void Mine(){ // az ufo banyaszik
         Material m = asteroid.GetMaterial();
-        if(asteroid.GetLayer()==0 && m!=null) {
+        if(asteroid.GetLayer()==0 && m!=null) { // ha az aszteroidanak 0 a retege es van benne nyersanyag, akkor hozzadjuk az ufo materiallistajahoz
             AddMaterial(m);
-            m.ReactToMine(asteroid, this);
+            m.ReactToMine(asteroid, this); //a material reagal az asasra
         }
     }
-    public void Step(){
+    public void Step(){ // az ufo banyaszik ha 0 a nextstep vagy mozog ha 1
         int result = NextStep();
         if(result == 0) Mine();
         else if(result==1) WhereToMove();
@@ -26,11 +26,11 @@ public class Ufo extends Creature implements Steppable,AI {
     }
     public void Move(Asteroid a){
         Asteroid al = asteroid;
-        ArrayList<Transport> neighbours = asteroid.GetNeighbours(); //a telepes ellenorzi, hogy at tud-e menni arra az aszteroidara
+        ArrayList<Transport> neighbours = asteroid.GetNeighbours(); // a szomszedai listaja
         boolean move = false;
         Transport tr = null;
         for(Transport t : neighbours){
-            if(t.GetAsteroid() == a) {
+            if(t.GetAsteroid() == a) { // ha a parameterul kapott aszteroida benne van a szomszedaiban, akkor mozog
                 move = true;
                 tr=t;
                 break;
@@ -49,26 +49,26 @@ public class Ufo extends Creature implements Steppable,AI {
        else Move(a.get(chosen).GetAsteroid());
    }
 
-    public int NextStep(){
+    public int NextStep(){ // random visszater 0-val vagy 1-el
         Random r = new Random();
         int random = r.nextInt(2);
         return random;
     }
 
     public void AsteroidExplosion(){
-        Die();
+        Die(); // az ufo meghal az aszteroida robbanasakor
     }
 
     public ArrayList<Material> GetMaterials(){
-        return null;
+        return null; // nullt ad vissza
     }
 
 
-    public void Drill(){  }
+    public void Drill(){  } // nem tortenik semmi
 
-    public void Die(){
-        asteroid.RemoveCreature(this);
-        asteroid.GetSpace().RemoveCreature(this);
-        Game.getInstance().RemoveSteppable(this);
+    public void Die(){ // az ufo meghal
+        asteroid.RemoveCreature(this); // kitorlodik az aszteroida creature listajabol
+        asteroid.GetSpace().RemoveCreature(this); // a spacebpl is kitorlodik
+        Game.getInstance().RemoveSteppable(this); // a gamebol is kitorlodik
     }
 }
