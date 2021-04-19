@@ -121,7 +121,7 @@ public class Asteroid implements Steppable, Transport {
 
 	}
 
-	public void SetLayer(int l){ //bealitja a layer erteket
+	public void SetLayer(int l){ //beallitja a layer erteket
 		layer=l;
 	}
 
