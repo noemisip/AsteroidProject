@@ -7,28 +7,28 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Controller {
-    private HashMap<String, Object> hash = new HashMap<String, Object>();
-    private Space sp;
-    private int settlerCnt =1;
-    private int gateCnt = 1;
-    private int asteroidCnt = 1;
-    private int ufoCnt =1;
-   private int uraniumCnt =1;
-    private int ironCnt =1;
-    private int iceCnt =1;
-    private int carbonCnt =1;
-    private int robotCnt =1;
-    private ArrayList<String> output = new ArrayList<String>();
-    private ArrayList<String> ideal_output=new ArrayList<String>();
-    private ArrayList<String> input = new ArrayList<String>();
+    private HashMap<String, Object> hash = new HashMap<String, Object>(); //objektumokat tartalmazo hashmap
+    private Space sp; //jatek szintereul szolgalo space
+    //az alabbi szamlalok az egyes objektumok elnevezeseert felelosek
+    private int settlerCnt =1;      //settlerek szama
+    private int gateCnt = 1;        //kapuk szama 
+    private int asteroidCnt = 1;    //aszteroidak szama
+    private int ufoCnt =1;          //ufok szama
+   private int uraniumCnt =1;       //uraniumok szama
+    private int ironCnt =1;         //vasak szama
+    private int iceCnt =1;          //jegek szama
+    private int carbonCnt =1;       //szenek szama
+    private int robotCnt =1;        //robotok szama
+    private ArrayList<String> output = new ArrayList<String>();         //a tesztek vegeredmenye, ez jelenik meg a kimeneten
+    private ArrayList<String> ideal_output=new ArrayList<String>();     //elvart kimenet
+    private ArrayList<String> input = new ArrayList<String>();          //teszteset bemenete
 
     public void Menu(){
         Scanner s = new Scanner(System.in);
 
         while (s.hasNextLine()) {
             String in=s.nextLine();
-            if(in.equals("Test")){
-             //System.out.println("jaj");
+            if(in.equals("Test")){ //elore megirt tesztek futtatasa
                 Scanner i = new Scanner(System.in);
                 String[] cmd = {""}; output.clear();ideal_output.clear();input.clear();
                 settlerCnt =1;
@@ -48,7 +48,7 @@ public class Controller {
     }
 
 
-    public void ReadFromInput() {
+    public void ReadFromInput() { //szavadon beirhato parancsok
         String[] cmd = {""};
        for(int i=0;i<input.size();i++) {
            String line = input.get(i);
@@ -81,9 +81,6 @@ public class Controller {
                 case "asteroid":
                     Asteroid_Properties(cmd);
                     break;
-               /* case "open":
-                    Open(cmd);
-                    break;*/
                 case "check":
                     Check(cmd);
                     break;
@@ -149,9 +146,6 @@ public class Controller {
                 case "asteroid":
                     Asteroid_Properties(cmd);
                     break;
-               /* case "open":
-                    Open(cmd);
-                    break;*/
                 case "check":
                     Check(cmd);
                     break;
