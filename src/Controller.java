@@ -695,10 +695,9 @@ public class Controller {
     }
     //Napvihar parancs
     public void SolarStorm (String[]cmd){
+        //majd le lesz kezelve az az eset is, ha "r"-t kap az aszteroida neve helyett, de a tesztekhez az meg nem kell
         //melyik aszteroidan
-        //if(!cmd[1].equals("r");
-           Asteroid a = (Asteroid) hash.get(cmd[1]);
-         //else {int rand=new Random().NextInt(space.GetAsteroid().size()); Asteroid a=(Asteroid) hash.get(}
+         Asteroid a = (Asteroid) hash.get(cmd[1]);
         if(a==null){
             addOutput("Unsuccessful");
             return;
