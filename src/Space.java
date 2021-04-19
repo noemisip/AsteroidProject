@@ -3,10 +3,10 @@ import java.util.Random;
 
 public class Space implements Steppable {
 	
-	private ArrayList<Asteroid> asteroids; // az urben talalható aszteroidak listaja
+	private ArrayList<Asteroid> asteroids; // az urben talalhato aszteroidak listaja
 	private ArrayList<Creature> creatures; // az urben tartozkodo Creature-ok listaja 
 
-	public Space(){
+	public Space(){ //inicializalas
 		asteroids= new ArrayList<Asteroid>();
 		creatures = new ArrayList<Creature>();
 	}
@@ -30,14 +30,15 @@ public class Space implements Steppable {
         creatures.remove(c);
 	}
 
-	//minden korben eldonti, hogy lesz-e napvihar, azaz random meghivja az aszteroidak SolarStorm() fuggvenyet	
+	//minden korben eldonti, hogy lesz-e napvihar, azaz random meghivja az aszteroidak SolarStorm() fuggvenyet 	
 	public void Step() {
 		Random rand = new Random();
 		int solarstormhappens = rand.nextInt(1);
 		int selectedasteroid=0;
 		if(solarstormhappens==1) {
 			selectedasteroid=rand.nextInt(asteroids.size()-1);
-			asteroids.get(selectedasteroid).SolarStorm(2);
+			asteroids.get(selectedasteroid).SolarStorm(2); //random aszteroidan elinditja a napvihart
+			//a kettes parameter felel az aszteroida szuk kornyezeteben megvalosulo napvihar miatt
 		}
 	}
 }
