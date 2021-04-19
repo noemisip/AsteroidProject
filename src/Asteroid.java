@@ -2,21 +2,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Asteroid implements Steppable, Transport {
-	private int layer;                      //Az aszteroida aktualis retegeinek szama.
-	private boolean closeToSun;             //Igaz, ha az aszteroida eppen napkozelben van.
-	private Space space;                    //Ebben talalhato meg az aszteroida.
-	private ArrayList<Creature> creatures;             //Az aszteroidan talalhato Creature osztalybol szarmazo objektumok listaja.
-	private Material material;              //Az aszteroidaban talalhato nyersanyag. Ha ureges, ennek az erteke null.
-	private ArrayList<Transport> neighbours;           //Azok az aszteroidak, amelyekre a telepes eljuthat az adott aszteroidarol
+	private int layer;                      		//Az aszteroida aktualis retegeinek szama.
+	private boolean closeToSun;             		//Igaz, ha az aszteroida eppen napkozelben van.
+	private Space space;                    		//Ebben talalhato meg az aszteroida.
+	private ArrayList<Creature> creatures;            	//Az aszteroidan talalhato Creature osztalybol szarmazo objektumok listaja.
+	private Material material;              		//Az aszteroidaban talalhato nyersanyag. Ha ureges, ennek az erteke null.
+	private ArrayList<Transport> neighbours;           	//Azok az aszteroidak, amelyekre a telepes eljuthat az adott aszteroidarol
 
-	public Asteroid(Space sp){
-		creatures = new ArrayList<Creature>();
-		neighbours= new ArrayList<Transport>();
-		space=sp;
+	public Asteroid(Space sp){ //egy parameteres konstruktor
+		creatures = new ArrayList<Creature>();		//letrehozza a creaturek listajat
+		neighbours= new ArrayList<Transport>();		//letrehozza a szomszedok listajat
+		space=sp;					//a prameterkent kapott Spacet beíllitja a space attributumnak
 	}
 	public Asteroid(){
-		creatures = new ArrayList<Creature>();
-		neighbours= new ArrayList<Transport>();
+		creatures = new ArrayList<Creature>();		//letrehozza a creaturek listajat
+		neighbours= new ArrayList<Transport>();		//letrehozza a szomszedok listajat
 	}
 	public void AddCreature(Creature c) {   //Hozzaad egy Creature objektumot a creatures listahoz.
 		creatures.add(c);
@@ -68,8 +68,8 @@ public class Asteroid implements Steppable, Transport {
 
 	public void SetCloseToSun(boolean b) {    //Beallitja az aszteroida napkozelseget.
 		closeToSun=b;
-		if(b && layer==0 && material !=null){
-			material.ReactToSunclose(this);
+		if(b && layer==0 && material !=null){		//ha az aszteroida napkozelben van, 0 kerge es nem ureges,
+			material.ReactToSunclose(this);		//akkor a benne levo nyersanyag reagal a napkozelsegre
 		}
 
 	}
@@ -82,7 +82,7 @@ public class Asteroid implements Steppable, Transport {
 		Random rand = new Random();
 		int randsunclose=rand.nextInt(2);
 		if(randsunclose==1) {
-			SetCloseToSun(true);          // beallitja az aszteroida napkozelseget
+			SetCloseToSun(true);          // beallitja az aszteroida napkozelseget, veletlenszeruen
 		}
 		else SetCloseToSun(false);
 	}
@@ -112,16 +112,16 @@ public class Asteroid implements Steppable, Transport {
 	}
 
 	public void SolarStorm(int count) {              //Az aszteroida napviharba kerul.
-		if(layer != 0 || material != null){ //Ha a rajta tartozkodo utazok nem tudnak elbujni, akkor meghalnak.
+		if(layer != 0 || material != null){ 		//ha az aszteroidan nem tudnak elbujni (nem 0 a kereg es nem ureges), akkor a creturek meghalnak
 
 			while(creatures.size()!=0) creatures.get(0).Die();
 		}
 		if(count>0)
-		for(int i=0;i<neighbours.size();i++) neighbours.get(0).GetAsteroid().SolarStorm(count-1);
+		for(int i=0;i<neighbours.size();i++) neighbours.get(0).GetAsteroid().SolarStorm(count-1); //a kapuk megkergulnek napvihar hatasara
 
 	}
 
-	public void SetLayer(int l){
+	public void SetLayer(int l){ //bealitja a layer erteket
 		layer=l;
 	}
 
