@@ -34,33 +34,35 @@ public class Game {
 	//megviszgalja, hogy megvannak-e az urbazis felepitesehez szukseges nyersanyagok, ha igen meghivja a jatekot befejezo EndGame() fuggvenyt
 	public void CheckBase(Asteroid a) {
 		ArrayList<Creature> asteroidcreatures= a.GetCreatures();
-		bill.SetUpBase();
+		bill.SetUpBase(); //feltolti a BillOfMaterial materialListjét az urbazis epitesehez szukseges alapanyagokkal
 		for(int i=0;i<asteroidcreatures.size();i++){
 			ArrayList creaturesmaterials=asteroidcreatures.get(i).GetMaterials();
-			if(bill.CheckMaterials(creaturesmaterials)) EndGame(true);
+			if(bill.CheckMaterials(creaturesmaterials)) EndGame(true); //Megvan az osszes szukseges material a settlereknel az urbazishoz?
 		}
 
 	}
 	
 	//a jatek befejezesekor meghivodo fuggveny
 	public void EndGame(boolean result) {
-		//Nyertek vs vesztettek
-		onGame=false;
+		//TODO Nyertek vs vesztettek
+		onGame=false; //vege a jateknak
 	}
 
 	//a jatek kezdetekor meghivodo fuggveny	
 	public void StartGame() {
 		//játéktér felépítése
-		onGame=true;
+		onGame=true; //elindul a jatek
 		OnGame();
 	}
 	
 	//egy kor a jatekban: eloszor a telepesek cselekvesei vegzodnek el, majd a Steppeble objektumok lepesei
 	public void Round() {
 		while (onGame) {
+			//settlerek lepesei
 			for (Settler s : settlers) {
 				Action(s);
 			}
+			//steppable-k lepesei
 			for (Steppable st : steppable) {
 				st.Step();
 			}
@@ -69,7 +71,9 @@ public class Game {
 
 	//egy telepes altal vegrehajthato muveletek 
 	public void Action(Settler s) {
+		//a tesztekhez meg nem szukseges
 		//beolvasás a controllerről
+		//settlerek lepesei
 	}
 
 	//egy telepes halalakor kiveszi a settlers listabol	
@@ -94,13 +98,18 @@ public class Game {
 	
 	//addig hivogatja meg a Round() fuggvenyt amig az onGame attributum igaz
 	public void OnGame() {
+	//nem a vegleges, meg nem kell a tesztek futasahoz
         Round();
 	}
-
+	
+	//space beallitasa
 	public void SetSpace(Space sp){
 		space=sp;
 	}
-
+	
+	//lekeri a settlerek listajat
 	public ArrayList<Settler> GetSettlers(){ return settlers;}
+	
+	//lekeri, hogy vege van-e a jateknak
 	public boolean GetOnGame(){ return onGame;}
 }
