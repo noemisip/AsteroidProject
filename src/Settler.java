@@ -11,7 +11,8 @@ public class Settler extends Creature {
 		bill = new BillOfMaterials();
 	}
 
-	public void Drill(){ //a telepes fur
+	public void Drill(){ //a telepes fur, ha nem 0 az aszteroida
+		if ( asteroid.GetLayer() != 0)
 		asteroid.DecreaseLayer();
 	}
 
@@ -25,7 +26,7 @@ public class Settler extends Creature {
 	public void Mine() { //a telepes banyaszik az aszteroidán
 		Material m = asteroid.GetMaterial();
 		if(asteroid.GetLayer()==0 && materials.size()<10 && m!=null) { //ellenorzi, hogy tud-e banyaszni
-			m.ReactToMine(asteroid, this);
+			m.ReactToMine(asteroid, this); // a material reagal a banyaszasra
 			Game.getInstance().CheckBase(asteroid); //a jatek ellenorzi, hogy fel tudjak-e epíteni a telpesek a bazist az aszteroidan
 		}
 	}
@@ -35,10 +36,10 @@ public class Settler extends Creature {
 		if(bill.CheckMaterials(materials)){ //elenorzi, hogy megvan-e a szukseges mennyisegu nyersanyag
 			bill.SetUpRobot();  //bill attributum material listajat beallitja a robothoz szuksegesekre
 			bill.RemoveMaterials(this); //kitorli a telepestol a felhasznalt nyersanyagokat, majd letrehozza a robotot és elhelyezi az aszteroidan
-			Robot r = new Robot();
-			asteroid.AddCreature(r);
-			asteroid.GetSpace().AddCreature(r);
-			Game.getInstance().AddSteppable(r);
+			Robot r = new Robot(); // letrehoz egy uj robotot
+			asteroid.AddCreature(r); // hozzadja az aszteroidahoz
+			asteroid.GetSpace().AddCreature(r); //hozzadja a spacehez
+			Game.getInstance().AddSteppable(r); //hozzadja a gamehez
 		}
 	}
 	
@@ -48,11 +49,11 @@ public class Settler extends Creature {
 			if (bill.CheckMaterials(materials)) { //elenorzi, hogy megvan-e a szukséges mennyisegu nyersanyag
 				bill.SetUpGate(); //bill attributum material listajat beallitja a kapuhoz szuksegesekre
 				bill.RemoveMaterials(this); //kitorli a telepestol a felhasznalt nyersanyagokat, majd letrehozza a ket kaput és hozzaadja a listajahoz
-				Gate g1 = new Gate();
+				Gate g1 = new Gate(); // letrehoz ket uj gatet
 				Gate g2 = new Gate();
-				g1.SetPair(g2);
+				g1.SetPair(g2); // beallitja egymas parjainak oket
 				g2.SetPair(g1);
-				AddGate(g1);
+				AddGate(g1); //hozzadja a settler gate listajahoz
 				AddGate(g2);
 			}
 		}
@@ -60,13 +61,13 @@ public class Settler extends Creature {
 	
 	public void PlaceGate(Gate g) { //a telepes lehelyez egy kaput az aszteroidara
 		Gate g2=g.GetPair();
-		asteroid.AddNeighbour(g2); //az aszteroida új szomszedot kap a kapun keresztul
+		asteroid.AddNeighbour(g2); //az aszteroida uj szomszedot kap a kapun keresztul
 		g.SetAsteroid(asteroid); //beallitja, hogy a kapu melyik aszteroidan helyezkedik el
 		RemoveGate(g); //a telepes kitolri a kaput a listjabol
 	}
 
 	
-	public void AddMaterial(Material m) { //a telepes felvesz egy nyerssanyagot a listájába
+	public void AddMaterial(Material m) { //a telepes felvesz egy nyersanyagot a listajaba
 		materials.add(m);
 	}
 	
