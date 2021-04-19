@@ -495,7 +495,7 @@ public class Controller {
 
     public void Set(String[] cmd) {
         //Set asteroid-----------------------------------------------------------
-        if (cmd[1].contains("asteroid")) {
+        if (cmd[1].contains("asteroid")) {          //aszteroid attributumainak beallitasa
             Asteroid a = (Asteroid) hash.get(cmd[1]);
             if(a==null){
                 addOutput("Unsuccessful");
@@ -577,7 +577,7 @@ public class Controller {
             }
         }
         //set settler------------------------------------------------------------
-        else if (cmd[1].contains("settler")) {
+        else if (cmd[1].contains("settler")) {   //beallitja a settler attributumait
             Settler s = (Settler) hash.get(cmd[1]);
             if(s==null){
                 addOutput("Unsuccessful");
@@ -593,7 +593,7 @@ public class Controller {
             }
             s.SetAsteroid(a);
             if(a!=null && !a.GetCreatures().contains(s)) a.AddCreature(s);
-            if (!cmd[3].equals("-")) {
+            if (!cmd[3].equals("-")) {           //beallitja milyen nyersanyag talalhato a settlernel
                 String[] materials = cmd[3].split(";");
                 for (String str : materials) {
                     Material m = null;
@@ -624,7 +624,7 @@ public class Controller {
                     s.AddMaterial(m);
                 }
             }
-            if (!cmd[4].equals("-")) {
+            if (!cmd[4].equals("-")) {          //beallitja,hogy milyen kapuk vannak a settlernel
                 String[] gates = cmd[4].split(";");
                 for (String str : gates) {
                     Gate g = (Gate) hash.get(str);
@@ -637,7 +637,7 @@ public class Controller {
             }
         }
         //set ufo----------------------------------------------------------------
-        else if (cmd[1].contains("ufo")) {
+        else if (cmd[1].contains("ufo")) {      //beallitja az ufo tulajdonsagait
             //u beallitasa
             Ufo u = (Ufo) hash.get(cmd[1]);
             //ha u nem letezik
@@ -649,7 +649,7 @@ public class Controller {
             u.SetAsteroid((Asteroid) hash.get(cmd[2]));
         }
         //set robot----------------------------------------------------------------
-        else if (cmd[1].contains("robot")) {
+        else if (cmd[1].contains("robot")) { //beallitja a robot tulajdomsagait
             // r beallitasa
             Robot r = (Robot) hash.get(cmd[1]);
             //ha nem leteznek
