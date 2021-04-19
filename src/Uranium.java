@@ -15,7 +15,7 @@ public class Uranium  extends Material {
 		if(cnt < 2)
 			cnt++;
 		if(cnt == 2)
-			a.Explosion();
+			a.Explosion(); //ha az aszteroida mar ketszer volt napkozelben, akkor harmadszorra felrobban
 	}
 
 	public boolean IsEquales(Material m) {
