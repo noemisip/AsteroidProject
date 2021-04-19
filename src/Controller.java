@@ -44,7 +44,7 @@ public class Controller {
                 String text=i.nextLine();cmd = text.split(" ");
                 if(cmd[0].equals("open")) Open(cmd[1]);
             }
-            else if(in.equals("Game: A program a sor vege jelig olvassa a parancsokat, majd kiirja a kimenetet")){ //olvasas konzolrol, egyeni parancsok futattasa
+            else if(in.equals("Game")){ //olvasas konzolrol, egyeni parancsok futattasa
                 ReadFromConsole();
             }
 
@@ -691,7 +691,9 @@ public class Controller {
         System.out.println("set <asteroidname> <materialtype> <layer> <sunclose> <neighbour1;neighbour2> <creature1;creature2> \n Beallitja a megadott aszteroida peldany parametereit.");
         System.out.println("set <settlername> <asteroidname> <material1;material2;material3> <gate1;gate2;gate3> \n Beallitja a megadott settler peldany parametereit.");
         System.out.println("set <ufoname> <asteroidname> \n Beallitja a megadott ufo peldany parametereit.");
-        System.out.println("help \n Kiirja milyen parancsok erhetoek el.");
+       	System.out.println("Solarstorm \n Napvihart general a palyan.");
+	System.out.println("kerge <gatename> \n A megadott gate peldany kerge tulajdonsagat igazra allitja.");
+	System.out.println("help \n Kiirja milyen parancsok erhetoek el.");
     }
     //Napvihar parancs
     public void SolarStorm (String[]cmd){
