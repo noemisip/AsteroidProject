@@ -28,27 +28,31 @@ public class Controller {
 
         while (s.hasNextLine()) {
             String in=s.nextLine();
+            settlerCnt =1;
+            gateCnt = 1;
+            asteroidCnt = 1;
+            ufoCnt =1;
+            uraniumCnt =1;
+            ironCnt =1;
+            iceCnt =1;
+            carbonCnt =1;
+            robotCnt =1;
+
             if(in.equals("Test")){ //elore megirt tesztek futtatasa
                 Scanner i = new Scanner(System.in);
                 String[] cmd = {""}; output.clear();ideal_output.clear();input.clear();
-                settlerCnt =1;
-               gateCnt = 1;
-                asteroidCnt = 1;
-                ufoCnt =1;
-                uraniumCnt =1;
-                ironCnt =1;
-                iceCnt =1;
-                carbonCnt =1;
-                robotCnt =1;
                 String text=i.nextLine();cmd = text.split(" ");
                 if(cmd[0].equals("open")) Open(cmd[1]);
+            }
+            else if(in.equals("Game: A program a sor vege jelig olvassa a parancsokat, majd kiirja a kimenetet")){ //olvasas konzolrol, egyeni parancsok futattasa
+                ReadFromConsole();
             }
 
         }
     }
 
 
-    public void ReadFromInput() { //szavadon beirhato parancsok
+    public void ReadFromInput() { //olvasas filebol
         String[] cmd = {""};
        for(int i=0;i<input.size();i++) {
            String line = input.get(i);
@@ -111,7 +115,7 @@ public class Controller {
         Game.getInstance().GetSettlers().clear();
     }
 
-    public void ReadFromConsole() {
+    public void ReadFromConsole() { //egyeni tesztek/parancsok futtatasa konzolrol
         Scanner s = new Scanner(System.in);
         String[] cmd = {""};
         while (s.hasNextLine()) {
@@ -166,64 +170,66 @@ public class Controller {
             }
         }
         printOutput();
+        hash.clear();
+        Game.getInstance().GetSettlers().clear();
     }
 
-    public void Place(String[] cmd) {
+    public void Place(String[] cmd) { //egy kapu lehelyezese
         Settler s = (Settler) hash.get(cmd[1]);
         Gate g = (Gate) hash.get(cmd[2]);
-        if(s==null || g==null) {
+        if(s==null || g==null) { //ha a kapu vagy a telepes nem letezik, akkor sikertelen a parancs futasa
             addOutput("Unsuccessful");
             return;
         }
         s.PlaceGate(g);
     }
 
-    public void Kerge_Gate(String[] cmd) { //TODO
+    public void Kerge_Gate(String[] cmd) { //kapu keregere allitasa
         Gate g = (Gate) hash.get(cmd[1]);
-        if(g==null) {
+        if(g==null) { //ha a kapu nem letezik, akkor sikertelen a aprancs futasa
             addOutput("Unsuccessful");
             return;
         }
         g.SetKerge(true);
     }
 
-    public void Move(String[] cmd) {
+    public void Move(String[] cmd) { //egy creature/kapu mozgatasa
         Asteroid a ;
-        if(cmd[1].contains("gate")){
+        if(cmd[1].contains("gate")){ //kapu mozog
             if(!(cmd[2].equals("-"))){
                 Gate c = (Gate) hash.get(cmd[1]);
                 a= (Asteroid) hash.get(cmd[2]);
-                if(c==null || a==null) {
+                if(c==null || a==null) { //ha a kapu, vagy az aszteroida nem letezik, akkor sikertelen a parancs futtatasa
                     addOutput("Unsuccessful");
                     return;
                 }
-                else c.Move(a);
+                else c.Move(a); //elore kivalasztott aszteroidara mozog
             }
             else{
-                AI ai=(AI) hash.get(cmd[1]);
+                AI ai=(AI) hash.get(cmd[1]); //random aszteroidara mozog
                 ai.WhereToMove();
             }
         }
-        else if(cmd[1].contains("robot") || cmd[1].contains("ufo")){
+        else if(cmd[1].contains("robot") || cmd[1].contains("ufo")){ //robot vagy ufo mozog
             if(!(cmd[2].equals("-"))){
                 Creature c = (Creature) hash.get(cmd[1]);
                 a= (Asteroid) hash.get(cmd[2]);
-                if(c==null || a==null) {
+                if(c==null || a==null) { //ha a creature vagy az aszteroida nem letezik, akkor sikertelen a parancs futtatasa
                     addOutput("Unsuccessful");
                     return;
                 }
-                else c.Move(a);
+                else c.Move(a);                 //elore kivalasztott aszteroidara mozog
             }
             else{
-                AI ai=(AI) hash.get(cmd[1]);
+                AI ai=(AI) hash.get(cmd[1]);    //random aszteroidara mozog
                 ai.WhereToMove();
             }
         }
-        if(cmd[1].contains("settler")) {
+        if(cmd[1].contains("settler")) {    //telepes mozog
             Settler s = (Settler) hash.get(cmd[1]);
 
             a = (Asteroid) hash.get(cmd[2]);
-            if (s == null || a == null) {
+            if (s == null || a == null) { //ha a telepes vagy az aszteroida nem letezik, akkor sikertelen a parancs futtatasa
                 addOutput("Unsuccessful");
                     return;
             }
@@ -231,19 +237,19 @@ public class Controller {
         }
     }
 
-    public void Drill(String[] cmd) {
+    public void Drill(String[] cmd) { //egy creature (robot, vagy settler) fur
         Creature s = (Creature) hash.get(cmd[1]);
-        if(s==null){
+        if(s==null){ //ha a creature nem letezik, akkor sikertelen a parancs futtatasa
             addOutput("Unsuccessful");
             return;
         }
         s.Drill();
     }
 
-    public void Mine(String[] cmd) {
+    public void Mine(String[] cmd) { //egy ufo vagy telepes banyaszik
         if(cmd[1].contains("ufo")){
             Ufo u = (Ufo) hash.get(cmd[1]);
-            if(u==null){
+            if(u==null){ //ha az ufo nem letezik, akkor sikertelen a parancs futtatasa
                 addOutput("Unsuccessful");
                 return;
             }
@@ -251,49 +257,52 @@ public class Controller {
         }
         else if(cmd[1].contains("settler")) {
             Settler s = (Settler) hash.get(cmd[1]);
-            if (s == null) {
+            if (s == null) { //ha a telepes nem letezik, akkor sikertelen a parancs futtatasa
                 addOutput("Unsuccessful");
                 return;
             }
             s.Mine();
         }
-        else addOutput("Unsuccessful");
+        else addOutput("Unsuccessful"); //ha hibas a bemenet, akkor sikertelen a parancs futtatasa
     }
 
-    public void Create(String[] cmd) {
-        if (cmd[1].equals("robot")) {
+    public void Create(String[] cmd) { //a telepes keszit egy robotot vagy kaput
+        if (cmd[1].equals("robot")) { //a telepes robotot akar kesziteni
             Settler s = (Settler) hash.get(cmd[3]);
-            if(s==null){
+            if(s==null){        //ha a telepes nem letezik, akkor sikertelen a parancs futtatasa
                 addOutput("Unsuccessful");
                 return;
             }
-            int num = s.GetAsteroid().GetCreatures().size();
-            s.CreateRobot();
-            if(s.GetAsteroid().GetCreatures().size()>num)
+            int num = s.GetAsteroid().GetCreatures().size(); //megjegyzi, hogy kezdetben hany creature van az aszteroidan
+            s.CreateRobot(); //a telepes egy robotot csinal
+            if(s.GetAsteroid().GetCreatures().size()>num) //ha tobb creature lett az aszteroidan (sikeres volt az epites), akkor felveszi az ujat a hashmapbe (creature lista vegen levo objektum)
                 hash.put(cmd[2], s.GetAsteroid().GetCreatures().get(s.GetAsteroid().GetCreatures().size()-1));
-        } else if (cmd[1].equals("gate")) {
+        } else if (cmd[1].equals("gate")) { //a telepes egy kapupart csinal
             Settler s = (Settler) hash.get(cmd[4]);
-            if(s==null){
+            if(s==null){        //ha a telepes nem letezik, akkor sikertelen a parancs futtatasa
                 addOutput("Unsuccessful");
                 return;
             }
-            int num = s.GetGateList().size();
-            s.CreateGate();
-            if(s.GetGateList().size()>num) {
+            int num = s.GetGateList().size(); //megjegyzi, hogy hany kapu van a telepesnel
+            s.CreateGate(); //a telepes kaput keszit
+            if(s.GetGateList().size()>num) { //ha tobb kapu lett a telepesnel, azaz sikeres az epites, akkor felveszi a kapukat a hashmapbe
                 hash.put(cmd[2], s.GetGate(0));
                 hash.put(cmd[3], s.GetGate(1));
             }
         }
+        else{
+            addOutput("Unsuccessful"); //ha hibas a bemenet, akkor sikertelen a parancs futtatasa
+        }
     }
 
-    public void Restore(String[] cmd) {
+    public void Restore(String[] cmd) { //a telepes lehelyez egy nala levo nyersanyagot arra az aszteroidara amin epp all
         Settler s = (Settler) hash.get(cmd[1]);
-        if(s==null){
+        if(s==null){    //ha a telepes nem letezik, akkor sikertelen a parancs futtatasa
             addOutput("Unsuccessful");
             return;
         }
         Material m = null;
-        switch (cmd[2]) {
+        switch (cmd[2]) { //eldonti milyen tipusu nyersanyagot helyez vissza az aszteroidaba
             case "iron":
                 m = new Iron();
                 break;
@@ -312,12 +321,13 @@ public class Controller {
         s.RestoreMaterial(m);
     }
 
-    public void Settler_Properties(String[] cmd) {
+    public void Settler_Properties(String[] cmd) { //kiirja a telepes adatait
         Settler s = (Settler) hash.get(cmd[2]);
-        if(s==null){
+        if(s==null){        //ha a telepes nem letezik, akkor sikertelen a parancs futtatasa
             addOutput("Unsuccessful");
             return;
         }
+        //telepesnel levo nyersanyagok listazasa
         String materials="";
         if(s.GetMaterials().size()==0) materials="-";
         else {
@@ -326,6 +336,7 @@ public class Controller {
             }
             materials = materials.substring(0, materials.length() - 1);
         }
+        //telepesnel levo kapuk listazasa
         String gates="";
         if(s.GetGateList().size()==0) gates="-";
         else {
@@ -334,21 +345,25 @@ public class Controller {
             }
             gates = gates.substring(0, gates.length() - 1);
         }
+        //a telepes aszteroidajanak kiirasa
         String asteroid;
         if(s.GetAsteroid()==null) asteroid="-";
         else asteroid=getKey(s.GetAsteroid());
+        //kimeneti string osszeallitasa
         addOutput(cmd[2]+": "+ asteroid+" " + materials + " " + gates );
     }
 
-    public void Asteroid_Properties(String[] cmd) {
+    public void Asteroid_Properties(String[] cmd) { //aszteroida adatainak listazasa
         Asteroid a = (Asteroid) hash.get(cmd[2]);
-        if(a==null){
+        if(a==null){ //ha az aszteroida nem letezik, akkor sikertelen a parancs futtatasa
             addOutput("Unsuccessful");
             return;
         }
+        //aszteroida nyersanyaganak kiirasa
         String material = "";
         if(a.GetMaterial()==null) material="-";
         else material = getKey(a.GetMaterial());
+        //aszteroida szomszedainak listazasa
         String neighbours="";
         if(a.GetNeighbours()==null || a.GetNeighbours().size()==0) neighbours="-"; //szomszedok kiirasa
         else {
@@ -357,7 +372,8 @@ public class Controller {
             }
             neighbours = neighbours.substring(0, neighbours.length() - 1);
         }
-        String creatures=""; //creaturek kiirasa
+        //aszteroidan levo lenyek listazasa
+        String creatures="";
         if(a.GetCreatures().size()==0) creatures="-";
         else {
             for (Creature c : a.GetCreatures()) {
@@ -365,15 +381,16 @@ public class Controller {
             }
             creatures = creatures.substring(0, creatures.length() - 1);
         }
+        //kiemneti string osszeallitasa
         addOutput(cmd[2]+": "+ material+" " +a.GetLayer()+" "+a.GetCloseToSun()+" "+ neighbours + " " + creatures );
     }
 
-    public void Check(String[] cmd) {
-        if (cmd[1].equals("settlers")) {
+    public void Check(String[] cmd) { //ellenorzesek
+        if (cmd[1].equals("settlers")) { //telepesek szamanak ellenorzese
             if(Game.getInstance().GetSettlers().size()==0) {
                 addOutput("0");
             }
-            else {
+            else { //ha meg van eletben telepes kiirja, hogy melyikek azok
                 String settlers="";
                 for (Settler s : Game.getInstance().GetSettlers()) {
                     settlers += getKey(s) + ";";
@@ -383,9 +400,9 @@ public class Controller {
             }
         }
 
-        else if (cmd[1].equals("base")) {
+        else if (cmd[1].equals("base")) { //ellenorzi, hogy fel tudjak-e epiteni az aszteroidan a bazist, nyertek-e a telepesek
             Asteroid a = (Asteroid) hash.get(cmd[2]);
-            if(a==null){
+            if(a==null){    //ha az aszteroida nem letezik, akkor sikertelen a parancs futtatasa
                 addOutput("Unsuccessful");
                 return;
             }
@@ -394,21 +411,21 @@ public class Controller {
         }
     }
 
-    public void Setup(String[] cmd) {
+    public void Setup(String[] cmd) { //objektumok letrehozasa
         int k = 0;
         String objects="";
         //Setup space------------------------------------
-        if (cmd.length == 1) {
+        if (cmd.length == 1) { //letrehozza a jatek szinteret
             sp = new Space();
             Game.getInstance().SetSpace(sp);
             addOutput("Created sp game");
             return;
         }
         else if (cmd.length >2 ){
-                if( cmd[2].equals("r")) {
+                if( cmd[2].equals("r")) { //ha nincs megadva, hogy hany objektumot hozzon letre, random szamut fog
                     k = new Random().nextInt();
                 }
-                else {
+                else { //megadott szamu objektum letrehozasa
                     k = parseInt(cmd[2]);
                     if (k < 0) {
                         addOutput("Unsuccessful");
@@ -420,7 +437,7 @@ public class Controller {
         if (cmd[1].equals("asteroid")) {
             for (int i = 0; i < k; i++) {
                 Asteroid a = new Asteroid(sp);
-                hash.put("asteroid"+asteroidCnt, a);
+                hash.put("asteroid"+asteroidCnt, a); //felveszi a hashmapbe
                 objects+="asteroid"+asteroidCnt+";";
                 asteroidCnt++;
             }
@@ -430,33 +447,33 @@ public class Controller {
         else if (cmd[1].equals("settler")) {
             for (int i = 0; i < k; i++) {
                 Settler s = new Settler();
-                hash.put("settler"+settlerCnt, s);
+                hash.put("settler"+settlerCnt, s); //felveszi a hasmapbe
                 objects+="settler"+settlerCnt+";";
                 settlerCnt++;
-                Game.getInstance().AddSettler(s);
-                sp.AddCreature(s);
+                Game.getInstance().AddSettler(s);   //hozzaadja a game settler listajahoz
+                sp.AddCreature(s);                  //hozzaadja a space creature listajahoz
             }
         }
         //setup ufo --------------------------------------
         else if (cmd[1].equals("ufo")) {
             for (int i = 0; i < k; i++) {
                 Ufo u = new Ufo();
-                hash.put("ufo"+ufoCnt, u);
+                hash.put("ufo"+ufoCnt, u);  //felveszi a hashmapbe
                 objects+="ufo"+ufoCnt+";";
                 ufoCnt++;
-                Game.getInstance().AddSteppable(u);
-                sp.AddCreature(u);
+                Game.getInstance().AddSteppable(u); //hozzaadja a game steppable listajahoz
+                sp.AddCreature(u);                  //hozzaadja a space creature listajahoz
             }
         }
         //setup robot --------------------------------------
         else if (cmd[1].equals("robot")) {
             for (int i = 0; i < k; i++) {
                 Robot r = new Robot();
-                hash.put("robot"+robotCnt, r);
+                hash.put("robot"+robotCnt, r); //felveszi a hashmapbe
                 objects+="robot"+robotCnt+";";
                 robotCnt++;
-                Game.getInstance().AddSteppable(r);
-                sp.AddCreature(r);
+                Game.getInstance().AddSteppable(r); //hozzaadja a game steppable listajahoz
+                sp.AddCreature(r);                  //hozzaadja a space creature listajahoz
             }
         }
         //setup gate --------------------------------------
