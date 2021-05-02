@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class GAsteroid extends Drawable{
     private Asteroid asteroid;
     private String text;
