@@ -116,4 +116,6 @@ public class Game {
 	public Space GetSpace() {
 		return space;
 	}
+
+	public ArrayList<Steppable> GetSteppables(){ return steppable;}
 }
