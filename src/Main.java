@@ -1,3 +1,5 @@
+import Frame.Menu;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -14,43 +16,43 @@ public class Main {
 	}
 	private Main(){}
 	public static void main(String[] args) {
-
+		Menu menu = new Menu();
 	}
-	public void SettlerAction(Settler s){
-		ControlPanel cp = view.GetControlPanel();
-		cp.SetSettler(s);
-		cp.Update();
-		int result = cp.UserInput();
-		switch (result){
-			case 1:
-				Asteroid a = cp.GetAsteroid();
-				s.Move(a);
-				break;
-			case 2:
-				s.Drill();
-				break;
-			case 3:
-				s.Mine();
-				break;
-			case 4:
-				Material m = cp.GetMaterial();
-				s.RestoreMaterial(m);
-				break;
-			case 5:
-				s.CreateRobot();
-				break;
-			case 6:
-				s.CreateGate();
-				break;
-			case 7:
-				Gate g = cp.GetGate();
-				s.PlaceGate(g);
-				break;
-			default: break;
-		}
-		view.UpdateAll();
-
-	}
+//	public void SettlerAction(Settler s){
+//		ControlPanel cp = view.GetControlPanel();
+//		cp.SetSettler(s);
+//		cp.Update();
+//		int result = cp.UserInput();
+//		switch (result){
+//			case 1:
+//				Asteroid a = cp.GetAsteroid();
+//				s.Move(a);
+//				break;
+//			case 2:
+//				s.Drill();
+//				break;
+//			case 3:
+//				s.Mine();
+//				break;
+//			case 4:
+//				Material m = cp.GetMaterial();
+//				s.RestoreMaterial(m);
+//				break;
+//			case 5:
+//				s.CreateRobot();
+//				break;
+//			case 6:
+//				s.CreateGate();
+//				break;
+//			case 7:
+//				Gate g = cp.GetGate();
+//				s.PlaceGate(g);
+//				break;
+//			default: break;
+//		}
+//		view.UpdateAll();
+//
+//	}
 	public void SteppableAction(){
 		Space sp = Game.getInstance().GetSpace();
 		boolean solarstrom = sp.GetSolarStrom();
