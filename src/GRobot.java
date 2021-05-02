@@ -6,12 +6,12 @@ public class GRobot {
     public void Update(){
 
     }
-    public void GetName(){
-
+    public String GetName(){
+        return null;
     }
 
     public void SetRobot(Robot r){
-
+        robot = r;
     }
 
 }

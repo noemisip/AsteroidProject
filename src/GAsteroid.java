@@ -9,7 +9,15 @@ public class GAsteroid extends Drawable{
     public void Update(){
 
     }
-    public String Getname(){
+    public String GetName(){
         return name;
+    }
+
+    public void SetName(String n){
+        name=n;
+    }
+
+    public void SetAsteroid(){
+
     }
 }

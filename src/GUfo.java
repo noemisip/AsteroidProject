@@ -7,7 +7,11 @@ public class GUfo extends Drawable{
     public void Update(){
 
     }
-    public String Getname(){
+    public String GetName(){
         return " ";
+    }
+    
+    public void SetUfo(Ufo u){
+        ufo=u;
     }
 }
