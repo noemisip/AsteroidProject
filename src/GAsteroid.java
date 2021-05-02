@@ -7,7 +7,16 @@ public class GAsteroid extends Drawable{
 
     }
     public void Update(){
+        int layer= asteroid.GetLayer();
+        Material m=asteroid.GetMaterial();
+        ArrayList<Steppable> sp=Game.getInstance().GetSteppables();
+        int index= sp.indexOf(asteroid);
+        if(index!=-1){
 
+            Draw();
+        }else{
+            Remove();
+        }
     }
     public String GetName(){
         return name;

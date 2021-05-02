@@ -5,7 +5,15 @@ public class GUfo extends Drawable{
 
     }
     public void Update(){
-
+        Asteroid asteroid=ufo.GetAsteroid();
+        ArrayList<Steppable> sp=Game.getInstance().GetSteppables();
+        int index= sp.indexOf(ufo);
+        if(index!=-1){
+            view.FindAsteroid(asteroid,this);
+            Draw();
+        }else{
+            Remove();
+        }
     }
     public String GetName(){
         return " ";
