@@ -17,7 +17,7 @@ public class GAsteroid extends Drawable{
         name=n;
     }
 
-    public void SetAsteroid(){
-
+    public void SetAsteroid(Asteroid a){
+        asteroid = a;
     }
 }
