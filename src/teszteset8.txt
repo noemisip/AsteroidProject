@@ -1,9 +1,0 @@
-setup
-setup asteroid 1
-set asteroid1 uranium 0 true - -
-set uranium asteroid1 1
-asteroid properties asteroid1
-*
-Created sp game
-Created asteroid1
-asteroid1: uranium1 0 true - -

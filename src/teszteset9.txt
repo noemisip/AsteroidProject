@@ -1,8 +1,0 @@
-setup
-setup asteroid 1
-set asteroid1 ice 0 true - -
-asteroid properties asteroid1
-*
-Created sp game
-Created asteroid1
-asteroid1: - 0 true - -
