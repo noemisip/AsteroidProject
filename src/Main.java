@@ -6,6 +6,14 @@ import java.util.Random;
 public class Main {
 	private static HashMap<String, Object> hash = new HashMap();
 	private static View view;
+	private static Main INSTANCE;
+	public static Main getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new Main();
+		}
+		return INSTANCE;
+	}
+	private Main(){}
 	public static void main(String[] args) {
 
 	}
@@ -108,7 +116,7 @@ public class Main {
 		String name = "asteroid"+(i+1);
 		ga.SetName(name);
 		AddHash(name, a);
-		Game.getInstance().AddSteppable((Steppable)a);
+		Game.getInstance().AddSteppable(a);
 		Space sp = Game.getInstance().GetSpace();
 		sp.AddAsteroid(a);
 	}
