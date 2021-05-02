@@ -1,9 +1,15 @@
+import javax.swing.*;
 import java.util.ArrayList;
+
 
 public class GRobot extends Drawable {
     private Robot robot;
+    private static JLabel base;
+    private static ImageIcon i = new ImageIcon("robot.png");
     public void Draw(){
-
+        //view.add(base);
+        base.setIcon(i);
+        base.setLocation(x,y);
     }
     public void Update(){
         Asteroid a = robot.GetAsteroid();
