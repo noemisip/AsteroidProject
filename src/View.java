@@ -22,7 +22,7 @@ public class View {
 	}
 	
 	public void FindAsteroid(Asteroid a, Drawable d) {
-		String name = Main.getInstance.GetKey(a);
+		String name = Main.getInstance().GetKey(a);
 		for(Drawable i:drawables) {
 			if(i.GetName().equals(name)) {
 				i.SetKoord(d.GetX(), d.GetY()); 

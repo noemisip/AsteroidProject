@@ -1,4 +1,3 @@
-import javax.swing.text.View;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -24,6 +23,7 @@ public class Main {
 		int result = cp.UserInput();
 		switch (result){
 			case 1:
+				Asteroid a = cp.GetAsteroid();
 				s.Move(a);
 				break;
 			case 2:
@@ -33,6 +33,7 @@ public class Main {
 				s.Mine();
 				break;
 			case 4:
+				Material m = cp.GetMaterial();
 				s.RestoreMaterial(m);
 				break;
 			case 5:
@@ -42,6 +43,7 @@ public class Main {
 				s.CreateGate();
 				break;
 			case 7:
+				Gate g = cp.GetGate();
 				s.PlaceGate(g);
 				break;
 			default: break;
@@ -52,7 +54,7 @@ public class Main {
 	public void SteppableAction(){
 		Space sp = Game.getInstance().GetSpace();
 		boolean solarstrom = sp.GetSolarStrom();
-		if(solarstrom) view.ShowSolarStorm();
+		if(solarstrom) view.ShowSolarStrom();
 		view.UpdateAll();
 	}
 	public String GetKey(Object o){
