@@ -11,7 +11,7 @@ public abstract class Drawable {
     }
     public void Remove(){
         //eltunteti a drawable peldanyt a kepernyorol
-        view.RemoveDrawables(this);
+        view.RemoveDrawable(this);
     }
     public abstract String GetName();
     public double GetX(){
