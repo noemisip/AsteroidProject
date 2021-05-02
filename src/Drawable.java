@@ -1,7 +1,7 @@
 public abstract class Drawable {
-    private double x;
-    private double y;
-    private View view;
+    protected double x;
+    protected double y;
+    protected View view;
 
     public abstract void Draw();
     public abstract void Update();
@@ -11,6 +11,7 @@ public abstract class Drawable {
     }
     public void Remove(){
         //eltunteti a drawable peldanyt a kepernyorol
+        view.RemoveDrawables(this);
     }
     public abstract String GetName();
     public double GetX(){
