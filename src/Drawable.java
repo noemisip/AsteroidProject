@@ -1,11 +1,11 @@
 public abstract class Drawable {
-    protected double x;
-    protected double y;
+    protected int x;
+    protected int y;
     protected View view;
 
     public abstract void Draw();
     public abstract void Update();
-    public void SetKoord( double x, double y){
+    public void SetKoord( int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -14,10 +14,10 @@ public abstract class Drawable {
         view.RemoveDrawable(this);
     }
     public abstract String GetName();
-    public double GetX(){
+    public int GetX(){
         return x;
     }
-    public double GetY(){
+    public int GetY(){
         return y;
     }
 
