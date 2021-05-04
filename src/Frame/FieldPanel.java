@@ -6,9 +6,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Field {
+public class FieldPanel extends JPanel{
     private JFrame frame = new JFrame();
-    public Field(){
+    public FieldPanel(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         try{
             frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("background.png")))));

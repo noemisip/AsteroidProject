@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class ControlPanel {
+public class ControlPanel extends JPanel{
     private Settler s;
     private ArrayList<String> text=new ArrayList<String>();
     private JPanel jp;

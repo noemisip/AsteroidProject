@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Menu {
+public class Menu extends JFrame{
     private JFrame frame = new JFrame("Aszteroida bányászat");
     private final JButton start = new JButton("START");
     private final JButton exit = new JButton("Exit");

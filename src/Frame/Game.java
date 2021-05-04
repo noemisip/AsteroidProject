@@ -2,5 +2,5 @@ package Frame;
 
 import javax.swing.*;
 
-public class EndGame extends JFrame {
+public class Game extends JFrame {
 }

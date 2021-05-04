@@ -1,4 +1,6 @@
 package Frame;
 
-public class SettlerNumber {
+import javax.swing.*;
+
+public class SettlerNumber extends JFrame {
 }
