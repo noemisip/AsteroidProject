@@ -13,20 +13,19 @@ public class Menu extends JFrame {
     private final JButton exit = new JButton("Exit");
 
     public Menu(){
-        super("Aszteroida bányászat");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         try{
-            setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("menu.png")))));
+            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("menu.png")))));
 
         }catch(IOException e)
         {
             e.printStackTrace();
 
         }
-        this.setLayout(new BorderLayout());
-        this.setResizable(false);
-        this.pack();
-        this.setVisible(true);
+        frame.setLayout(new BorderLayout());
+        frame.setResizable(false);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 }
