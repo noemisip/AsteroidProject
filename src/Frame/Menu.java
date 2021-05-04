@@ -2,7 +2,6 @@ package Frame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +25,5 @@ public class Menu extends JFrame {
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
-
     }
 }
