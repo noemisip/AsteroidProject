@@ -7,10 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Field {
-    private JFrame frame = new JFrame("Aszteroida banyaszat");
-    private final JButton start = new JButton("START");
-    private final JButton exit = new JButton("Exit");
-
+    private JFrame frame = new JFrame();
     public Field(){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         try{
