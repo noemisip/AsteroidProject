@@ -1,10 +1,12 @@
+package Modell;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Space implements Steppable {
 	
 	private ArrayList<Asteroid> asteroids; // az urben talalhato aszteroidak listaja
-	private ArrayList<Creature> creatures; // az urben tartozkodo Creature-ok listaja 
+	private ArrayList<Creature> creatures; // az urben tartozkodo Modell.Creature-ok listaja
 	private boolean solarstrom;
 	public Space(){ //inicializalas
 		asteroids= new ArrayList<Asteroid>();
@@ -20,12 +22,12 @@ public class Space implements Steppable {
         asteroids.remove(a);
     }
 
-	//hozzaadja a parameterkent megkapott Creature peldanyt az creatures listahoz
+	//hozzaadja a parameterkent megkapott Modell.Creature peldanyt az creatures listahoz
 	public void AddCreature(Creature c) {
         creatures.add(c);
 	}
 
-	//kiveszi a parameterkent megkapott Creature peldanyt az creatures listabol
+	//kiveszi a parameterkent megkapott Modell.Creature peldanyt az creatures listabol
 	public void RemoveCreature(Creature c) {
         creatures.remove(c);
 	}

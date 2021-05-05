@@ -1,3 +1,5 @@
+package Modell;
+
 public class Carbon extends Material {
 	// Akkor hivodik meg ha asnak az aszteroidan
 	public void ReactToMine(Asteroid a, Creature c) {

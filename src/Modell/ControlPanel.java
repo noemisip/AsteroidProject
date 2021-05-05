@@ -1,3 +1,5 @@
+package Modell;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class ControlPanel extends JPanel{
     JLabel gate_label;
 
     public void SetText(){
-        text.add("Asteroid: "+Main.getInstance().GetKey(s.GetAsteroid()));
+        text.add("Modell.Asteroid: "+Main.getInstance().GetKey(s.GetAsteroid()));
         String gates="";
         for(int i=0;i<s.GetGateList().size();i++){
             gates=gates+Main.getInstance().GetKey(s.GetGateList().get(i))+",";
@@ -42,9 +44,9 @@ public class ControlPanel extends JPanel{
         drill=new JButton("Drill");
         mine=new JButton("Mine");
         restore=new JButton("Restore");
-        create_robot=new JButton("Create Robot");
-        create_gate=new JButton("Create Gate");
-        place_gate=new JButton("Place Gate");
+        create_robot=new JButton("Create Modell.Robot");
+        create_gate=new JButton("Create Modell.Gate");
+        place_gate=new JButton("Place Modell.Gate");
         jp.add(move);jp.add(drill);jp.add(mine);jp.add(restore);jp.add(create_robot);
         jp.add(create_gate); jp.add(place_gate);
         settler_label=new JLabel(Main.getInstance().GetKey(s));

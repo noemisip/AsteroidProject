@@ -1,3 +1,5 @@
+package Modell;
+
 public abstract class Drawable {
     protected int x;
     protected int y;

@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+package Modell;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -15,7 +16,7 @@ public class Game {
 	private Game() {
 	}
 
-	//mivel a Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
+	//mivel a Modell.Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
 	public static Game getInstance() {
 		bill=  new BillOfMaterials();
 		if(INSTANCE == null) {
@@ -86,12 +87,12 @@ public class Game {
 		settlers.add(s);
 	}
 	
-	//kiveszi a steppable listahoz a parameterkent megkapott Steppable peldanyt
+	//kiveszi a steppable listahoz a parameterkent megkapott Modell.Steppable peldanyt
 	public void RemoveSteppable(Steppable s) {
         steppable.remove(s);
 	}
 	
-	//hozzáadja a steppable listahoz a parameterkent megkapott Steppable peldanyt
+	//hozzáadja a steppable listahoz a parameterkent megkapott Modell.Steppable peldanyt
 	public void AddSteppable(Steppable s) {
         steppable.add(s);
 	}

@@ -1,8 +1,10 @@
+package Modell;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Gate implements Transport,Steppable,AI {    // A teleportkaput reprezentalo osztaly.
-	private Asteroid asteroid;              //Az az aszteroida, amire a Gate peldanyt elhelyeztek.
+	private Asteroid asteroid;              //Az az aszteroida, amire a Modell.Gate peldanyt elhelyeztek.
 	private Gate pair;                      //Az adott kapu parja.
 	private boolean kerge;                   //kapu kergesege
 

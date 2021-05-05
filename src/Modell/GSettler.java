@@ -1,22 +1,19 @@
-import javax.swing.*;
+package Modell;
+
 import java.util.ArrayList;
 
-
-public class GRobot extends Drawable {
-    private Robot robot;
-    private static JLabel base;
-    private static ImageIcon i = new ImageIcon("robot.png");
+public class GSettler extends Drawable{
+    private Settler settler;
+    private String name;
     public void Draw(){
-        //view.add(base);
-        base.setIcon(i);
-        base.setLocation(x,y);
+
     }
     public void Update(){
-        Asteroid a = robot.GetAsteroid();
+        Asteroid a = settler.GetAsteroid();
         ArrayList<Steppable> steppables = Game.getInstance().GetSteppables();
         boolean found = false;
         for( Steppable s: steppables ){
-            if ( s == robot){
+            if ( s == settler){
                 found =true;
                 view.FindAsteroid(a,this);
                 Draw();
@@ -25,14 +22,15 @@ public class GRobot extends Drawable {
         if( found == false){
             this.Remove();
         }
-
     }
     public String GetName(){
-        return null;
+        return name;
     }
 
-    public void SetRobot(Robot r){
-        robot = r;
+    public void SetSettler(Settler s){
+        settler = s;
     }
-
+    public void SetName(String name){
+        this.name = name;
+    }
 }

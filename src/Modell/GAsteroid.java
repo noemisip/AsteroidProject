@@ -1,3 +1,5 @@
+package Modell;
+
 import java.util.ArrayList;
 
 public class GAsteroid extends Drawable{

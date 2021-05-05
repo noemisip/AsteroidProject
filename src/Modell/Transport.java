@@ -1,3 +1,5 @@
+package Modell;
+
 public interface Transport {
         //absztrakt fuggvenyek
 	public abstract void Transport(Creature c);

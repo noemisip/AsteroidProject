@@ -1,3 +1,5 @@
+package Modell;
+
 import Frame.Menu;
 
 import java.util.HashMap;
@@ -18,14 +20,14 @@ public class Main {
 	public static void main(String[] args) {
 		Menu menu = new Menu();
 	}
-//	public void SettlerAction(Settler s){
-//		ControlPanel cp = view.GetControlPanel();
+//	public void SettlerAction(Modell.Settler s){
+//		Modell.ControlPanel cp = view.GetControlPanel();
 //		cp.SetSettler(s);
 //		cp.Update();
 //		int result = cp.UserInput();
 //		switch (result){
 //			case 1:
-//				Asteroid a = cp.GetAsteroid();
+//				Modell.Asteroid a = cp.GetAsteroid();
 //				s.Move(a);
 //				break;
 //			case 2:
@@ -35,7 +37,7 @@ public class Main {
 //				s.Mine();
 //				break;
 //			case 4:
-//				Material m = cp.GetMaterial();
+//				Modell.Material m = cp.GetMaterial();
 //				s.RestoreMaterial(m);
 //				break;
 //			case 5:
@@ -45,7 +47,7 @@ public class Main {
 //				s.CreateGate();
 //				break;
 //			case 7:
-//				Gate g = cp.GetGate();
+//				Modell.Gate g = cp.GetGate();
 //				s.PlaceGate(g);
 //				break;
 //			default: break;
