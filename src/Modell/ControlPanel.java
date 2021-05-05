@@ -67,16 +67,27 @@ public class ControlPanel extends JPanel{
         jp.add(settlerpanel,BorderLayout.NORTH);
         JPanel buttons=new JPanel(new BorderLayout());
         move=new JButton("Move");
-        buttons.add(move,BorderLayout.NORTH);
-        jp.add(buttons,BorderLayout.CENTER);
-
-
         drill=new JButton("Drill");
         mine=new JButton("Mine");
         restore=new JButton("Restore");
         create_robot=new JButton("Create Robot");
         create_gate=new JButton("Create Gate");
         place_gate=new JButton("Place Gate");
+        JPanel top=new JPanel(new BorderLayout());
+        top.add(move,BorderLayout.NORTH);
+        top.add(drill,BorderLayout.CENTER);
+        top.add(mine,BorderLayout.SOUTH);
+        buttons.add(top,BorderLayout.NORTH);
+        JPanel centr=new JPanel(new BorderLayout());
+        centr.add(restore,BorderLayout.NORTH);
+        centr.add(create_robot,BorderLayout.CENTER);
+        centr.add(create_gate,BorderLayout.SOUTH);
+        buttons.add(centr,BorderLayout.CENTER);
+        JPanel bott=new JPanel(new BorderLayout());
+        bott.add(place_gate,BorderLayout.NORTH);
+        buttons.add(bott,BorderLayout.SOUTH);
+        jp.add(buttons,BorderLayout.CENTER);
+
         //jp.add(move);jp.add(drill);jp.add(mine);jp.add(restore);jp.add(create_robot);
         //jp.add(create_gate); jp.add(place_gate);
         //settler_label=new JLabel(Main.getInstance().GetKey(s));
@@ -84,9 +95,15 @@ public class ControlPanel extends JPanel{
         //asteroid_label=new JLabel(text.get(0));
         //material_label=new JLabel(text.get(1));
         //gate_label=new JLabel(text.get(2));
+        JPanel labels=new JPanel(new BorderLayout());
         asteroid_label=new JLabel("Asteroid: asteroid1");
         material_label=new JLabel("Materials:uran:2,ice:0,iron:0,carbon:0");
         gate_label=new JLabel("Gates:gate1,gate2");
+        labels.add(asteroid_label,BorderLayout.NORTH);
+        labels.add(material_label,BorderLayout.CENTER);
+        labels.add(gate_label,BorderLayout.SOUTH);
+        jp.add(labels,BorderLayout.SOUTH);
+
         //jp.add(settler_label);jp.add(asteroid_label);jp.add(material_label);jp.add(gate_label);
     }
     public void SetSettler(Settler settler){s=settler;}
