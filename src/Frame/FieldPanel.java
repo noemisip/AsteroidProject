@@ -7,20 +7,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class FieldPanel extends JPanel{
-    private JFrame frame = new JFrame();
-    public FieldPanel(){
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        try{
-            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("background.png")))));
+    JLabel image;
+    public FieldPanel() throws IOException {
+        image=new JLabel(new ImageIcon(ImageIO.read(new File("background.png"))));
+        setMaximumSize(new Dimension(10,10));
+        this.add(image);
 
-        }catch(IOException e)
-        {
-            e.printStackTrace();
 
-        }
-        frame.setLayout(new BorderLayout());
-        frame.setResizable(false);
-        frame.pack();
-        frame.setVisible(true);
+        this.setVisible(true);
     }
 }

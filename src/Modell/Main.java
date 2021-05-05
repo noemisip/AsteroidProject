@@ -1,7 +1,9 @@
 package Modell;
+import Frame.*;
 
 import Frame.Menu;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -17,8 +19,8 @@ public class Main {
 		return INSTANCE;
 	}
 	private Main(){}
-	public static void main(String[] args) {
-		Menu menu = new Menu();
+	public static void main(String[] args) throws IOException {
+		Frame.Game menu = new Frame.Game();
 	}
 //	public void SettlerAction(Modell.Settler s){
 //		Modell.ControlPanel cp = view.GetControlPanel();

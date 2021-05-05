@@ -13,7 +13,7 @@ public class Game {
 
 	private static Game INSTANCE;
 
-	private Game() {
+	public Game() {
 	}
 
 	//mivel a Modell.Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
