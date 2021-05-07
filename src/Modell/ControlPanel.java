@@ -32,14 +32,10 @@ public class ControlPanel extends JPanel{
 
     public ControlPanel() throws IOException {
         image=new JLabel(new ImageIcon(ImageIO.read(new File("controlpanel.png"))));
-        this.add(image);
-
-        s=new Settler();
-        Init();
         this.setLayout(new BorderLayout());
-        //this.add(settler_label,BorderLayout.NORTH);
-        this.setSize(100,100);
-        this.add(jp);
+        image.setBounds(0,0,100,600);
+        this.add(image);
+        Init();
         this.setVisible(true);
     }
 
@@ -57,54 +53,51 @@ public class ControlPanel extends JPanel{
         }
         materials.substring(0, materials.length() - 1);
         text.add("Materials: "+materials);
-
     }
     public void Init(){
-        jp=new JPanel(new BorderLayout());
-        JPanel settlerpanel=new JPanel(new BorderLayout());
         settler_label=new JLabel("settler1");
-        settlerpanel.add(settler_label);
-        jp.add(settlerpanel,BorderLayout.NORTH);
-        JPanel buttons=new JPanel(new BorderLayout());
+        settler_label.setFont(new Font(settler_label.getFont().getName(), Font.PLAIN, 40));
+        settler_label.setBounds(100, 40, 200, 50);
+        image.add(settler_label);
         move=new JButton("Move");
+        move.setBounds(20, 120, 100, 40);
+        image.add(move);
         drill=new JButton("Drill");
+        drill.setBounds(20, 180, 100, 40);
+        image.add(drill);
         mine=new JButton("Mine");
+        mine.setBounds(20, 240, 100, 40);
+        image.add(mine);
         restore=new JButton("Restore");
+        restore.setBounds(20, 300, 100, 40);
+        image.add(restore);
         create_robot=new JButton("Create Robot");
+        create_robot.setBounds(20, 360, 100, 40);
+        image.add(create_robot);
         create_gate=new JButton("Create Gate");
+        create_gate.setBounds(20, 420, 100, 40);
+        image.add(create_gate);
         place_gate=new JButton("Place Gate");
-        JPanel top=new JPanel(new BorderLayout());
-        top.add(move,BorderLayout.NORTH);
-        top.add(drill,BorderLayout.CENTER);
-        top.add(mine,BorderLayout.SOUTH);
-        buttons.add(top,BorderLayout.NORTH);
-        JPanel centr=new JPanel(new BorderLayout());
-        centr.add(restore,BorderLayout.NORTH);
-        centr.add(create_robot,BorderLayout.CENTER);
-        centr.add(create_gate,BorderLayout.SOUTH);
-        buttons.add(centr,BorderLayout.CENTER);
-        JPanel bott=new JPanel(new BorderLayout());
-        bott.add(place_gate,BorderLayout.NORTH);
-        buttons.add(bott,BorderLayout.SOUTH);
-        jp.add(buttons,BorderLayout.CENTER);
-
-        //jp.add(move);jp.add(drill);jp.add(mine);jp.add(restore);jp.add(create_robot);
-        //jp.add(create_gate); jp.add(place_gate);
-        //settler_label=new JLabel(Main.getInstance().GetKey(s));
-
-        //asteroid_label=new JLabel(text.get(0));
-        //material_label=new JLabel(text.get(1));
-        //gate_label=new JLabel(text.get(2));
-        JPanel labels=new JPanel(new BorderLayout());
+        place_gate.setBounds(20, 480, 100, 40);
+        image.add(place_gate);
         asteroid_label=new JLabel("Asteroid: asteroid1");
+        asteroid_label.setBounds(20, 560, 200, 20);
+        image.add(asteroid_label);
         material_label=new JLabel("Materials:uran:2,ice:0,iron:0,carbon:0");
+        material_label.setBounds(20, 590, 300, 20);
+        image.add(material_label);
         gate_label=new JLabel("Gates:gate1,gate2");
-        labels.add(asteroid_label,BorderLayout.NORTH);
-        labels.add(material_label,BorderLayout.CENTER);
-        labels.add(gate_label,BorderLayout.SOUTH);
-        jp.add(labels,BorderLayout.SOUTH);
-
-        //jp.add(settler_label);jp.add(asteroid_label);jp.add(material_label);jp.add(gate_label);
+        gate_label.setBounds(20, 620, 200, 20);
+        image.add(gate_label);
+        JComboBox leg=new JComboBox();
+        leg.setBounds(200,128,100,20);
+        image.add(leg);
+        JComboBox res=new JComboBox();
+        res.setBounds(200,308,100,20);
+        image.add(res);
+        JComboBox gat=new JComboBox();
+        gat.setBounds(200,488,100,20);
+        image.add(gat);
     }
     public void SetSettler(Settler settler){s=settler;}
     public void Update(){
