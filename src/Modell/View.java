@@ -14,7 +14,6 @@ public class View {
 
 	public View() throws IOException {
 		menuFrame=new Menu();
-
 		//gameFrame=new GameFrame();
 		//settlernumberFrame=new SettlerNumber();
 	}
@@ -30,10 +29,10 @@ public class View {
 
 	public void ShowSolarStrom() {
 		if(Game.getInstance().GetSpace().GetSolarStrom()) {
-
+			
 		}
 	}
-
+	
 	public void FindAsteroid(Asteroid a, Drawable d) {
 		String name = Main.getInstance().GetKey(a);
 		for(Drawable i:drawables) {
@@ -48,7 +47,7 @@ public class View {
 	public void RemoveDrawable(Drawable d) {
 		drawables.remove(d);
 	}
-
+	
 	public void AddDrawable(Drawable d) {
 		drawables.add(d);
 	}
@@ -58,12 +57,11 @@ public class View {
 	}
 
 	public void startGame() throws IOException {
-		gameFrame = new GameFrame();gameFrame.GetFieldPanel().SetView(this);
+		gameFrame = new GameFrame();
 	}
 
 	public void endGame(boolean result){
 		gameFrame.Exit();
 		EndGame endgame = new EndGame(result);
 	}
-	public GameFrame GetGameFrame(){return gameFrame;}
 }

@@ -60,8 +60,8 @@ public class Main {
 			default: break;
 		}
 		view.UpdateAll();
-
 	}
+
 	public void SteppableAction(){
 		Space sp = Game.getInstance().GetSpace();
 		boolean solarstrom = sp.GetSolarStrom();
