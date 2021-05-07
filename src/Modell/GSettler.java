@@ -12,16 +12,16 @@ public class GSettler extends Drawable{
     }
     public void Update(){
         Asteroid a = settler.GetAsteroid();
-        ArrayList<Steppable> steppables = Game.getInstance().GetSteppables();
+        ArrayList<Settler> settlers = Game.getInstance().GetSettlers();
         boolean found = false;
-        for( Steppable s: steppables ){
-            if ( s == settler){
+        for( Settler s: settlers ){
+            if ( s.equals(settler)){
                 found =true;
                 view.FindAsteroid(a,this);
                 Draw();
             }
         }
-        if( found == false){
+        if(!found){
             this.Remove();
         }
     }

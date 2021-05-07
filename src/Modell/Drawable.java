@@ -25,6 +25,8 @@ public abstract class Drawable {
     public int GetY(){
         return y;
     }
-
+    public void SetView(View v){
+        view=v;
+    }
 
 }

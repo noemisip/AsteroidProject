@@ -20,6 +20,7 @@ public class Main {
 	private Main(){}
 	public static void main(String[] args) throws IOException {
 		view=new View();
+		Load(3);
 		/*GameFrame menu = new GameFrame();
 		//Frame.EndGame jaja=new Frame.EndGame(false);
 		//SettlerNumber j=new SettlerNumber();
@@ -41,41 +42,41 @@ public class Main {
 		return view;
 	}
 
-	//	public void SettlerAction(Modell.Settler s){
-//		Modell.ControlPanel cp = view.GetControlPanel();
-//		cp.SetSettler(s);
-//		cp.Update();
-//		int result = cp.UserInput();
-//		switch (result){
-//			case 1:
-//				Modell.Asteroid a = cp.GetAsteroid();
-//				s.Move(a);
-//				break;
-//			case 2:
-//				s.Drill();
-//				break;
-//			case 3:
-//				s.Mine();
-//				break;
-//			case 4:
-//				Modell.Material m = cp.GetMaterial();
-//				s.RestoreMaterial(m);
-//				break;
-//			case 5:
-//				s.CreateRobot();
-//				break;
-//			case 6:
-//				s.CreateGate();
-//				break;
-//			case 7:
-//				Modell.Gate g = cp.GetGate();
-//				s.PlaceGate(g);
-//				break;
-//			default: break;
-//		}
-//		view.UpdateAll();
-//
-//	}
+	public void SettlerAction(Modell.Settler s){
+		Modell.ControlPanel cp = view.GetControlPanel();
+		cp.SetSettler(s);
+		cp.Update();
+		int result = cp.UserInput();
+		switch (result){
+			case 1:
+				Modell.Asteroid a = cp.GetAsteroid();
+				s.Move(a);
+				break;
+			case 2:
+				s.Drill();
+				break;
+			case 3:
+				s.Mine();
+				break;
+			case 4:
+				Modell.Material m = cp.GetMaterial();
+				s.RestoreMaterial(m);
+				break;
+			case 5:
+				s.CreateRobot();
+				break;
+			case 6:
+				s.CreateGate();
+				break;
+			case 7:
+				Modell.Gate g = cp.GetGate();
+				s.PlaceGate(g);
+				break;
+			default: break;
+		}
+		view.UpdateAll();
+
+	}
 	public void SteppableAction(){
 		Space sp = Game.getInstance().GetSpace();
 		boolean solarstrom = sp.GetSolarStrom();
@@ -88,11 +89,14 @@ public class Main {
 		}
 		return null;
 	}
-	public void Load(int i){
+
+	public static void Load(int i){
 		Random rnd = new Random();
-		int r = rnd.nextInt();
-		for(int j=0; j<5; j++){ //create aasteroids
+		int r = rnd.nextInt(10)+5;
+		Asteroid first = new Asteroid();
+		for(int j=0; j<r; j++){ //create asteroids
 			Asteroid a = new Asteroid();
+			if(j==0) first =a;
 			GAsteroid ga = new GAsteroid();
 			int gax=rnd.nextInt(550)+350;
 			int gay=rnd.nextInt(600)+50;
@@ -101,8 +105,10 @@ public class Main {
 			view.AddDrawable(ga);
 			AddAsteroid(a, ga, j);
 		}
-		for(int j=0; j<3; j++){
+
+		for(int j=0; j<i; j++){
 			Settler s = new Settler();
+			s.SetAsteroid(first);
 			GSettler gs = new GSettler();
 			gs.SetSettler(s);
 			view.AddDrawable(gs);
@@ -111,23 +117,28 @@ public class Main {
 		r=rnd.nextInt();
 		for(int j=0; j<4; j++){
 			Robot robot = new Robot();
+			robot.SetAsteroid(first);
 			GRobot gr = new GRobot();
 			gr.SetRobot(robot);
+			gr.SetView(view);
 			view.AddDrawable(gr);
 			AddCreature(robot);
 		}
 		r=rnd.nextInt();
 		for(int j=0; j<5; j++){
 			Ufo u = new Ufo();
+			u.SetAsteroid(first);
 			GUfo gu = new GUfo();
 			gu.SetUfo(u);
+			gu.SetView(view);
 			view.AddDrawable(gu);
 			AddCreature(u);
 		}
 		view.UpdateAll();
 		Game.getInstance().StartGame();
 	}
-	public void AddSettler(Settler s, GSettler gs){
+	public static void AddSettler(Settler s, GSettler gs){
+		gs.SetView(view);
 		Game.getInstance().AddSettler(s);
 		Space sp = Game.getInstance().GetSpace();
 		sp.AddCreature(s);
@@ -136,24 +147,24 @@ public class Main {
 		gs.SetName(name);
 		AddHash(name, s);
 	}
-	public void AddCreature(Creature c){
+	public static void AddCreature(Creature c){
 		Game.getInstance().AddSteppable((Steppable)c);
 		Space sp = Game.getInstance().GetSpace();
 		sp.AddCreature(c);
 		sp.GetAsteroid().AddCreature(c);
 	}
-	public void AddAsteroid(Asteroid a, GAsteroid ga, int i){
+	public static void AddAsteroid(Asteroid a, GAsteroid ga, int i){
+		ga.SetView(view);
 		String name = "asteroid"+(i+1);
 		ga.SetName(name);
 		AddHash(name, a);
 		Game.getInstance().AddSteppable(a);
 		Space sp = Game.getInstance().GetSpace();
 		sp.AddAsteroid(a);
+		a.SetSpace(sp);
 	}
 
-
-
-	public void AddHash(String key, Object object){
+	public static void AddHash(String key, Object object){
 		hash.put(key, object);
 	}
 }

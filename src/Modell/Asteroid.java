@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Asteroid implements Steppable, Transport {
 	private int layer;                      		//Az aszteroida aktualis retegeinek szama.
-	private boolean closeToSun;             		//Igaz, ha az aszteroida eppen napkozelben van.
+	private boolean closeToSun=false;             		//Igaz, ha az aszteroida eppen napkozelben van.
 	private Space space;                    		//Ebben talalhato meg az aszteroida.
 	private ArrayList<Creature> creatures;            	//Az aszteroidan talalhato Modell.Creature osztalybol szarmazo objektumok listaja.
 	private Material material;              		//Az aszteroidaban talalhato nyersanyag. Ha ureges, ennek az erteke null.
@@ -19,6 +19,20 @@ public class Asteroid implements Steppable, Transport {
 	public Asteroid(){
 		creatures = new ArrayList<Creature>();		//letrehozza a creaturek listajat
 		neighbours= new ArrayList<Transport>();		//letrehozza a szomszedok listajat
+		Random rnd = new Random();
+		switch (rnd.nextInt(5)){
+			case 1: material = new Ice();
+			break;
+			case 2: material = new Iron();
+				break;
+			case 3: material = new Carbon();
+				break;
+			case 4: material = new Uranium();
+				break;
+			case 0: material = null;
+				break;
+		}
+		layer= rnd.nextInt(5);
 	}
 	public void AddCreature(Creature c) {   //Hozzaad egy Modell.Creature objektumot a creatures listahoz.
 		creatures.add(c);
@@ -126,6 +140,8 @@ public class Asteroid implements Steppable, Transport {
 	public void SetLayer(int l){ //beallitja a layer erteket
 		layer=l;
 	}
+
+	public void SetSpace(Space s){space = s;}
 
 }
 

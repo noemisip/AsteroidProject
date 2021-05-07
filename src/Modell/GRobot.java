@@ -1,13 +1,7 @@
 package Modell;
 
 import Frame.FieldPanel;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class GRobot extends Drawable{
     private Robot robot;
@@ -20,16 +14,15 @@ public class GRobot extends Drawable{
         ArrayList<Steppable> steppables = Game.getInstance().GetSteppables();
         boolean found = false;
         for( Steppable s: steppables ){
-            if ( s == robot){
+            if ( s.equals(robot)){
                 found =true;
                 view.FindAsteroid(a,this);
                 Draw();
             }
         }
-        if( found == false){
+        if(!found){
             this.Remove();
         }
-
     }
     public String GetName(){
         return null;

@@ -1,8 +1,6 @@
 package Modell;
 
 import Frame.FieldPanel;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class GAsteroid extends Drawable{
@@ -19,7 +17,6 @@ public class GAsteroid extends Drawable{
         ArrayList<Steppable> sp=Game.getInstance().GetSteppables();
         int index= sp.indexOf(asteroid);
         if(index!=-1){
-
             Draw();
         }else{
             Remove();
