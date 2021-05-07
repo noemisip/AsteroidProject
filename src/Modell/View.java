@@ -1,16 +1,24 @@
 package Modell;
 
-import Frame.FieldPanel;
+import Frame.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class View {
 
 	private ArrayList<Drawable> drawables;
-	private ControlPanel controlPanel;
-	private FieldPanel fieldPanel;
-	
+	private SettlerNumber settlernumberFrame;
+	private Menu menuFrame;
+	private GameFrame gameFrame;
+
+	public View() throws IOException {
+		gameFrame=new GameFrame();
+		//menuFrame=new Menu();
+		//settlernumberFrame=new SettlerNumber();
+	}
 	public void UpdateAll() {
 		for(Drawable d:drawables) {
 			d.Update();
