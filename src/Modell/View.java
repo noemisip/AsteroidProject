@@ -1,26 +1,30 @@
 package Modell;
 
+import Frame.FieldPanel;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class View {
 
 	private ArrayList<Drawable> drawables;
 	private ControlPanel controlPanel;
+	private FieldPanel fieldPanel;
 	
 	public void UpdateAll() {
 		for(Drawable d:drawables) {
 			d.Update();
 		}
 	}
-	
+
+	public ArrayList<Drawable> GetDrawables() {
+		return drawables;
+	}
+
 	public void ShowSolarStrom() {
 		if(Game.getInstance().GetSpace().GetSolarStrom()) {
 			
 		}
-	}
-
-	public ControlPanel GetControlPanel() {
-		return this.controlPanel;
 	}
 	
 	public void FindAsteroid(Asteroid a, Drawable d) {

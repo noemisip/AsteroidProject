@@ -1,12 +1,14 @@
 package Modell;
 
+import Frame.FieldPanel;
+
 import java.util.ArrayList;
 
 public class GSettler extends Drawable{
     private Settler settler;
     private String name;
     public void Draw(){
-
+        FieldPanel.init("settler_icon.png", this);
     }
     public void Update(){
         Asteroid a = settler.GetAsteroid();

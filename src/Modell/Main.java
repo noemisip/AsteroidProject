@@ -21,8 +21,25 @@ public class Main {
 	private Main(){}
 	public static void main(String[] args) throws IOException {
 		Frame.Game menu = new Frame.Game();
+		GRobot r = new GRobot();
+		r.SetKoord(200,300);
+		r.Draw();
+		GSettler s = new GSettler();
+		s.SetKoord(210,300);
+		s.Draw();
+		GUfo u = new GUfo();
+		u.SetKoord(220,300);
+		u.Draw();
+		GAsteroid a = new GAsteroid();
+		a.SetKoord( 210, 340);
+		a.Draw();
 	}
-//	public void SettlerAction(Modell.Settler s){
+
+	public static View GetView() {
+		return view;
+	}
+
+	//	public void SettlerAction(Modell.Settler s){
 //		Modell.ControlPanel cp = view.GetControlPanel();
 //		cp.SetSettler(s);
 //		cp.Update();
