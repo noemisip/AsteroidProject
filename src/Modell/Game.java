@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Game {
 
-	private boolean onGame = true; //azt mutatja, hogy tart-e meg a jatek, alapbol true ertket kap
-	private Space space; //a jatekszintere, a vilagur
+	private static boolean onGame = true; //azt mutatja, hogy tart-e meg a jatek, alapbol true ertket kap
+	private static Space space = new Space(); //a jatekszintere, a vilagur
 	private static ArrayList<Steppable> steppable= new ArrayList<Steppable>();; //a jatekban resztvevo leptetheto dolgok listaja
 	private static ArrayList<Settler> settlers = new ArrayList<Settler>(); //a jatekban resztvevo leptetheto telepesek listaja
 	private static BillOfMaterials bill; //a bazis megepitesehez szukseges nyersanyagok megletet ellenorzi
@@ -64,8 +64,8 @@ public class Game {
 				Action(s);
 			}
 			//steppable-k lepesei
-			for (Steppable st : steppable) {
-				st.Step();
+			for(int i=0; i< steppable.size(); i++){
+				steppable.get(i).Step();
 			}
 		}
 	}

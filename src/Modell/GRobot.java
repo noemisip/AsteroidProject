@@ -1,13 +1,7 @@
 package Modell;
 
 import Frame.FieldPanel;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class GRobot extends Drawable{
     private Robot robot;
@@ -29,7 +23,6 @@ public class GRobot extends Drawable{
         if( found == false){
             this.Remove();
         }
-
     }
     public String GetName(){
         return null;

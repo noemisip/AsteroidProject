@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class View {
 
-	private ArrayList<Drawable> drawables;
+	private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 	private SettlerNumber settlernumberFrame;
 	private Menu menuFrame;
 	private GameFrame gameFrame;
@@ -20,9 +20,12 @@ public class View {
 		//settlernumberFrame=new SettlerNumber();
 	}
 	public void UpdateAll() {
-		for(Drawable d:drawables) {
-			d.Update();
+		for(int i=0; i<drawables.size();i++ ){
+			drawables.get(i).Update();
 		}
+//		for(Drawable d:drawables) {
+//			d.Update();
+//		}
 	}
 
 	public ArrayList<Drawable> GetDrawables() {
@@ -38,7 +41,7 @@ public class View {
 	public void FindAsteroid(Asteroid a, Drawable d) {
 		String name = Main.getInstance().GetKey(a);
 		for(Drawable i:drawables) {
-			if(i.GetName().equals(name)) {
+			if(i.GetName()!= null && i.GetName().equals(name)) {
 				i.SetKoord(d.GetX(), d.GetY()); 
 			}
 		}
@@ -51,5 +54,8 @@ public class View {
 	public void AddDrawable(Drawable d) {
 		drawables.add(d);
 	}
-	
+
+	public ControlPanel GetControlPanel() {
+		return null;
+	}
 }

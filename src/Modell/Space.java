@@ -43,11 +43,21 @@ public class Space implements Steppable {
 			//a kettes parameter felel az aszteroida szuk kornyezeteben megvalosulo napvihar miatt
 		}
 	}
-
 	public boolean GetSolarStrom() {
 		return solarstrom;
 	}
 	public Asteroid GetAsteroid(){
 		return asteroids.get(0);
+	}
+	public void SetNeighbours(){
+		for(int i =0; i< asteroids.size(); i++){
+			for(int j=i+1; j<asteroids.size(); j++){
+				Random rnd = new Random();
+				if(rnd.nextInt()%2==0){
+					asteroids.get(i).AddNeighbour(asteroids.get(j));
+					asteroids.get(j).AddNeighbour(asteroids.get(i));
+				}
+			}
+		}
 	}
 }

@@ -19,7 +19,6 @@ public class GAsteroid extends Drawable{
         ArrayList<Steppable> sp=Game.getInstance().GetSteppables();
         int index= sp.indexOf(asteroid);
         if(index!=-1){
-
             Draw();
         }else{
             Remove();
