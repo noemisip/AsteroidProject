@@ -13,8 +13,7 @@ public class Game {
 
 	private static Game INSTANCE;
 
-	public Game() {
-	}
+	private Game() { }
 
 	//mivel a Modell.Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
 	public static Game getInstance() {
@@ -72,9 +71,7 @@ public class Game {
 
 	//egy telepes altal vegrehajthato muveletek 
 	public void Action(Settler s) {
-		//a tesztekhez meg nem szukseges
-		//beolvasás a controllerről
-		//settlerek lepesei
+		Main.getInstance().SettlerAction(s);
 	}
 
 	//egy telepes halalakor kiveszi a settlers listabol	

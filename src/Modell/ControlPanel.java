@@ -5,33 +5,35 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
-import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 
 public class ControlPanel extends JPanel{
-    private Settler s;
+    private Settler settler;
     private ArrayList<String> text=new ArrayList<String>();
+    private ArrayList<String> materialList = new ArrayList<>();
+    private String[] neighbourList = null;
     private JPanel jp;
     private Asteroid asteroid;
     private Material material;
     private Gate gate;
-    private int result;
-    JButton move;
-    JButton drill;
-    JButton mine;
-    JButton restore;
-    JButton create_robot;
-    JButton create_gate;
-    JButton place_gate;
-    JLabel settler_label;
-    JLabel asteroid_label;
-    JLabel material_label;
-    JLabel gate_label;
-    JLabel image;
+    private int result=0;
+    private JButton move;           //mozgas
+    private JButton drill;          //furas
+    private JButton mine;           //banyaszat
+    private JButton restore;        //nyersanyag visszahelyezese
+    private JButton create_robot;   //robot epites
+    private JButton create_gate;    //kapu epitese
+    private JButton place_gate;     //kapu elhyezese
+    private JLabel settler_label;   //settler neve
+    private JLabel asteroid_label;  //aszteroida neve
+    private JLabel material_label;  //nyersanyagok listaja
+    private JLabel gate_label;      //kapuk listaja
+    private JLabel image;           //hatter
+    private JComboBox leg;
+    private JComboBox res;
+    private JComboBox gat;
 
     public ControlPanel() throws IOException {
         image=new JLabel(new ImageIcon(ImageIO.read(new File("controlpanel.png"))));
@@ -43,19 +45,32 @@ public class ControlPanel extends JPanel{
     }
 
     public void SetText(){
-        text.add("Asteroid: "+Main.getInstance().GetKey(s.GetAsteroid()));
-        String gates="";
-        for(int i=0;i<s.GetGateList().size();i++){
-            gates=gates+Main.getInstance().GetKey(s.GetGateList().get(i))+",";
-        }
+        text.clear();
+        text.add(Main.getInstance().GetKey(settler));
+        text.add("Asteroid: "+Main.getInstance().GetKey(settler.GetAsteroid()));//aszteroida nevenek megkerese
+         String gates=""; //kakup listaja
+        if(settler.GetGateList().size() > 0) { //a telepesnel van valahany kapu
+            for (int i = 0; i < settler.GetGateList().size(); i++) {
+                gates = gates + Main.getInstance().GetKey(settler.GetGateList().get(i)) + ","; //TODO ez igy nem okes
+            }
         gates.substring(0, gates.length() - 1);
-        text.add("Gates: "+gates);
-        String materials="";
-        for(int i=0;i<s.GetMaterials().size();i++){
-            materials=materials+Main.getInstance().GetKey(s.GetMaterials().get(i))+",";
         }
-        materials.substring(0, materials.length() - 1);
-        text.add("Materials: "+materials);
+        else gates = "I don't have any gates :("; //nincs a telepesnel egy kapu sem
+        text.add("Gates: "+gates);
+
+        int ironcnt= 0, icecnt = 0, carboncnt = 0, uraniumcnt =0;
+        for(int i=0; i<settler.GetMaterials().size(); i++){ //nyersanyagok listazasa: mibol hany darab van
+            if(settler.GetMaterials().get(i).IsEquales(new Ice())) icecnt++;
+            else if(settler.GetMaterials().get(i).IsEquales(new Iron())) ironcnt++;
+            else if(settler.GetMaterials().get(i).IsEquales(new Carbon())) carboncnt++;
+            else if(settler.GetMaterials().get(i).IsEquales(new Uranium())) uraniumcnt++;
+        }
+        if(ironcnt>0) materialList.add("Iron");
+        if(icecnt>0) materialList.add("Ice");
+        if(carboncnt>0) materialList.add("Carbon");
+        if(uraniumcnt>0) materialList.add("Uranium");
+        text.add("Materials: ice: "+icecnt+" iron: "+ironcnt+" carbon: "+carboncnt+" uranium: "+uraniumcnt);
+
     }
     public void Init(){
         settler_label=new JLabel("settler1");
@@ -137,33 +152,55 @@ public class ControlPanel extends JPanel{
         asteroid_label.setFont(new Font(asteroid_label.getFont().getName(), Font.PLAIN, 15));
         asteroid_label.setBounds(20, 560, 200, 20);
         image.add(asteroid_label);
+
+        gate_label=new JLabel("Gates:gate1,gate2");
+        gate_label.setFont(new Font(gate_label.getFont().getName(), Font.PLAIN, 15));
+        gate_label.setBounds(20, 620, 300, 20);
+        image.add(gate_label);
+
         material_label=new JLabel("Materials:uran:2,ice:0,iron:0,carbon:0");
         material_label.setFont(new Font(material_label.getFont().getName(), Font.PLAIN, 15));
         material_label.setBounds(20, 590, 300, 20);
         image.add(material_label);
-        gate_label=new JLabel("Gates:gate1,gate2");
-        gate_label.setFont(new Font(gate_label.getFont().getName(), Font.PLAIN, 15));
-        gate_label.setBounds(20, 620, 200, 20);
-        image.add(gate_label);
-        JComboBox leg=new JComboBox();
+
+
+        leg=new JComboBox(); //azok az aszteroidak, ahova a telepes lepni tud
         leg.setBounds(200,128,100,20);
+        leg.setEditable(true);
         image.add(leg);
-        JComboBox res=new JComboBox();
+
+        res=new JComboBox(); //nyersanyagok listaja, amibol vissza tud tenni
         res.setBounds(200,308,100,20);
+        res.setEditable(true);
         image.add(res);
-        JComboBox gat=new JComboBox();
+
+        gat=new JComboBox(); //gatek listaja, amibol vissza tud tenni
         gat.setBounds(200,488,100,20);
+        gat.setEditable(true);
         image.add(gat);
     }
-    public void SetSettler(Settler settler){s=settler;}
+    public void SetSettler(Settler settler){
+        this.settler =settler;}
     public void Update(){
+        result=0;
         SetText();
         settler_label.setText(text.get(0));
         material_label.setText(text.get(1));
         gate_label.setText(text.get(2));
+        material_label.setText(text.get(3));
+
+        leg.removeAllItems();
+        for(int i=0; i< settler.GetAsteroid().GetNeighbours().size(); i++){
+            leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
+        }
+        res.removeAllItems();
+        for(int i=0; i<materialList.size(); i++) {
+            res.addItem(materialList.get(i));
+        }
+        gat.removeAllItems();
     }
     public Gate GetGate(){return gate;}
     public Asteroid GetAsteroid(){return asteroid;}
     public Material GetMaterial(){return material;}
-    public int UserInput(){return 1;}
+    public int UserInput(){return result;}
 }

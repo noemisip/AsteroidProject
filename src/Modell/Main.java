@@ -1,7 +1,4 @@
 package Modell;
-
-import Frame.GameFrame;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,18 +17,20 @@ public class Main {
 	private Main(){}
 	public static void main(String[] args) throws IOException {
 		view=new View();
-		//GameFrame h=new GameFrame();
 	}
 
 	public static View GetView() {
 		return view;
 	}
 
-	public void SettlerAction(Modell.Settler s){
-		Modell.ControlPanel cp = view.GetControlPanel();
+	public void SettlerAction(Settler s){
+		Modell.ControlPanel cp = view.GetGameFrame().GetControlPanel();
 		cp.SetSettler(s);
 		cp.Update();
 		int result = cp.UserInput();
+		while(result==0){
+			result=cp.UserInput();
+		}
 		switch (result){
 			case 1:
 				Modell.Asteroid a = cp.GetAsteroid();
@@ -81,7 +80,7 @@ public class Main {
 		int r = rnd.nextInt(10)+5;
 		int acnt=r;
 		Asteroid first = new Asteroid();
-		for(int j=0; j<r; j++){ //create asteroids
+		for(int j=0; j<r; j++){ //random szamu aszteroida letrehozasa (min 5-ot, max 15-ot hoz létre)
 			Asteroid a = new Asteroid();
 			if(j==0) first =a;
 			GAsteroid ga = new GAsteroid();
@@ -92,17 +91,18 @@ public class Main {
 			view.AddDrawable(ga);
 			AddAsteroid(a, ga, j);
 		}
-
-		for(int j=0; j<i; j++){
+		Game.getInstance().GetSpace().SetNeighbours(); //szomszedsagok veletlenszeru beallitasa
+		for(int j=0; j<i; j++){ //a megadott szamu telepes letrehozasa
 			Settler s = new Settler();
 			s.SetAsteroid(first);
 			GSettler gs = new GSettler();
 			gs.SetSettler(s);
 			view.AddDrawable(gs);
 			AddSettler(s, gs);
+			view.GetGameFrame().GetControlPanel().SetSettler(s);
 		}
 		r=rnd.nextInt(3);
-		for(int j=0; j<r; j++){
+		for(int j=0; j<r; j++){ //random szamu robot letrehozasa (max 3)
 			Robot robot = new Robot();
 			robot.SetAsteroid(first);
 			GRobot gr = new GRobot();
@@ -112,7 +112,7 @@ public class Main {
 			AddCreature(robot);
 		}
 		r=rnd.nextInt(acnt/2);
-		for(int j=0; j<r; j++){
+		for(int j=0; j<r; j++){ //random szamu ufo letrehozasa (max az aszteroidak szama/2)
 			Ufo u = new Ufo();
 			u.SetAsteroid(first);
 			GUfo gu = new GUfo();
@@ -121,8 +121,8 @@ public class Main {
 			view.AddDrawable(gu);
 			AddCreature(u);
 		}
-		view.UpdateAll();
-		//Game.getInstance().StartGame();
+		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
+		//Game.getInstance().StartGame(); //jatek kezdete
 
 	}
 	public static void AddSettler(Settler s, GSettler gs){

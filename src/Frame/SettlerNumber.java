@@ -59,10 +59,8 @@ public class SettlerNumber extends JFrame {
                     settlerNr = Integer.parseInt(textField.getText());
                     dispose();
                     Main.Load(settlerNr);
-                    //plusz meg hogy letrehozzon annyi settlert ahanyat kapott csak ez meg kerdeses hogy hogy, talan returnoljon
-                    //egy szamot??
                 } catch (NumberFormatException | IOException nex) {
-                    // frame.showMessage("Szamot kell beirni!");
+                    nex.printStackTrace();
                 }
             }
         });

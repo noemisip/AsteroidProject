@@ -21,6 +21,7 @@ public class View {
 		for(int i=0; i<drawables.size();i++ ){
 			drawables.get(i).Update();
 		}
+		gameFrame.GetControlPanel().Update();
 	}
 
 	public ArrayList<Drawable> GetDrawables() {
@@ -52,16 +53,13 @@ public class View {
 		drawables.add(d);
 	}
 
-	public ControlPanel GetControlPanel() {
-		return null;
-	}
-
 	public void startGame() throws IOException {
-		gameFrame = new GameFrame();
+		gameFrame = new GameFrame(this);
 	}
 
 	public void endGame(boolean result){
 		gameFrame.Exit();
 		EndGame endgame = new EndGame(result);
 	}
+	public GameFrame GetGameFrame(){return gameFrame;}
 }

@@ -49,8 +49,8 @@ public class Space implements Steppable {
 	public Asteroid GetAsteroid(){
 		return asteroids.get(0);
 	}
-	public void SetNeighbours(){
-		for(int i =0; i< asteroids.size(); i++){
+	public void SetNeighbours(){ //beallitja az aszteroidak kozott veletlenszeruen a szomszedsagokat
+		for(int i =0; i< asteroids.size()-1; i++){
 			for(int j=i+1; j<asteroids.size(); j++){
 				Random rnd = new Random();
 				if(rnd.nextInt()%2==0){

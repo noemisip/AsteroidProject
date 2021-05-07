@@ -9,11 +9,12 @@ import java.io.IOException;
 public class GameFrame extends JFrame {
     FieldPanel field=new FieldPanel();
     ControlPanel control=new ControlPanel();
+    View view;
 
-    public GameFrame() throws IOException {
-
+    public GameFrame(View v) throws IOException {
+        view=v;
+        field.SetView(v);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //this.setContentPane(control);
         this.setLayout(new BorderLayout());
         this.add(control,BorderLayout.WEST);
         this.add(field,BorderLayout.EAST);

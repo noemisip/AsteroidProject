@@ -46,7 +46,7 @@ public class Ufo extends Creature implements Steppable,AI {
    public void WhereToMove(){
        ArrayList<Transport> a = asteroid.GetNeighbours();//lekerdezi annak az aszteroidanak a szomszedait, amin epp all
        Random r = new Random();
-       int chosen = r.nextInt(a.size()+ 1);
+       int chosen = r.nextInt(a.size());
        if(a.size()==0) Die(); //ha nem tud hova menni (azaz az aszteroidanak, mar nincs szomszedja), akkor meghal
        else Move(a.get(chosen).GetAsteroid());
    }
