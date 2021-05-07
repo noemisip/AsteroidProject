@@ -27,4 +27,5 @@ public class Game extends JFrame {
     public ControlPanel GetControlPanel(){
         return control;
     }
+
 }

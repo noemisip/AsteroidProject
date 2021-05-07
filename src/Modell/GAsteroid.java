@@ -1,5 +1,8 @@
 package Modell;
 
+import Frame.FieldPanel;
+
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class GAsteroid extends Drawable{
@@ -8,7 +11,7 @@ public class GAsteroid extends Drawable{
     private String name;
 
     public void Draw(){
-
+        FieldPanel.init("asteroid_icon.png", this);
     }
     public void Update(){
         int layer= asteroid.GetLayer();

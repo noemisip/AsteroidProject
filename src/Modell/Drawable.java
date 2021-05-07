@@ -1,5 +1,7 @@
 package Modell;
 
+import java.io.IOException;
+
 public abstract class Drawable {
     protected int x;
     protected int y;
@@ -7,6 +9,7 @@ public abstract class Drawable {
 
     public abstract void Draw();
     public abstract void Update();
+
     public void SetKoord( int x, int y){
         this.x = x;
         this.y = y;

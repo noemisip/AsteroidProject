@@ -1,5 +1,7 @@
 package Modell;
 
+import Frame.FieldPanel;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File;
@@ -9,22 +11,11 @@ import java.util.ArrayList;
 
 public class GRobot extends Drawable{
     private Robot robot;
-    //private static JLabel base;
-    //private static ImageIcon i = new ImageIcon("robot.png");
-    //JPanel field = Frame.Game.GetFieldPanel();
 
     public void Draw() {
-        //view.add(base);
-        //base.setIcon(i);
-        //base.setLocation(x,y);
-        //JLabel robot = new JLabel("robot");
-        //field.add(robot);
-        JPanel field = new JPanel();
-        field = view.GetFieldPanel();
-
-
+        FieldPanel.init("robot_icon.png", this);
     }
-    public void Update(){
+    public void Update() {
         Asteroid a = robot.GetAsteroid();
         ArrayList<Steppable> steppables = Game.getInstance().GetSteppables();
         boolean found = false;
