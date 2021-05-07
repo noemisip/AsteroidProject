@@ -1,8 +1,6 @@
 package Modell;
 
 import Frame.FieldPanel;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class GAsteroid extends Drawable{

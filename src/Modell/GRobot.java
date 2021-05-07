@@ -14,13 +14,13 @@ public class GRobot extends Drawable{
         ArrayList<Steppable> steppables = Game.getInstance().GetSteppables();
         boolean found = false;
         for( Steppable s: steppables ){
-            if ( s == robot){
+            if ( s.equals(robot)){
                 found =true;
                 view.FindAsteroid(a,this);
                 Draw();
             }
         }
-        if( found == false){
+        if(!found){
             this.Remove();
         }
     }

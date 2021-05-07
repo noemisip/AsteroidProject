@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class View {
 
@@ -23,9 +24,6 @@ public class View {
 		for(int i=0; i<drawables.size();i++ ){
 			drawables.get(i).Update();
 		}
-//		for(Drawable d:drawables) {
-//			d.Update();
-//		}
 	}
 
 	public ArrayList<Drawable> GetDrawables() {
@@ -42,7 +40,9 @@ public class View {
 		String name = Main.getInstance().GetKey(a);
 		for(Drawable i:drawables) {
 			if(i.GetName()!= null && i.GetName().equals(name)) {
-				i.SetKoord(d.GetX(), d.GetY()); 
+				Random rnd = new Random();
+				int t = rnd.nextInt(20)+10;
+				d.SetKoord(i.GetX()+t, i.GetY()-40);
 			}
 		}
 	}
