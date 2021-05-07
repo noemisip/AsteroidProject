@@ -1,9 +1,6 @@
 package Modell;
 
 import Frame.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,8 +13,8 @@ public class View {
 	private GameFrame gameFrame;
 
 	public View() throws IOException {
-		gameFrame=new GameFrame();
-		//menuFrame=new Menu();
+		menuFrame=new Menu();
+		//gameFrame=new GameFrame();
 		//settlernumberFrame=new SettlerNumber();
 	}
 	public void UpdateAll() {
@@ -41,7 +38,7 @@ public class View {
 		for(Drawable i:drawables) {
 			if(i.GetName()!= null && i.GetName().equals(name)) {
 				Random rnd = new Random();
-				int t = rnd.nextInt(20)+10;
+				int t = -48+(rnd.nextInt(10)+6)*5;
 				d.SetKoord(i.GetX()+t, i.GetY()-40);
 			}
 		}
@@ -57,5 +54,14 @@ public class View {
 
 	public ControlPanel GetControlPanel() {
 		return null;
+	}
+
+	public void startGame() throws IOException {
+		gameFrame = new GameFrame();
+	}
+
+	public void endGame(boolean result){
+		gameFrame.Exit();
+		EndGame endgame = new EndGame(result);
 	}
 }

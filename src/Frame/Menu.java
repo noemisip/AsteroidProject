@@ -26,7 +26,8 @@ public class Menu extends JFrame{
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SettlerNumber sn = new SettlerNumber();
+                dispose();
             }
         });
         exit.setBounds(440, 350, 120, 40);

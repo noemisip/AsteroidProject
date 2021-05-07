@@ -20,22 +20,6 @@ public class Main {
 	private Main(){}
 	public static void main(String[] args) throws IOException {
 		view=new View();
-		Load(3);
-		/*GameFrame menu = new GameFrame();
-		//Frame.EndGame jaja=new Frame.EndGame(false);
-		//SettlerNumber j=new SettlerNumber();
-		GRobot r = new GRobot();
-		r.SetKoord(700,300);
-		r.Draw();
-		GSettler s = new GSettler();
-		s.SetKoord(710,300);
-		s.Draw();
-		GUfo u = new GUfo();
-		u.SetKoord(720,300);
-		u.Draw();
-		GAsteroid a = new GAsteroid();
-		a.SetKoord( 710, 340);
-		a.Draw();*/
 	}
 
 	public static View GetView() {
@@ -90,9 +74,11 @@ public class Main {
 		return null;
 	}
 
-	public static void Load(int i){
+	public static void Load(int i) throws IOException {
+		view.startGame();
 		Random rnd = new Random();
 		int r = rnd.nextInt(10)+5;
+		int acnt=r;
 		Asteroid first = new Asteroid();
 		for(int j=0; j<r; j++){ //create asteroids
 			Asteroid a = new Asteroid();
@@ -114,8 +100,8 @@ public class Main {
 			view.AddDrawable(gs);
 			AddSettler(s, gs);
 		}
-		r=rnd.nextInt();
-		for(int j=0; j<4; j++){
+		r=rnd.nextInt(3);
+		for(int j=0; j<r; j++){
 			Robot robot = new Robot();
 			robot.SetAsteroid(first);
 			GRobot gr = new GRobot();
@@ -124,8 +110,8 @@ public class Main {
 			view.AddDrawable(gr);
 			AddCreature(robot);
 		}
-		r=rnd.nextInt();
-		for(int j=0; j<5; j++){
+		r=rnd.nextInt(acnt/2);
+		for(int j=0; j<r; j++){
 			Ufo u = new Ufo();
 			u.SetAsteroid(first);
 			GUfo gu = new GUfo();

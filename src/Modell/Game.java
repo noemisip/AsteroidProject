@@ -45,8 +45,8 @@ public class Game {
 	
 	//a jatek befejezesekor meghivodo fuggveny
 	public void EndGame(boolean result) {
-		//TODO Nyertek vs vesztettek
 		onGame=false; //vege a jateknak
+		Main.GetView().endGame(result);
 	}
 
 	//a jatek kezdetekor meghivodo fuggveny	

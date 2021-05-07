@@ -25,5 +25,8 @@ public class GameFrame extends JFrame {
     public ControlPanel GetControlPanel(){
         return control;
     }
+    public void Exit(){
+        dispose();
+    }
 
 }

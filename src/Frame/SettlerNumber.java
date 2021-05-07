@@ -1,5 +1,7 @@
 package Frame;
 
+import Modell.Main;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -55,11 +57,11 @@ public class SettlerNumber extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     settlerNr = Integer.parseInt(textField.getText());
-                    System.out.println("szia:" + settlerNr);
-                    setVisible(false);
+                    dispose();
+                    Main.Load(settlerNr);
                     //plusz meg hogy letrehozzon annyi settlert ahanyat kapott csak ez meg kerdeses hogy hogy, talan returnoljon
                     //egy szamot??
-                } catch (NumberFormatException nex) {
+                } catch (NumberFormatException | IOException nex) {
                     // frame.showMessage("Szamot kell beirni!");
                 }
             }
