@@ -1,5 +1,7 @@
 package Modell;
 
+import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 public abstract class Drawable {
@@ -7,7 +9,7 @@ public abstract class Drawable {
     protected int y;
     protected View view;
 
-    public abstract void Draw();
+    public abstract void Draw(Graphics g, ImageObserver i) throws IOException;
     public abstract void Update();
 
     public void SetKoord( int x, int y){

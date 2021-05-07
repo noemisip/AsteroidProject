@@ -2,14 +2,21 @@ package Modell;
 
 import Frame.FieldPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GUfo extends Drawable{
     private Ufo ufo;
 
-    public void Draw(){
-        FieldPanel.init("ufo_icon.png", this);
+    public void Draw(Graphics g, ImageObserver i) throws IOException {
+        final BufferedImage dnImg = ImageIO.read(new File("ufo_icon.png"));
+        g.drawImage(dnImg, this.GetX(), this.GetY(),30,30, i);
     }
     public void Update(){
         Asteroid asteroid=ufo.GetAsteroid();
@@ -17,7 +24,8 @@ public class GUfo extends Drawable{
         int index= sp.indexOf(ufo);
         if(index!=-1){
             view.FindAsteroid(asteroid,this);
-            Draw();
+            view.GetGameFrame().repaint();
+            view.GetGameFrame().GetFieldPanel().repaint();
         }else{
             Remove();
         }
@@ -25,7 +33,7 @@ public class GUfo extends Drawable{
     public String GetName(){
         return null;
     }
-    
+
     public void SetUfo(Ufo u){
         ufo=u;
     }

@@ -20,6 +20,7 @@ public class Main {
 	private Main(){}
 	public static void main(String[] args) throws IOException {
 		view=new View();
+		//GameFrame h=new GameFrame();
 	}
 
 	public static View GetView() {
@@ -121,7 +122,8 @@ public class Main {
 			AddCreature(u);
 		}
 		view.UpdateAll();
-		Game.getInstance().StartGame();
+		//Game.getInstance().StartGame();
+
 	}
 	public static void AddSettler(Settler s, GSettler gs){
 		gs.SetView(view);

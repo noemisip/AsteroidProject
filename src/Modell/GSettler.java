@@ -2,13 +2,20 @@ package Modell;
 
 import Frame.FieldPanel;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GSettler extends Drawable{
     private Settler settler;
     private String name;
-    public void Draw(){
-        FieldPanel.init("settler_icon.png", this);
+    public void Draw(Graphics g, ImageObserver i) throws IOException {
+        final BufferedImage dnImg = ImageIO.read(new File("settler_icon.png"));
+        g.drawImage(dnImg, this.GetX(), this.GetY(),30,30, i);
     }
     public void Update(){
         Asteroid a = settler.GetAsteroid();
@@ -18,7 +25,8 @@ public class GSettler extends Drawable{
             if ( s.equals(settler)){
                 found =true;
                 view.FindAsteroid(a,this);
-                Draw();
+                view.GetGameFrame().repaint();
+                view.GetGameFrame().GetFieldPanel().repaint();
             }
         }
         if(!found){
