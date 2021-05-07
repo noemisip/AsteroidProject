@@ -1,7 +1,6 @@
 package Modell;
-import Frame.*;
 
-import Frame.Menu;
+import Frame.GameFrame;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,19 +19,22 @@ public class Main {
 	}
 	private Main(){}
 	public static void main(String[] args) throws IOException {
-		Frame.Game menu = new Frame.Game();
+		view=new View();
+		/*GameFrame menu = new GameFrame();
+		//Frame.EndGame jaja=new Frame.EndGame(false);
+		//SettlerNumber j=new SettlerNumber();
 		GRobot r = new GRobot();
-		r.SetKoord(200,300);
+		r.SetKoord(700,300);
 		r.Draw();
 		GSettler s = new GSettler();
-		s.SetKoord(210,300);
+		s.SetKoord(710,300);
 		s.Draw();
 		GUfo u = new GUfo();
-		u.SetKoord(220,300);
+		u.SetKoord(720,300);
 		u.Draw();
 		GAsteroid a = new GAsteroid();
-		a.SetKoord( 210, 340);
-		a.Draw();
+		a.SetKoord( 710, 340);
+		a.Draw();*/
 	}
 
 	public static View GetView() {
@@ -89,14 +91,17 @@ public class Main {
 	public void Load(int i){
 		Random rnd = new Random();
 		int r = rnd.nextInt();
-		for(int j=0; j<r; j++){ //create aasteroids
+		for(int j=0; j<5; j++){ //create aasteroids
 			Asteroid a = new Asteroid();
 			GAsteroid ga = new GAsteroid();
+			int gax=rnd.nextInt(550)+350;
+			int gay=rnd.nextInt(600)+50;
+			ga.SetKoord(gax,gay);
 			ga.SetAsteroid(a);
 			view.AddDrawable(ga);
 			AddAsteroid(a, ga, j);
 		}
-		for(int j=0; j<i; j++){
+		for(int j=0; j<3; j++){
 			Settler s = new Settler();
 			GSettler gs = new GSettler();
 			gs.SetSettler(s);
@@ -104,7 +109,7 @@ public class Main {
 			AddSettler(s, gs);
 		}
 		r=rnd.nextInt();
-		for(int j=0; j<r; j++){
+		for(int j=0; j<4; j++){
 			Robot robot = new Robot();
 			GRobot gr = new GRobot();
 			gr.SetRobot(robot);
@@ -112,7 +117,7 @@ public class Main {
 			AddCreature(robot);
 		}
 		r=rnd.nextInt();
-		for(int j=0; j<r; j++){
+		for(int j=0; j<5; j++){
 			Ufo u = new Ufo();
 			GUfo gu = new GUfo();
 			gu.SetUfo(u);
@@ -127,7 +132,7 @@ public class Main {
 		Space sp = Game.getInstance().GetSpace();
 		sp.AddCreature(s);
 		sp.GetAsteroid().AddCreature(s);
-		String name = "settler"+Game.getInstance().GetSettlers().size();
+		String name = "settler"+ Game.getInstance().GetSettlers().size();
 		gs.SetName(name);
 		AddHash(name, s);
 	}
@@ -145,6 +150,9 @@ public class Main {
 		Space sp = Game.getInstance().GetSpace();
 		sp.AddAsteroid(a);
 	}
+
+
+
 	public void AddHash(String key, Object object){
 		hash.put(key, object);
 	}
