@@ -1,12 +1,14 @@
 package Modell;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class GUfo extends Drawable{
     private Ufo ufo;
 
     public void Draw(){
-
+        JPanel field = new JPanel();
+        field = view.GetFieldPanel();
     }
     public void Update(){
         Asteroid asteroid=ufo.GetAsteroid();

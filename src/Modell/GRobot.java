@@ -1,17 +1,28 @@
 package Modell;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class GRobot extends Drawable {
+public class GRobot extends Drawable{
     private Robot robot;
-    private static JLabel base;
-    private static ImageIcon i = new ImageIcon("robot.png");
-    public void Draw(){
+    //private static JLabel base;
+    //private static ImageIcon i = new ImageIcon("robot.png");
+    //JPanel field = Frame.Game.GetFieldPanel();
+
+    public void Draw() {
         //view.add(base);
-        base.setIcon(i);
-        base.setLocation(x,y);
+        //base.setIcon(i);
+        //base.setLocation(x,y);
+        //JLabel robot = new JLabel("robot");
+        //field.add(robot);
+        JPanel field = new JPanel();
+        field = view.GetFieldPanel();
+
+
     }
     public void Update(){
         Asteroid a = robot.GetAsteroid();
