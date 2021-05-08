@@ -41,8 +41,7 @@ public class FieldPanel extends JPanel{
             Point upPt = new Point(350, 0);
             Point dnPt = new Point(700, 650);
             final BufferedImage upImg = ImageIO.read(new File("background.png"));
-            final BufferedImage dnImg = ImageIO.read(new File("asteroid.png"));
-            if (upImg != null && dnImg != null) {
+            if (upImg != null ) {
 
                 // draw both images at their respective locations
 
@@ -51,7 +50,7 @@ public class FieldPanel extends JPanel{
 
                 g2.setStroke(new BasicStroke(2f));*/
                 g.drawImage(upImg, upPt.x, upPt.y, this);
-                g.drawImage(dnImg, 700, 400,30,30, this);
+
 
                 if (view.GetDrawables() != null) {
                 for(int h=0;h<view.GetDrawables().size();h++) {

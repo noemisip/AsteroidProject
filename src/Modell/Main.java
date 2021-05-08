@@ -98,8 +98,11 @@ public class Main  implements ActionListener {
 			Asteroid a = new Asteroid();
 			if(j==0) first =a;
 			GAsteroid ga = new GAsteroid();
-			int gax=rnd.nextInt(550)+350;
-			int gay=rnd.nextInt(600)+50;
+			int gax=rnd.nextInt(11)*50+500;int gay=rnd.nextInt(10)*50+100;
+			while(!newkoords(gax,gay)){
+			gax=rnd.nextInt(11)*50+500;
+			gay=rnd.nextInt(10)*50+100;
+			}
 			ga.SetKoord(gax,gay);
 			ga.SetAsteroid(a);
 			view.AddDrawable(ga);
@@ -139,6 +142,15 @@ public class Main  implements ActionListener {
 		Game.getInstance().StartGame(); //jatek kezdete
 
 	}
+	public static boolean newkoords(int x,int y){
+		boolean newkoord=true;
+		int i=0;
+		while(newkoord && i<view.GetDrawables().size()){
+			if(view.GetDrawables().get(i).GetX()==x && view.GetDrawables().get(i).GetY()==y) newkoord=false;
+			i++;
+		}
+		return newkoord;
+	}
 	public static void AddSettler(Settler s, GSettler gs){
 		gs.SetView(view);
 		Game.getInstance().AddSettler(s);
@@ -168,6 +180,6 @@ public class Main  implements ActionListener {
 	public static void AddHash(String key, Object object){
 		hash.put(key, object);
 	}
-
+	public HashMap<String, Object> GetHash(){return hash;}
 
 }
