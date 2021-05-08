@@ -43,12 +43,12 @@ public class Space implements Steppable {
 			solarstorm = true;
 			//random aszteroidan elinditja a napvihart
 			//a kettes parameter felel az aszteroida szuk kornyezeteben megvalosulo napvihar miatt
-			System.out.println("kurva");
+			//System.out.println(Boolean.toString(solarstorm));
 		}
-		else
+		else{
 			solarstorm = false;
-
-
+			//System.out.println(Boolean.toString(solarstorm));
+		}
 	}
 	public boolean GetSolarStrom() {
 		return solarstorm;
