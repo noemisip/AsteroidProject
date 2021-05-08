@@ -84,7 +84,7 @@ public class Asteroid implements Steppable, Transport {
 			}
 				neighbours=null;
 		}
-		System.out.println("BUMM");
+		Game.getInstance().RemoveSteppable(this);
 	}
 
 	public void SetCloseToSun(boolean b) {    //Beallitja az aszteroida napkozelseget.

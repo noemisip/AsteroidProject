@@ -13,7 +13,7 @@ public class View {
 	private GameFrame gameFrame;
 
 	public View() throws IOException {
-		menuFrame=new Menu();
+		Menu();
 	}
 	public void UpdateAll() {
 		for(int i=0; i<drawables.size();i++ ){
@@ -60,4 +60,7 @@ public class View {
 		EndGame endgame = new EndGame(result);
 	}
 	public GameFrame GetGameFrame(){return gameFrame;}
+	public void Menu() throws IOException {
+		menuFrame=new Menu();
+	}
 }

@@ -43,6 +43,7 @@ public class Settler extends Creature {
 			asteroid.AddCreature(r); // hozzadja az aszteroidahoz
 			asteroid.GetSpace().AddCreature(r); //hozzadja a spacehez
 			Game.getInstance().AddSteppable(r); //hozzadja a gamehez
+			Main.CreateRobot(r);
 		}
 	}
 	

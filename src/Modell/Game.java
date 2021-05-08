@@ -72,7 +72,7 @@ public class Game {
 			cnt=0;
 			Round();
 		}
-		Main.getInstance().SetActiveSettler(settlers.get(cnt));
+		if(settlers.size()>0) Main.getInstance().SetActiveSettler(settlers.get(cnt));
 	}
 
 	//egy telepes halalakor kiveszi a settlers listabol	

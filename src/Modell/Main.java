@@ -120,22 +120,19 @@ public class Main  implements ActionListener {
 		for(int j=0; j<r; j++){ //random szamu robot letrehozasa (max 3)
 			Robot robot = new Robot();
 			robot.SetAsteroid(first);
-			GRobot gr = new GRobot();
-			gr.SetRobot(robot);
-			gr.SetView(view);
-			view.AddDrawable(gr);
+			CreateRobot(robot);
 			AddCreature(robot);
 		}
-		r=rnd.nextInt(acnt/2);
-		for(int j=0; j<r; j++){ //random szamu ufo letrehozasa (max az aszteroidak szama/2)
-			Ufo u = new Ufo();
-			u.SetAsteroid(first);
-			GUfo gu = new GUfo();
-			gu.SetUfo(u);
-			gu.SetView(view);
-			view.AddDrawable(gu);
-			AddCreature(u);
-		}
+//		r=rnd.nextInt(acnt/2);
+//		for(int j=0; j<r; j++){ //random szamu ufo letrehozasa (max az aszteroidak szama/2)
+//			Ufo u = new Ufo();
+//			u.SetAsteroid(first);
+//			GUfo gu = new GUfo();
+//			gu.SetUfo(u);
+//			gu.SetView(view);
+//			view.AddDrawable(gu);
+//			AddCreature(u);
+//		}
 		Game.getInstance().StartGame(); //jatek kezdete
 		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
 
@@ -176,6 +173,13 @@ public class Main  implements ActionListener {
 	public void AddGate(Gate g){
 		gatecnt++;
 		hash.put("gate"+gatecnt, g);
+	}
+
+	public static void CreateRobot(Robot robot){
+		GRobot gr = new GRobot();
+		gr.SetRobot(robot);
+		gr.SetView(view);
+		view.AddDrawable(gr);
 	}
 
 

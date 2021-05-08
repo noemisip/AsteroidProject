@@ -1,5 +1,7 @@
 package Frame;
 
+import Modell.Main;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -46,17 +48,6 @@ public class EndGame {
         	winningLabel2.setFont(new Font("Dialog", Font.PLAIN, 50));
         	winningLabel2.setForeground(Color.white);
         	frame.add(winningLabel2);
-        	
-        	okButton.setBounds(600, 500, 100, 50);
-        	okButton.setFont(new Font("Dialog", Font.PLAIN, 30));
-        	okButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	            	frame.setVisible(false);
-	            }
-	        }); 
-			
-        	frame.getContentPane().add(okButton);
         
         }
         else {
@@ -65,18 +56,23 @@ public class EndGame {
         	loosingLabel.setFont(new Font("Dialog", Font.PLAIN, 65));
         	loosingLabel.setForeground(Color.white);
         	frame.add(loosingLabel);
-        	
-        	okButton.setBounds(600, 450, 100, 50);
-        	okButton.setFont(new Font("Dialog", Font.PLAIN, 30));
-        	okButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	            	frame.setVisible(false);
-	            }
-	        }); 
-			
-        	frame.getContentPane().add(okButton);
+
         }
+		okButton.setBounds(600, 500, 100, 50);
+		okButton.setFont(new Font("Dialog", Font.PLAIN, 30));
+		okButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				try {
+					Main.GetView().Menu();
+				} catch (IOException ioException) {
+					ioException.printStackTrace();
+				}
+			}
+		});
+
+		frame.getContentPane().add(okButton);
     }
 	
 }

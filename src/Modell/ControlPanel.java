@@ -161,8 +161,10 @@ public class ControlPanel extends JPanel{
         material_label.setText(text.get(3));
 
         leg.removeAllItems();
-        for(int i=0; i< settler.GetAsteroid().GetNeighbours().size(); i++){
-            leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
+        if(settler.GetAsteroid().GetNeighbours()!=null) {
+            for (int i = 0; i < settler.GetAsteroid().GetNeighbours().size(); i++) {
+                leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
+            }
         }
         res.removeAllItems();
         for(int i=0; i<materialList.size(); i++) {

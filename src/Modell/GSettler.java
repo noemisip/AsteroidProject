@@ -30,7 +30,7 @@ public class GSettler extends Drawable{
             }
         }
         if(!found){
-            this.Remove();
+            Remove();
         }
     }
     public String GetName(){
