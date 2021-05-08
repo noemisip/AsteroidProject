@@ -70,6 +70,12 @@ public class FieldPanel extends JPanel{
                         view.GetDrawables().get(j).Draw(g,this);
                     }
                 }
+                if(Game.getInstance().GetSpace().GetSolarStrom()== true)
+                {
+                    g.setColor(Color.RED);
+                    g.drawString("SOLARSTORM!!!",700,40);
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
