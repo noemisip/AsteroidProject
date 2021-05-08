@@ -53,6 +53,7 @@ public class View {
 
 	public void startGame() throws IOException {
 		gameFrame = new GameFrame(this);
+		drawables.clear();
 	}
 
 	public void endGame(boolean result){

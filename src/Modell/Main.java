@@ -90,6 +90,7 @@ public class Main  implements ActionListener {
 	}
 
 	public static void Load(int i) throws IOException {
+		hash.clear();
 		view.startGame();
 		Random rnd = new Random();
 		int r = rnd.nextInt(10)+5;
@@ -99,8 +100,12 @@ public class Main  implements ActionListener {
 			Asteroid a = new Asteroid();
 			if(j==0) first =a;
 			GAsteroid ga = new GAsteroid();
-			int gax=rnd.nextInt(550)+350;
-			int gay=rnd.nextInt(600)+50;
+			int gax=rnd.nextInt(11)*50+500;
+			int gay=rnd.nextInt(10)*50+100;
+			while(!Newkoords(gax,gay)){
+				gax=rnd.nextInt(11)*50+500;
+				gay=rnd.nextInt(10)*50+100;
+			}
 			ga.SetKoord(gax,gay);
 			ga.SetAsteroid(a);
 			view.AddDrawable(ga);
@@ -123,16 +128,16 @@ public class Main  implements ActionListener {
 			CreateRobot(robot);
 			AddCreature(robot);
 		}
-//		r=rnd.nextInt(acnt/2);
-//		for(int j=0; j<r; j++){ //random szamu ufo letrehozasa (max az aszteroidak szama/2)
-//			Ufo u = new Ufo();
-//			u.SetAsteroid(first);
-//			GUfo gu = new GUfo();
-//			gu.SetUfo(u);
-//			gu.SetView(view);
-//			view.AddDrawable(gu);
-//			AddCreature(u);
-//		}
+		r=rnd.nextInt(acnt/2);
+		for(int j=0; j<r; j++){ //random szamu ufo letrehozasa (max az aszteroidak szama/2)
+			Ufo u = new Ufo();
+			u.SetAsteroid(first);
+			GUfo gu = new GUfo();
+			gu.SetUfo(u);
+			gu.SetView(view);
+			view.AddDrawable(gu);
+			AddCreature(u);
+		}
 		Game.getInstance().StartGame(); //jatek kezdete
 		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
 
@@ -175,13 +180,21 @@ public class Main  implements ActionListener {
 		hash.put("gate"+gatecnt, g);
 	}
 
-	public static void CreateRobot(Robot robot){
+	public static void CreateRobot(Robot robot){ //letrejon egy robot: letre kell hozza hozni a megfelelo grafikus peldanyt
 		GRobot gr = new GRobot();
 		gr.SetRobot(robot);
 		gr.SetView(view);
 		view.AddDrawable(gr);
 	}
-
+	public static boolean Newkoords(int x,int y){
+		boolean newkoord=true;
+		int i=0;
+		while(newkoord && i<view.GetDrawables().size()){
+			if(view.GetDrawables().get(i).GetX()==x && view.GetDrawables().get(i).GetY()==y) newkoord=false;
+			i++;
+		}
+		return newkoord;
+	}
 
 
 }

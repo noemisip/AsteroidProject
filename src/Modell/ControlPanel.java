@@ -36,7 +36,7 @@ public class ControlPanel extends JPanel{
     public ControlPanel() throws IOException {
         image=new JLabel(new ImageIcon(ImageIO.read(new File("controlpanel.png"))));
         this.setLayout(new BorderLayout());
-        image.setBounds(0,0,100,600);
+        image.setBounds(0,0,100,700);
         this.add(image);
         Init();
         this.setVisible(true);
@@ -50,7 +50,7 @@ public class ControlPanel extends JPanel{
         String gates=""; //kakup listaja
         if(settler.GetGateList().size() > 0) { //a telepesnel van valahany kapu
             for (int i = 0; i < settler.GetGateList().size(); i++) {
-                gates = gates + Main.getInstance().GetKey(settler.GetGateList().get(i)) + ","; //TODO ez igy nem okes
+                gates = gates + Main.getInstance().GetKey(settler.GetGateList().get(i)) + ",";
             }
         gates.substring(0, gates.length() - 1);
         }
@@ -163,7 +163,9 @@ public class ControlPanel extends JPanel{
         leg.removeAllItems();
         if(settler.GetAsteroid().GetNeighbours()!=null) {
             for (int i = 0; i < settler.GetAsteroid().GetNeighbours().size(); i++) {
-                leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
+                if(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()!=null) {
+                    leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
+                }
             }
         }
         res.removeAllItems();
@@ -171,8 +173,14 @@ public class ControlPanel extends JPanel{
             res.addItem(materialList.get(i));
         }
         gat.removeAllItems();
+        for (int i = 0; i < settler.GetGateList().size(); i++) {
+           gat.addItem(Main.getInstance().GetKey(settler.GetGateList().get(i)) );
+        }
     }
-    public Gate GetGate(){return gate;}
+    public Gate GetGate(){
+        gate=(Gate)Main.getInstance().GetHash().get(String.valueOf(gat.getSelectedItem()));
+        return gate;
+    }
     public Asteroid GetAsteroid(){
         asteroid = (Asteroid)Main.getInstance().GetHash().get(String.valueOf(leg.getSelectedItem()));
         return asteroid;

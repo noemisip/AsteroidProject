@@ -46,6 +46,9 @@ public class Game {
 	//a jatek befejezesekor meghivodo fuggveny
 	public void EndGame(boolean result) {
 		onGame=false; //vege a jateknak
+		space = new Space();
+		steppable.clear();
+		settlers.clear();
 		Main.GetView().endGame(result);
 	}
 

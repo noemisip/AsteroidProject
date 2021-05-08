@@ -26,6 +26,7 @@ import java.util.ArrayList;
 		}
 		
 		public void SetUpRobot() {
+			materialList.clear();
 			//Feltolti a materialList-et a robot megepitesehez szukseges alapanyagokkal
 			//A teszt folyaman a robot epitesehez egy Modell.Iron, egy Modell.Uranium es egy Modell.Carbon szukseges
 			//Ezekkel tolti fel a materialListet
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 		}
 		
 		public void SetUpGate() {
+			materialList.clear();
 			//Feltolti a materialList-et a teleportkapu megepitesehez szukseges alapanyagokkal
 			//A teszt folyaman a teleportkapu epitesehez egy Modell.Uranium, egy Modell.Ice es ket Modell.Iron szukseges
 			//Ezekkel tolti fel a materialListet
@@ -45,6 +47,7 @@ import java.util.ArrayList;
 		}
 		
 		public void SetUpBase() {
+			materialList.clear();
 			//Feltolti a materialList-et az urbazis megepitesehez szukseges alapanyagokkal
 			//A teszt folyaman a teleportkapu epitesehez minden nyersanyagbol 3 szukseges
 			//Ezzel tolti fel a materialListet

@@ -129,11 +129,7 @@ public class Settler extends Creature {
 
 	public void RemoveGate(Gate g){ //a telpes kitorol egy kaput a lsitajabol
 		gates.remove(g);
-	}
-
-	public Gate GetGate(int i){
-		return gates.size()==0? null: gates.get(i); //visszaadja a megadott sorszamu gatet a telepes gate listajabol
-	}
+	} //kitorol egy gatet a listabol
 
 	public ArrayList<Gate> GetGateList(){return gates; } //a telepes gate listajat adja vissza
 }
