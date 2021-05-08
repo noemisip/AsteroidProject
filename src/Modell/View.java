@@ -14,8 +14,6 @@ public class View {
 
 	public View() throws IOException {
 		menuFrame=new Menu();
-		//gameFrame=new GameFrame();
-		//settlernumberFrame=new SettlerNumber();
 	}
 	public void UpdateAll() {
 		for(int i=0; i<drawables.size();i++ ){

@@ -37,7 +37,7 @@ public class Game {
 		ArrayList<Creature> asteroidcreatures= a.GetCreatures();
 		bill.SetUpBase(); //feltolti a BillOfMaterial materialListjét az urbazis epitesehez szukseges alapanyagokkal
 		for(int i=0;i<asteroidcreatures.size();i++){
-			ArrayList creaturesmaterials=asteroidcreatures.get(i).GetMaterials();
+			ArrayList<Material> creaturesmaterials=asteroidcreatures.get(i).GetMaterials();
 			if(bill.CheckMaterials(creaturesmaterials)) EndGame(true); //Megvan az osszes szukseges material a settlereknel az urbazishoz?
 		}
 
@@ -55,7 +55,6 @@ public class Game {
 		onGame=true; //elindul a jatek
 		cnt=0;
 		Main.getInstance().SetActiveSettler(settlers.get(cnt));
-	//OnGame();
 	}
 	
 	//egy kor a jatekban: eloszor a telepesek cselekvesei vegzodnek el, majd a Steppeble objektumok lepesei
@@ -63,7 +62,6 @@ public class Game {
 			//steppable-k lepesei
 			for(int i=0; i< steppable.size(); i++){
 				steppable.get(i).Step();
-				System.out.println("ok");
 			}
 	}
 
@@ -74,7 +72,7 @@ public class Game {
 			cnt=0;
 			Round();
 		}
-		else Main.getInstance().SetActiveSettler(settlers.get(cnt));
+		Main.getInstance().SetActiveSettler(settlers.get(cnt));
 	}
 
 	//egy telepes halalakor kiveszi a settlers listabol	
@@ -95,12 +93,6 @@ public class Game {
 	//hozzáadja a steppable listahoz a parameterkent megkapott Modell.Steppable peldanyt
 	public void AddSteppable(Steppable s) {
         steppable.add(s);
-	}
-	
-	//addig hivogatja meg a Round() fuggvenyt amig az onGame attributum igaz
-	public void OnGame() {
-	//nem a vegleges, meg nem kell a tesztek futasahoz
-        Round();
 	}
 	
 	//space beallitasa
