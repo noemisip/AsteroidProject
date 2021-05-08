@@ -16,6 +16,8 @@ public class GSettler extends Drawable{
     public void Draw(Graphics g, ImageObserver i) throws IOException {
         final BufferedImage dnImg = ImageIO.read(new File("settler_icon.png"));
         g.drawImage(dnImg, this.GetX(), this.GetY(),30,30, i);
+        String name = Main.getInstance().GetKey(settler);
+        g.drawString(name,this.GetX(), this.GetY());
     }
     public void Update(){
         Asteroid a = settler.GetAsteroid();
@@ -36,7 +38,6 @@ public class GSettler extends Drawable{
     public String GetName(){
         return name;
     }
-
     public void SetSettler(Settler s){
         settler = s;
     }

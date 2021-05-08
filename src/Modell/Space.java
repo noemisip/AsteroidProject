@@ -7,7 +7,7 @@ public class Space implements Steppable {
 	
 	private ArrayList<Asteroid> asteroids; // az urben talalhato aszteroidak listaja
 	private ArrayList<Creature> creatures; // az urben tartozkodo Modell.Creature-ok listaja
-	private boolean solarstrom;
+	private boolean solarstorm;
 	public Space(){ //inicializalas
 		asteroids= new ArrayList<Asteroid>();
 		creatures = new ArrayList<Creature>();
@@ -35,16 +35,23 @@ public class Space implements Steppable {
 	//minden korben eldonti, hogy lesz-e napvihar, azaz random meghivja az aszteroidak SolarStorm() fuggvenyet 	
 	public void Step() {
 		Random rand = new Random();
-		int solarstormhappens = rand.nextInt(1);
+		int solarstormhappens = rand.nextInt(2);
 		int selectedasteroid=0;
 		if(solarstormhappens==1) {
 			selectedasteroid=rand.nextInt(asteroids.size()-1);
-			asteroids.get(selectedasteroid).SolarStorm(2); //random aszteroidan elinditja a napvihart
+			asteroids.get(selectedasteroid).SolarStorm(2);
+			solarstorm = true;
+			//random aszteroidan elinditja a napvihart
 			//a kettes parameter felel az aszteroida szuk kornyezeteben megvalosulo napvihar miatt
+			System.out.println("kurva");
 		}
+		else
+			solarstorm = false;
+
+
 	}
 	public boolean GetSolarStrom() {
-		return solarstrom;
+		return solarstorm;
 	}
 	public Asteroid GetAsteroid(){
 		return asteroids.get(0);

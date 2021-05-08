@@ -63,6 +63,7 @@ public class Game {
 			for(int i=0; i< steppable.size(); i++){
 				steppable.get(i).Step();
 			}
+		//space.Step();
 	}
 
 	//egy telepes altal vegrehajthato muveletek 
