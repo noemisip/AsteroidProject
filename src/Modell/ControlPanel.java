@@ -57,6 +57,7 @@ public class ControlPanel extends JPanel{
         else gates = "I don't have any gates :("; //nincs a telepesnel egy kapu sem
         text.add(2,"Gates: "+gates);
 
+        materialList.clear();
         int ironcnt= 0, icecnt = 0, carboncnt = 0, uraniumcnt =0;
         for(int i=0; i<settler.GetMaterials().size(); i++){ //nyersanyagok listazasa: mibol hany darab van
             if(settler.GetMaterials().get(i).IsEquales(new Ice())) icecnt++;
@@ -164,7 +165,6 @@ public class ControlPanel extends JPanel{
             leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
         }
         res.removeAllItems();
-        materialList.clear();
         for(int i=0; i<materialList.size(); i++) {
             res.addItem(materialList.get(i));
         }

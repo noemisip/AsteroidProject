@@ -53,7 +53,7 @@ public class Space implements Steppable {
 		for(int i =0; i< asteroids.size()-1; i++){
 			for(int j=i+1; j<asteroids.size(); j++){
 				Random rnd = new Random();
-				if(rnd.nextInt()%2==0){
+				if(rnd.nextInt()%3==0){
 					asteroids.get(i).AddNeighbour(asteroids.get(j));
 					asteroids.get(j).AddNeighbour(asteroids.get(i));
 				}

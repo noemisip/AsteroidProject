@@ -39,6 +39,7 @@ public class Settler extends Creature {
 			bill.SetUpRobot();  //bill attributum material listajat beallitja a robothoz szuksegesekre
 			bill.RemoveMaterials(this); //kitorli a telepestol a felhasznalt nyersanyagokat, majd letrehozza a robotot és elhelyezi az aszteroidan
 			Robot r = new Robot(); // letrehoz egy uj robotot
+			r.SetAsteroid(asteroid);
 			asteroid.AddCreature(r); // hozzadja az aszteroidahoz
 			asteroid.GetSpace().AddCreature(r); //hozzadja a spacehez
 			Game.getInstance().AddSteppable(r); //hozzadja a gamehez
@@ -57,6 +58,8 @@ public class Settler extends Creature {
 				g2.SetPair(g1);
 				AddGate(g1); //hozzadja a settler gate listajahoz
 				AddGate(g2);
+				Main.getInstance().AddGate(g1); //felveszi a gatet a hasmapbe
+				Main.getInstance().AddGate(g2);
 			}
 		}
 	}
