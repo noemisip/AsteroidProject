@@ -18,6 +18,13 @@ public class GAsteroid extends Drawable{
     public void Draw(Graphics g, ImageObserver i) throws IOException {
         final BufferedImage dnImg = ImageIO.read(new File("asteroid.png"));
         g.drawImage(dnImg, this.GetX(), this.GetY(),40,40, i);
+        g.setColor(Color.white);
+        g.drawString(Integer.toString(asteroid.GetLayer()),this.GetX(), this.GetY()+50);
+        g.drawString(Boolean.toString(asteroid.GetCloseToSun()),this.GetX()+10, this.GetY()+50);
+        if( asteroid.GetMaterial() != null){
+            g.drawString(asteroid.GetMaterial().ToString(), this.GetX()+40 ,this.GetY()+50);
+        } else
+            g.drawString("-", this.GetX()+40 ,this.GetY()+50);
     }
     public void Update(){
         int layer= asteroid.GetLayer();

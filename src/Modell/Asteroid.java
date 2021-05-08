@@ -31,6 +31,8 @@ public class Asteroid implements Steppable, Transport {
 				break;
 			case 0: material = null;
 				break;
+			default: material = null;
+			break;
 		}
 		layer= rnd.nextInt(5);
 	}
