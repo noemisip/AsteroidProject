@@ -30,6 +30,10 @@ public class Main {
 		int result = cp.UserInput();
 		while(result==0){
 			result=cp.UserInput();
+			try {
+				Thread.sleep(200);
+			} catch(InterruptedException e) {
+			}
 		}
 		switch (result){
 			case 1:
@@ -75,7 +79,8 @@ public class Main {
 	}
 
 	public static void Load(int i) throws IOException {
-		view.startGame();
+		//view.startGame();
+		//view.startGame();
 		Random rnd = new Random();
 		int r = rnd.nextInt(10)+5;
 		int acnt=r;
@@ -92,6 +97,7 @@ public class Main {
 			AddAsteroid(a, ga, j);
 		}
 		Game.getInstance().GetSpace().SetNeighbours(); //szomszedsagok veletlenszeru beallitasa
+		view.startGame();
 		for(int j=0; j<i; j++){ //a megadott szamu telepes letrehozasa
 			Settler s = new Settler();
 			s.SetAsteroid(first);
@@ -121,9 +127,9 @@ public class Main {
 			view.AddDrawable(gu);
 			AddCreature(u);
 		}
+
 		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
 		//Game.getInstance().StartGame(); //jatek kezdete
-
 	}
 	public static void AddSettler(Settler s, GSettler gs){
 		gs.SetView(view);
@@ -155,4 +161,5 @@ public class Main {
 	public static void AddHash(String key, Object object){
 		hash.put(key, object);
 	}
+	public HashMap<String, Object> GetHash(){return hash;}
 }
