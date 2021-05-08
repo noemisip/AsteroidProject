@@ -1,8 +1,6 @@
 package Frame;
 
-import Modell.Drawable;
-import Modell.GRobot;
-import Modell.View;
+import Modell.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -47,20 +45,43 @@ public class FieldPanel extends JPanel{
             if (upImg != null && dnImg != null) {
 
                 // draw both images at their respective locations
-                g.drawImage(upImg, upPt.x, upPt.y, this);
-                g.drawImage(dnImg, 700, 400,30,30, this);
-                for(int j=0;j<view.GetDrawables().size();j++){
-                    view.GetDrawables().get(j).Draw(g,this);
-                }
 
-                //g.drawImage(dnImg, dnPt.x, dnPt.y, this);
-                // to get a smooth line, use rendering hiints
-                Graphics2D g2 = (Graphics2D) g;
+                /*Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                g2.setStroke(new BasicStroke(2f));
+                g2.setStroke(new BasicStroke(2f));*/
+                g.drawImage(upImg, upPt.x, upPt.y, this);
+                g.drawImage(dnImg, 700, 400,30,30, this);
 
-                //g.drawLine(700, 400, 730, 600);
+                if (view.GetDrawables() != null) {
+                for(int h=0;h<view.GetDrawables().size();h++) {
+                    if(view.GetDrawables().get(h).GetName()!=null) {
+                        if (view.GetDrawables().get(h).GetName().contains("asteroid")) {
+                            Asteroid ast = (Asteroid) Main.getInstance().GetHash().get(view.GetDrawables().get(h).GetName());
+                            if (ast.GetNeighbours() != null) {
+                                for (int l = 0; l < ast.GetNeighbours().size(); l++) {
+                                    String peldanynev = Main.getInstance().GetKey(ast.GetNeighbours().get(l).GetAsteroid());
+                                    for (int u = 0; u < view.GetDrawables().size(); u++) {
+                                        if (view.GetDrawables().get(u).GetName() == peldanynev) {
+                                            g.drawLine(view.GetDrawables().get(h).GetX()+10, view.GetDrawables().get(h).GetY()+10,
+                                                    view.GetDrawables().get(u).GetX()+10, view.GetDrawables().get(u).GetY()+10);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    }
+
+                    for(int j=0;j<view.GetDrawables().size();j++){
+                        view.GetDrawables().get(j).Draw(g,this);
+                    }
+                    //g.drawImage(dnImg, dnPt.x, dnPt.y, this);
+                    // to get a smooth line, use rendering hiints
+
+
+                    //g.drawLine(700, 400, 730, 600);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
