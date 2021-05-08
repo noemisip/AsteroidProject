@@ -17,7 +17,6 @@ public class ControlPanel extends JPanel{
     private Asteroid asteroid;
     private Material material;
     private Gate gate;
-    private int result=0;
     private JButton move;           //mozgas
     private JButton drill;          //furas
     private JButton mine;           //banyaszat
@@ -47,7 +46,8 @@ public class ControlPanel extends JPanel{
         text.clear();
         text.add(0,Main.getInstance().GetKey(settler));
         text.add(1, "Asteroid: "+Main.getInstance().GetKey(settler.GetAsteroid()));//aszteroida nevenek megkerese
-         String gates=""; //kakup listaja
+
+        String gates=""; //kakup listaja
         if(settler.GetGateList().size() > 0) { //a telepesnel van valahany kapu
             for (int i = 0; i < settler.GetGateList().size(); i++) {
                 gates = gates + Main.getInstance().GetKey(settler.GetGateList().get(i)) + ","; //TODO ez igy nem okes
@@ -153,7 +153,6 @@ public class ControlPanel extends JPanel{
     public void SetSettler(Settler settler){
         this.settler =settler;}
     public void Update(){
-        result=0;
         SetText();
         settler_label.setText(text.get(0));
         material_label.setText(text.get(1));
@@ -165,6 +164,7 @@ public class ControlPanel extends JPanel{
             leg.addItem(Main.getInstance().GetKey(settler.GetAsteroid().GetNeighbours().get(i).GetAsteroid()));
         }
         res.removeAllItems();
+        materialList.clear();
         for(int i=0; i<materialList.size(); i++) {
             res.addItem(materialList.get(i));
         }
@@ -186,5 +186,4 @@ public class ControlPanel extends JPanel{
         material = m;
         return material;
     }
-    public int UserInput(){return result;}
 }
