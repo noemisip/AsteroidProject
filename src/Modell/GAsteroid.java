@@ -19,6 +19,8 @@ public class GAsteroid extends Drawable{
         final BufferedImage dnImg = ImageIO.read(new File("asteroid.png"));
         g.drawImage(dnImg, this.GetX(), this.GetY(),40,40, i);
         g.setColor(Color.white);
+        String name = Main.getInstance().GetKey(asteroid);
+        g.drawString(name,this.GetX(), this.GetY());
         g.drawString(Integer.toString(asteroid.GetLayer()),this.GetX(), this.GetY()+50);
         g.drawString(Boolean.toString(asteroid.GetCloseToSun()),this.GetX()+10, this.GetY()+50);
         if( asteroid.GetMaterial() != null){
