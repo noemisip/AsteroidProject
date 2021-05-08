@@ -1,13 +1,18 @@
 package Modell;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class Main {
+public class Main  implements ActionListener {
 	private static HashMap<String, Object> hash = new HashMap();
 	private static View view;
 	private static Main INSTANCE;
+	private Settler activeSettler;
+
 	public static Main getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new Main();
@@ -23,46 +28,51 @@ public class Main {
 		return view;
 	}
 
-	public void SettlerAction(Settler s){
+	public void SetActiveSettler(Settler s){
+		activeSettler =s;
+	}
+
+	public void SettlerAction(){
 		Modell.ControlPanel cp = view.GetGameFrame().GetControlPanel();
-		cp.SetSettler(s);
+		cp.SetSettler(activeSettler);
 		cp.Update();
 		int result = cp.UserInput();
-		while(result==0){
-			result=cp.UserInput();
-			try {
-				Thread.sleep(200);
-			} catch(InterruptedException e) {
-			}
-		}
 		switch (result){
 			case 1:
 				Modell.Asteroid a = cp.GetAsteroid();
-				s.Move(a);
+				activeSettler.Move(a);
 				break;
 			case 2:
-				s.Drill();
+				activeSettler.Drill();
 				break;
 			case 3:
-				s.Mine();
+				activeSettler.Mine();
 				break;
 			case 4:
 				Modell.Material m = cp.GetMaterial();
-				s.RestoreMaterial(m);
+				activeSettler.RestoreMaterial(m);
 				break;
 			case 5:
-				s.CreateRobot();
+				activeSettler.CreateRobot();
 				break;
 			case 6:
-				s.CreateGate();
+				activeSettler.CreateGate();
 				break;
 			case 7:
 				Modell.Gate g = cp.GetGate();
-				s.PlaceGate(g);
+				activeSettler.PlaceGate(g);
 				break;
 			default: break;
 		}
+		Game.getInstance().Action();
 		view.UpdateAll();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton source = (JButton) e.getSource();
+		System.out.println(source.getText());
+		SettlerAction();
 	}
 
 	public void SteppableAction(){
@@ -79,8 +89,7 @@ public class Main {
 	}
 
 	public static void Load(int i) throws IOException {
-		//view.startGame();
-		//view.startGame();
+		view.startGame();
 		Random rnd = new Random();
 		int r = rnd.nextInt(10)+5;
 		int acnt=r;
@@ -97,7 +106,6 @@ public class Main {
 			AddAsteroid(a, ga, j);
 		}
 		Game.getInstance().GetSpace().SetNeighbours(); //szomszedsagok veletlenszeru beallitasa
-		view.startGame();
 		for(int j=0; j<i; j++){ //a megadott szamu telepes letrehozasa
 			Settler s = new Settler();
 			s.SetAsteroid(first);
@@ -127,9 +135,9 @@ public class Main {
 			view.AddDrawable(gu);
 			AddCreature(u);
 		}
-
 		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
-		//Game.getInstance().StartGame(); //jatek kezdete
+		Game.getInstance().StartGame(); //jatek kezdete
+
 	}
 	public static void AddSettler(Settler s, GSettler gs){
 		gs.SetView(view);
@@ -157,9 +165,9 @@ public class Main {
 		sp.AddAsteroid(a);
 		a.SetSpace(sp);
 	}
-
 	public static void AddHash(String key, Object object){
 		hash.put(key, object);
 	}
-	public HashMap<String, Object> GetHash(){return hash;}
+
+
 }

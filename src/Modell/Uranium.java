@@ -33,4 +33,8 @@ public class Uranium  extends Material {
 		return cnt;
 	}
 
+	public String ToString(){
+		return "uranium";
+	}
+
 }

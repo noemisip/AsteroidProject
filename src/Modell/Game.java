@@ -9,13 +9,14 @@ public class Game {
 	private static ArrayList<Steppable> steppable= new ArrayList<Steppable>();; //a jatekban resztvevo leptetheto dolgok listaja
 	private static ArrayList<Settler> settlers = new ArrayList<Settler>(); //a jatekban resztvevo leptetheto telepesek listaja
 	private static BillOfMaterials bill; //a bazis megepitesehez szukseges nyersanyagok megletet ellenorzi
+	private static int cnt;
 
 
 	private static Game INSTANCE;
 
 	private Game() { }
 
-	//mivel a Modell.Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
+	//mivel a Game osztaly egy singleton, ezert letrehozzunk az egyetlen peldany, amivel dolgozni fogunk
 	public static Game getInstance() {
 		bill=  new BillOfMaterials();
 		if(INSTANCE == null) {
@@ -50,28 +51,30 @@ public class Game {
 
 	//a jatek kezdetekor meghivodo fuggveny	
 	public void StartGame() {
-		//játéktér felépítése
+		//jatek elinditasa
 		onGame=true; //elindul a jatek
-		OnGame();
+		cnt=0;
+		Main.getInstance().SetActiveSettler(settlers.get(cnt));
+	//OnGame();
 	}
 	
 	//egy kor a jatekban: eloszor a telepesek cselekvesei vegzodnek el, majd a Steppeble objektumok lepesei
 	public void Round() {
-		while (onGame) {
-			//settlerek lepesei
-			for (Settler s : settlers) {
-				Action(s);
-			}
 			//steppable-k lepesei
 			for(int i=0; i< steppable.size(); i++){
 				steppable.get(i).Step();
+				System.out.println("ok");
 			}
-		}
 	}
 
 	//egy telepes altal vegrehajthato muveletek 
-	public void Action(Settler s) {
-		Main.getInstance().SettlerAction(s);
+	public void Action() {
+		cnt++;
+		if(cnt==settlers.size()){
+			cnt=0;
+			Round();
+		}
+		else Main.getInstance().SetActiveSettler(settlers.get(cnt));
 	}
 
 	//egy telepes halalakor kiveszi a settlers listabol	

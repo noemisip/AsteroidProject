@@ -81,72 +81,35 @@ public class ControlPanel extends JPanel{
         move=new JButton("Move"); //move gonb: a telepes mozog
         move.setBounds(20, 120, 140, 40);
         image.add(move);
-        move.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    result = 1;
-            }
-        });
+        move.addActionListener(Main.getInstance());
 
         drill=new JButton("Drill"); //drill gomb: a telepes fur
         drill.setBounds(20, 180, 140, 40);
         image.add(drill);
-        drill.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                result = 2;
-            }
-        });
-
+        drill.addActionListener(Main.getInstance());
         mine=new JButton("Mine"); //mine gomb: a telepes banyaszik az aszteroidan
         mine.setBounds(20, 240, 140, 40);
         image.add(mine);
-        mine.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                result = 3;
-            }
-        });
-
+        mine.addActionListener(Main.getInstance());
         restore=new JButton("Restore"); //restore gomb: a telepes visszahelyez egy nyersanyagot az aszteroidara
         restore.setBounds(20, 300, 140, 40);
         image.add(restore);
-        restore.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                result = 4;
-            }
-        });
+        restore.addActionListener(Main.getInstance());
 
         create_robot=new JButton("Create Robot"); //create robot gomb: a telepes megprobal letrehozni egy robotot
         create_robot.setBounds(20, 360, 140, 40);
         image.add(create_robot);
-        create_robot.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                result = 5;
-            }
-        });
+        create_robot.addActionListener(Main.getInstance());
 
         create_gate=new JButton("Create Gate"); //create gate gomb: a telepes megprobal letrehozni egy teleportkapu-part
         create_gate.setBounds(20, 420, 140, 40);
         image.add(create_gate);
-        create_gate.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                result = 6;
-            }
-        });
+        create_gate.addActionListener(Main.getInstance());
 
         place_gate=new JButton("Place Gate"); //place gate gomb: a telepes lehelyez egy kaput az aszteroidan
         place_gate.setBounds(20, 480, 140, 40);
         image.add(place_gate);
-        place_gate.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                result = 7;
-            }
-        });
+        place_gate.addActionListener(Main.getInstance());
 
         asteroid_label=new JLabel("Asteroid: asteroid1");
         asteroid_label.setFont(new Font(asteroid_label.getFont().getName(), Font.PLAIN, 15));

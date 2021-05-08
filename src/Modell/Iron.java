@@ -16,5 +16,8 @@ public class Iron extends Material {
 		// ellenorzi, hogy a megadott material ugyanolyan fajta- e, mint az osztaly
 		return m.getClass()==this.getClass();
 	}
-	
+
+	public String ToString(){
+		return "iron";
+	}
 }
