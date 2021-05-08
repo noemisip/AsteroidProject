@@ -30,13 +30,13 @@ public class Main  implements ActionListener {
 
 	public void SetActiveSettler(Settler s){
 		activeSettler =s;
+		Modell.ControlPanel cp = view.GetGameFrame().GetControlPanel();
+		cp.SetSettler(s);	//beallitja, hogy melyik az aktiv jatekos
+		cp.Update();		//frissiti a ControllPanelon levo szovegeket
 	}
 
-	public void SettlerAction(){
+	public void SettlerAction(int result){
 		Modell.ControlPanel cp = view.GetGameFrame().GetControlPanel();
-		cp.SetSettler(activeSettler);
-		cp.Update();
-		int result = cp.UserInput();
 		switch (result){
 			case 1:
 				Modell.Asteroid a = cp.GetAsteroid();
@@ -71,8 +71,7 @@ public class Main  implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton source = (JButton) e.getSource();
-		System.out.println(source.getText());
-		SettlerAction();
+		SettlerAction((int)source.getClientProperty("id"));
 	}
 
 	public void SteppableAction(){
@@ -113,7 +112,6 @@ public class Main  implements ActionListener {
 			gs.SetSettler(s);
 			view.AddDrawable(gs);
 			AddSettler(s, gs);
-			view.GetGameFrame().GetControlPanel().SetSettler(s);
 		}
 		r=rnd.nextInt(3);
 		for(int j=0; j<r; j++){ //random szamu robot letrehozasa (max 3)
@@ -135,8 +133,8 @@ public class Main  implements ActionListener {
 			view.AddDrawable(gu);
 			AddCreature(u);
 		}
-		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
 		Game.getInstance().StartGame(); //jatek kezdete
+		view.UpdateAll(); //a creaturek, aszteroidak megjelenitese, nezzet frissitese
 
 	}
 	public static void AddSettler(Settler s, GSettler gs){
@@ -168,6 +166,6 @@ public class Main  implements ActionListener {
 	public static void AddHash(String key, Object object){
 		hash.put(key, object);
 	}
-
+	public HashMap<String, Object> GetHash(){ return hash;}
 
 }

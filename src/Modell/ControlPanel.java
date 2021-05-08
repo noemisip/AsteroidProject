@@ -14,7 +14,6 @@ public class ControlPanel extends JPanel{
     private ArrayList<String> text=new ArrayList<String>();
     private ArrayList<String> materialList = new ArrayList<>();
     private String[] neighbourList = null;
-    private JPanel jp;
     private Asteroid asteroid;
     private Material material;
     private Gate gate;
@@ -46,8 +45,8 @@ public class ControlPanel extends JPanel{
 
     public void SetText(){
         text.clear();
-        text.add(Main.getInstance().GetKey(settler));
-        text.add("Asteroid: "+Main.getInstance().GetKey(settler.GetAsteroid()));//aszteroida nevenek megkerese
+        text.add(0,Main.getInstance().GetKey(settler));
+        text.add(1, "Asteroid: "+Main.getInstance().GetKey(settler.GetAsteroid()));//aszteroida nevenek megkerese
          String gates=""; //kakup listaja
         if(settler.GetGateList().size() > 0) { //a telepesnel van valahany kapu
             for (int i = 0; i < settler.GetGateList().size(); i++) {
@@ -56,7 +55,7 @@ public class ControlPanel extends JPanel{
         gates.substring(0, gates.length() - 1);
         }
         else gates = "I don't have any gates :("; //nincs a telepesnel egy kapu sem
-        text.add("Gates: "+gates);
+        text.add(2,"Gates: "+gates);
 
         int ironcnt= 0, icecnt = 0, carboncnt = 0, uraniumcnt =0;
         for(int i=0; i<settler.GetMaterials().size(); i++){ //nyersanyagok listazasa: mibol hany darab van
@@ -69,7 +68,7 @@ public class ControlPanel extends JPanel{
         if(icecnt>0) materialList.add("Ice");
         if(carboncnt>0) materialList.add("Carbon");
         if(uraniumcnt>0) materialList.add("Uranium");
-        text.add("Materials: ice: "+icecnt+" iron: "+ironcnt+" carbon: "+carboncnt+" uranium: "+uraniumcnt);
+        text.add(3,"Materials: ice: "+icecnt+" iron: "+ironcnt+" carbon: "+carboncnt+" uranium: "+uraniumcnt);
 
     }
     public void Init(){
@@ -79,34 +78,43 @@ public class ControlPanel extends JPanel{
         image.add(settler_label);
 
         move=new JButton("Move"); //move gonb: a telepes mozog
+        move.putClientProperty("id", 1);
         move.setBounds(20, 120, 140, 40);
         image.add(move);
         move.addActionListener(Main.getInstance());
 
         drill=new JButton("Drill"); //drill gomb: a telepes fur
+        drill.putClientProperty("id", 2);
         drill.setBounds(20, 180, 140, 40);
         image.add(drill);
         drill.addActionListener(Main.getInstance());
+
         mine=new JButton("Mine"); //mine gomb: a telepes banyaszik az aszteroidan
+        mine.putClientProperty("id", 3);
         mine.setBounds(20, 240, 140, 40);
         image.add(mine);
         mine.addActionListener(Main.getInstance());
+
         restore=new JButton("Restore"); //restore gomb: a telepes visszahelyez egy nyersanyagot az aszteroidara
+        restore.putClientProperty("id",4);
         restore.setBounds(20, 300, 140, 40);
         image.add(restore);
         restore.addActionListener(Main.getInstance());
 
         create_robot=new JButton("Create Robot"); //create robot gomb: a telepes megprobal letrehozni egy robotot
+        create_robot.putClientProperty("id",5);
         create_robot.setBounds(20, 360, 140, 40);
         image.add(create_robot);
         create_robot.addActionListener(Main.getInstance());
 
         create_gate=new JButton("Create Gate"); //create gate gomb: a telepes megprobal letrehozni egy teleportkapu-part
+        create_gate.putClientProperty("id", 6);
         create_gate.setBounds(20, 420, 140, 40);
         image.add(create_gate);
         create_gate.addActionListener(Main.getInstance());
 
         place_gate=new JButton("Place Gate"); //place gate gomb: a telepes lehelyez egy kaput az aszteroidan
+        place_gate.putClientProperty("id", 7);
         place_gate.setBounds(20, 480, 140, 40);
         image.add(place_gate);
         place_gate.addActionListener(Main.getInstance());
@@ -163,7 +171,20 @@ public class ControlPanel extends JPanel{
         gat.removeAllItems();
     }
     public Gate GetGate(){return gate;}
-    public Asteroid GetAsteroid(){return asteroid;}
-    public Material GetMaterial(){return material;}
+    public Asteroid GetAsteroid(){
+        asteroid = (Asteroid)Main.getInstance().GetHash().get(String.valueOf(leg.getSelectedItem()));
+        return asteroid;
+    }
+    public Material GetMaterial(){
+        Material m = switch (String.valueOf(res.getSelectedItem())) {
+            case "Ice" -> new Ice();
+            case "Iron" -> new Iron();
+            case "Carbon" -> new Carbon();
+            case "Uranium" -> new Uranium();
+            default -> null;
+        };
+        material = m;
+        return material;
+    }
     public int UserInput(){return result;}
 }

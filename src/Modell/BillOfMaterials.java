@@ -9,7 +9,7 @@ import java.util.ArrayList;
 		public boolean CheckMaterials(ArrayList<Material> materials) {
 			//osszehasonlitja a parameterul kapott material listaval a sajat materialList-jet.
 			int i=0;
-			while(materialList.size()!=0 && i<materials.size())
+			while(materials!= null && materialList.size()!=0 && i<materials.size())
 			{
 				int j=0;
 				//A settler alapanyagait hasonlitja a sajat materialListjevel
