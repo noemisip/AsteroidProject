@@ -11,25 +11,24 @@ import java.io.IOException;
 
 public class FieldPanel extends JPanel{
     static JLabel image;
-    static JLabel icon;
     static View view;
     private boolean solarstorm=false;
 
     public FieldPanel() {
         try {
-            image = new JLabel(new ImageIcon(ImageIO.read(new File("background.png"))));
+            image = new JLabel(new ImageIcon(ImageIO.read(new File("menu.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         this.setLayout(new BorderLayout());
-        this.add(image, BorderLayout.LINE_START);
+        this.add(image);
         this.setVisible(true);
+
     }
     @Override public void paint(Graphics g) {
 
         try {
-            Point upPt = new Point(350, 0);
+            Point upPt = new Point(0, 0);
             final BufferedImage upImg = ImageIO.read(new File("background.png"));
             if (upImg != null) {
                 g.drawImage(upImg, upPt.x, upPt.y, this);

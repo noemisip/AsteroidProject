@@ -39,7 +39,7 @@ public class ControlPanel extends JPanel{
         this.add(image, BorderLayout.PAGE_START);
         //image.setBounds(0,0,100,700);
         Init();
-        //this.setSize(100,700);
+        this.setSize(100,700);
         this.setVisible(true);
     }
 

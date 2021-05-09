@@ -151,10 +151,10 @@ public class Main  implements ActionListener {
 	public static void AddAsteroid(Asteroid a, GAsteroid ga, int i){ //uj aszteroida jon letre
 		Random rnd = new Random();
 		//koordinatak beallitasa: az aszteroidak nem kerulnek kozel egymashoz
-		int gax=rnd.nextInt(11)*50+500;
+		int gax=rnd.nextInt(18)*50+50;
 		int gay=rnd.nextInt(10)*50+100;
 		while(!Newkoords(gax,gay)){		//ellenorzi, hogy nem kerulnek-e egymasra az aszteroidak
-			gax=rnd.nextInt(11)*50+500;
+			gax=rnd.nextInt(18)*50+50;
 			gay=rnd.nextInt(10)*50+100;
 		}
 		ga.SetKoord(gax,gay);			//koordinatak beallitasa

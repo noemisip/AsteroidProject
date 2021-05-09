@@ -12,6 +12,7 @@ public class GameFrame extends JFrame {
     View view;
 
     public GameFrame(View v) throws IOException {
+        super("Aszteroida banyaszat");
         view=v;
         field.SetView(v);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
