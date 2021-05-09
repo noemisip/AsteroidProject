@@ -23,7 +23,6 @@ public class GameFrame extends JFrame {
         this.pack();
         this.setVisible(true);
     }
-
     public ControlPanel GetControlPanel(){
         return control;
     }

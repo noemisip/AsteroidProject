@@ -38,18 +38,18 @@ public class SettlerNumber extends JFrame {
         this.setLayout(null);
 
         JLabel text = new JLabel("How many settlers will play?");
-        text.setBounds(330, 230, 800, 60);
+        text.setBounds(200, 230, 800, 60);
         text.setFont(new Font("Dialog", Font.PLAIN, 50));
         text.setForeground(Color.white);
         this.add(text);
 
         final JTextField textField = new JTextField();
-        textField.setBounds(550, 350, 200, 50);
+        textField.setBounds(400, 350, 200, 50);
         textField.setColumns(10);
         this.add(textField);
 
         okButton = new JButton("Ok");
-        okButton.setBounds(600, 500, 100, 50);
+        okButton.setBounds(450, 500, 100, 50);
         okButton.setFont(new Font("Dialog", Font.PLAIN, 30));
         this.add(okButton);
         okButton.addActionListener(new ActionListener() {
@@ -64,13 +64,6 @@ public class SettlerNumber extends JFrame {
                 }
             }
         });
-
-
     }
 
-    public int GetSettlerNumber(){
-        return settlerNr;
-    }
-
-    public JButton GetButton(){return okButton;}
 }

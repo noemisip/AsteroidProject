@@ -16,7 +16,7 @@ public class FieldPanel extends JPanel{
 
     public FieldPanel() {
         try {
-            image = new JLabel(new ImageIcon(ImageIO.read(new File("menu.png"))));
+            image = new JLabel(new ImageIcon(ImageIO.read(new File("background.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class FieldPanel extends JPanel{
                 if(solarstorm)
                 {
                     g.setColor(Color.RED);
-                    g.drawString("SOLARSTORM!!!",700,40);
+                    g.drawString("SOLARSTORM!!!",450,40);
                 }
 
             }

@@ -37,7 +37,6 @@ public class ControlPanel extends JPanel{
         image=new JLabel(new ImageIcon(ImageIO.read(new File("controlpanel.png"))));
         this.setLayout(new BorderLayout());
         this.add(image, BorderLayout.PAGE_START);
-        //image.setBounds(0,0,100,700);
         Init();
         this.setSize(100,700);
         this.setVisible(true);

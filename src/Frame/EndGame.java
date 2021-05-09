@@ -11,10 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class EndGame {
 	private JFrame frame = new JFrame();
@@ -38,13 +35,13 @@ public class EndGame {
         
         if(result) {
         	JLabel winningLabel = new JLabel("You have won!!!!");
-        	winningLabel.setBounds(400, 220, 800, 60);
+        	winningLabel.setBounds(260, 220, 500, 60);
         	winningLabel.setFont(new Font("Dialog", Font.PLAIN, 65));
         	winningLabel.setForeground(Color.white);
         	frame.add(winningLabel);
         	
         	JLabel winningLabel2 = new JLabel("YAAAY!!!!");
-        	winningLabel2.setBounds(530, 350, 500, 60);
+        	winningLabel2.setBounds(400, 350, 400, 60);
         	winningLabel2.setFont(new Font("Dialog", Font.PLAIN, 50));
         	winningLabel2.setForeground(Color.white);
         	frame.add(winningLabel2);
@@ -52,13 +49,13 @@ public class EndGame {
         }
         else {
         	JLabel loosingLabel = new JLabel("You have lost! :("); 
-        	loosingLabel.setBounds(400, 300, 800, 60);
+        	loosingLabel.setBounds(270, 300, 800, 60);
         	loosingLabel.setFont(new Font("Dialog", Font.PLAIN, 65));
         	loosingLabel.setForeground(Color.white);
         	frame.add(loosingLabel);
 
         }
-		okButton.setBounds(600, 500, 100, 50);
+		okButton.setBounds(450, 500, 100, 50);
 		okButton.setFont(new Font("Dialog", Font.PLAIN, 30));
 		okButton.addActionListener(new ActionListener() {
 			@Override

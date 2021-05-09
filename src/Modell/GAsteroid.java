@@ -1,7 +1,4 @@
 package Modell;
-
-import Frame.FieldPanel;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,8 +26,6 @@ public class GAsteroid extends Drawable{
             g.drawString("-", this.GetX()+40 ,this.GetY()+50);
     }
     public void Update(){
-        int layer= asteroid.GetLayer();
-        Material m=asteroid.GetMaterial();
         ArrayList<Steppable> sp=Game.getInstance().GetSteppables();
         int index= sp.indexOf(asteroid);
         if(index!=-1){
