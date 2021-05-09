@@ -120,17 +120,17 @@ public class ControlPanel extends JPanel{
         image.add(place_gate);
         place_gate.addActionListener(Main.getInstance());
 
-        asteroid_label=new JLabel("Asteroid: asteroid1");
+        asteroid_label=new JLabel("Asteroid:"); //melyik aszteroidan all eppen a telepes
         asteroid_label.setFont(new Font(asteroid_label.getFont().getName(), Font.PLAIN, 15));
         asteroid_label.setBounds(20, 560, 200, 20);
         image.add(asteroid_label);
 
-        gate_label=new JLabel("Gates:gate1,gate2");
+        gate_label=new JLabel("Gates:"); //milyen kapuk vannak a telepesnel
         gate_label.setFont(new Font(gate_label.getFont().getName(), Font.PLAIN, 15));
         gate_label.setBounds(20, 620, 300, 20);
         image.add(gate_label);
 
-        material_label=new JLabel("Materials:uran:2,ice:0,iron:0,carbon:0");
+        material_label=new JLabel("Materials:"); //milyen nyersanyagok vannaka  telepesnel
         material_label.setFont(new Font(material_label.getFont().getName(), Font.PLAIN, 15));
         material_label.setBounds(20, 590, 300, 20);
         image.add(material_label);
@@ -152,11 +152,12 @@ public class ControlPanel extends JPanel{
         image.add(gat);
     }
     public void SetSettler(Settler settler){
-        this.settler =settler;}
-    public void Update(){
+        this.settler =settler;
+    }
+    public void Update(){ //frissiti a nezetet
         SetText();
         settler_label.setText(text.get(0));
-        material_label.setText(text.get(1));
+        asteroid_label.setText(text.get(1));
         gate_label.setText(text.get(2));
         material_label.setText(text.get(3));
 

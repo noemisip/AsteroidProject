@@ -39,7 +39,6 @@ public class FieldPanel extends JPanel{
 
         try {
             Point upPt = new Point(350, 0);
-            Point dnPt = new Point(700, 650);
             final BufferedImage upImg = ImageIO.read(new File("background.png"));
             if (upImg != null) {
                 g.drawImage(upImg, upPt.x, upPt.y, this);
