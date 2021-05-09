@@ -16,8 +16,8 @@ public class GameFrame extends JFrame {
         field.SetView(v);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.add(control,BorderLayout.WEST);
-        this.add(field,BorderLayout.EAST);
+        this.add(control, BorderLayout.WEST);
+        this.add(field, BorderLayout.EAST);
         this.setResizable(false);
         this.pack();
         this.setVisible(true);

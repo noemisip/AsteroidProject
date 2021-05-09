@@ -36,11 +36,10 @@ public class ControlPanel extends JPanel{
     public ControlPanel() throws IOException {
         image=new JLabel(new ImageIcon(ImageIO.read(new File("controlpanel.png"))));
         this.setLayout(new BorderLayout());
-        image.setBounds(0,0,100,700);
-        this.add(image);
+        this.add(image, BorderLayout.PAGE_START);
+        //image.setBounds(0,0,100,700);
         Init();
-        this.setBackground(Color.GREEN);
-        this.setSize(100,700);
+        //this.setSize(100,700);
         this.setVisible(true);
     }
 
@@ -80,7 +79,7 @@ public class ControlPanel extends JPanel{
         settler_label.setBounds(100, 40, 200, 50);
         image.add(settler_label);
 
-        move=new JButton("Move"); //move gonb: a telepes mozog
+        move=new JButton("Move"); //move gomb: a telepes mozog
         move.putClientProperty("id", 1);
         move.setBounds(20, 120, 140, 40);
         image.add(move);
@@ -189,13 +188,20 @@ public class ControlPanel extends JPanel{
         return asteroid;
     }
     public Material GetMaterial(){
-        Material m = switch (String.valueOf(res.getSelectedItem())) {
-            case "Ice" -> new Ice();
-            case "Iron" -> new Iron();
-            case "Carbon" -> new Carbon();
-            case "Uranium" -> new Uranium();
-            default -> null;
-        };
+        Material m;
+        switch (String.valueOf(res.getSelectedItem())) {
+            case "Ice":
+                m= new Ice();
+                break;
+            case "Iron": m =new Iron();
+            break;
+            case "Carbon": m=new Carbon();
+            break;
+            case "Uranium": m= new Uranium();
+            break;
+            default: m= null;
+            break;
+        }
         material = m;
         return material;
     }

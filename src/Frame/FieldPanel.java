@@ -21,9 +21,9 @@ public class FieldPanel extends JPanel{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setMaximumSize(new Dimension(10, 10));
+
         this.setLayout(new BorderLayout());
-        this.add(image);
+        this.add(image, BorderLayout.LINE_START);
         this.setVisible(true);
     }
     @Override public void paint(Graphics g) {
