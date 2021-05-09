@@ -39,6 +39,8 @@ public class ControlPanel extends JPanel{
         image.setBounds(0,0,100,700);
         this.add(image);
         Init();
+        this.setBackground(Color.GREEN);
+        this.setSize(100,700);
         this.setVisible(true);
     }
 

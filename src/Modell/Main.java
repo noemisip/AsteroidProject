@@ -75,12 +75,12 @@ public class Main  implements ActionListener {
 		SettlerAction((int)source.getClientProperty("id"));
 	}
 
-	/*public void SteppableAction(){
+	public void SteppableAction(){
 		Space sp = Game.getInstance().GetSpace();
 		boolean solarstrom = sp.GetSolarStrom();
-		//if(solarstrom) view.ShowSolarStrom();
+		if(solarstrom) view.ShowSolarStrom();
 		view.UpdateAll();
-	}*/
+	}
 	public String GetKey(Object o){ //objektum nevenek megekeresese
 		for(Map.Entry<String, Object> t : hash.entrySet()){
 			if(t.getValue().equals(o)) return t.getKey();

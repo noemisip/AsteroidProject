@@ -29,11 +29,9 @@ public class View {
 		return drawables;
 	}
 
-	/*public void ShowSolarStrom() {
-		if(Game.getInstance().GetSpace().GetSolarStrom()) {
-
-		}
-	}*/
+	public void ShowSolarStrom() {
+		gameFrame.GetFieldPanel().SetSolarstorm();
+	}
 	
 	public void FindAsteroid(Asteroid a, Drawable d) {
 		String name = Main.getInstance().GetKey(a);

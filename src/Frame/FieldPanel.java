@@ -13,6 +13,7 @@ public class FieldPanel extends JPanel{
     static JLabel image;
     static JLabel icon;
     static View view;
+    private boolean solarstorm=false;
 
     public FieldPanel() {
         try {
@@ -24,16 +25,6 @@ public class FieldPanel extends JPanel{
         this.setLayout(new BorderLayout());
         this.add(image);
         this.setVisible(true);
-    }
-
-    public static void init(String image_icon, Drawable drawable) {
-        try {
-            icon = new JLabel(new ImageIcon(ImageIO.read(new File(image_icon))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        icon.setBounds(drawable.GetX(),drawable.GetY(),200,200);
-        image.add(icon);
     }
     @Override public void paint(Graphics g) {
 
@@ -69,7 +60,7 @@ public class FieldPanel extends JPanel{
                         view.GetDrawables().get(j).Draw(g,this);
                     }
                 }
-                if(Game.getInstance().GetSpace().GetSolarStrom()== true)
+                if(solarstorm)
                 {
                     g.setColor(Color.RED);
                     g.drawString("SOLARSTORM!!!",700,40);
@@ -79,7 +70,12 @@ public class FieldPanel extends JPanel{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        solarstorm=false;
     }
 
     public void SetView(View v){view=v;}
+
+    public void SetSolarstorm() {
+        solarstorm = true;
+    }
 }

@@ -1,5 +1,6 @@
 package Modell;
 
+import java.time.chrono.MinguoChronology;
 import java.util.ArrayList;
 
 public class Game {
@@ -67,6 +68,7 @@ public class Game {
 				steppable.get(i).Step();
 			}
 		space.Step();
+		Main.getInstance().SteppableAction();
 	}
 
 	//egy telepes altal vegrehajthato muveletek 
