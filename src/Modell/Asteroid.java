@@ -146,7 +146,7 @@ public class Asteroid implements Steppable, Transport {
 		layer=l;
 	}
 
-	public void SetSpace(Space s){space = s;}
+	public void SetSpace(Space s){space = s;} //a space attributumot beallito fuggveny
 
 }
 
