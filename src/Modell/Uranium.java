@@ -33,6 +33,7 @@ public class Uranium  extends Material {
 		return cnt;
 	}
 
+	//ha egy aszteroidaban uran nyersanyag talalhato akkor kiirja a nevet
 	public String ToString(){
 		return "uranium";
 	}
