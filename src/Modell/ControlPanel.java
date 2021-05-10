@@ -47,7 +47,7 @@ public class ControlPanel extends JPanel{
         text.add(0,Main.getInstance().GetKey(settler));
         text.add(1, "Asteroid: "+Main.getInstance().GetKey(settler.GetAsteroid()));//aszteroida nevenek megkerese
 
-        String gates=""; //kakup listaja
+        String gates=""; //kapuk listaja
         if(settler.GetGateList().size() > 0) { //a telepesnel van valahany kapu
             for (int i = 0; i < settler.GetGateList().size(); i++) {
                 gates = gates + Main.getInstance().GetKey(settler.GetGateList().get(i)) + ",";
