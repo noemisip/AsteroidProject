@@ -17,6 +17,7 @@ public class Iron extends Material {
 		return m.getClass()==this.getClass();
 	}
 
+	//ha egy aszteroidaban vas talalhato kiirja a nyersanyag nevet
 	public String ToString(){
 		return "iron";
 	}
