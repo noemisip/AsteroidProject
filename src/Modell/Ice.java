@@ -17,6 +17,7 @@ public class Ice extends Material {
 		return m.getClass()==this.getClass();
 	}
 
+	//ha egy aszteroidaban vizjeg nyersanyag talalhato kiirja a nevet
 	public String ToString(){
 		return "ice";
 	}
