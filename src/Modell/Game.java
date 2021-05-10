@@ -112,9 +112,11 @@ public class Game {
 	//lekeri, hogy vege van-e a jateknak
 	public boolean GetOnGame(){ return onGame;}
 
+	//space attributum getter fuggvenye
 	public Space GetSpace() {
 		return space;
 	}
 
+	//steppables listat visszaado fuggveny
 	public ArrayList<Steppable> GetSteppables(){ return steppable;}
 }
