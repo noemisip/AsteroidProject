@@ -50,9 +50,13 @@ public class Space implements Steppable {
 			//System.out.println(Boolean.toString(solarstorm));
 		}
 	}
+	
+	//a solarstrom attributum getter fuggvenye
 	public boolean GetSolarStrom() {
 		return solarstorm;
 	}
+	
+	//az asteroid listabol az elso aszteroidat adja vissza
 	public Asteroid GetAsteroid(){
 		return asteroids.get(0);
 	}
