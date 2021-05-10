@@ -56,9 +56,12 @@ public class SettlerNumber extends JFrame {  //azt a nezetet valositja meg,ahol 
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    settlerNr = Integer.parseInt(textField.getText());
+                    settlerNr = Integer.parseInt(textField.getText()); //a felhasznalo megadja hayn settler jatszik
+                    if(settlerNr==0){dispose();Main.GetView().Menu(); //ha 0-t adott meg, akkor visszalep a menube
+                    }
+                    else{ //ha nem 0-t adott meg, akkor elkezdodik a jatek
                     dispose();
-                    Main.Load(settlerNr);                                  //betolti a jatekot a megadott telepesek szamaval
+                    Main.Load(settlerNr);}                              //betolti a jatekot a megadott telepesek szamaval
                 } catch (NumberFormatException | IOException nex) {
                     nex.printStackTrace();
                 }
