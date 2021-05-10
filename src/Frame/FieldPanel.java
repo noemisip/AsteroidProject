@@ -10,35 +10,36 @@ import java.io.File;
 import java.io.IOException;
 
 public class FieldPanel extends JPanel{
-    static JLabel image;
-    static View view;
-    private boolean solarstorm=false;
+    static JLabel image; //hatter
+    static View view; //megjelenitesert felelos view
+    private boolean solarstorm=false; //szamontartja volt-e solarstorm
 
     public FieldPanel() {
-        try {
+        try { //beallitjuk a hatteret
             image = new JLabel(new ImageIcon(ImageIO.read(new File("background.png"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.setLayout(new BorderLayout());
         this.add(image);
-        this.setVisible(true);
+        this.setVisible(true); //legyen lathato
 
     }
-    @Override public void paint(Graphics g) {
+    @Override public void paint(Graphics g) { 
 
         try {
             Point upPt = new Point(0, 0);
             final BufferedImage upImg = ImageIO.read(new File("background.png"));
             if (upImg != null) {
                 g.drawImage(upImg, upPt.x, upPt.y, this);
-
+                //A szomszedsagok kirajzolasa
                 if (view.GetDrawables() != null) {
                     for(int h=0;h<view.GetDrawables().size();h++) { //vegigmegy a drawableken
                         if(view.GetDrawables().get(h).GetName()!=null) { //ha megtalalhato a drawable
                             if (view.GetDrawables().get(h).GetName().contains("asteroid")) {
+                                //a hash map segitsegevel megkeressuk a megfelelo aszteroidat
                                 Asteroid ast = (Asteroid) Main.getInstance().GetHash().get(view.GetDrawables().get(h).GetName());
-                                if (ast.GetNeighbours() != null) {
+                                if (ast.GetNeighbours() != null) { //ha van szomszedja az aszteroidanak
                                     for (int l = 0; l < ast.GetNeighbours().size(); l++) {
                                         if(ast.GetNeighbours().get(l).GetAsteroid()!=null) { //csak akkor jelenjen meg szomszedsag ha kapu mindket fele le van rakva
                                             String peldanynev = Main.getInstance().GetKey(ast.GetNeighbours().get(l).GetAsteroid()); //a szomszedos aszteroida neve
@@ -54,11 +55,12 @@ public class FieldPanel extends JPanel{
                             }
                         }
                     }
-
+                    //minden drawable-t kirajzolunk a jelenlegi poziciojara
                     for(int j=0;j<view.GetDrawables().size();j++){
                         view.GetDrawables().get(j).Draw(g,this);
                     }
                 }
+                //a napvihar megjelenitese
                 if(solarstorm)
                 {
                     g.setColor(Color.RED);
@@ -69,7 +71,7 @@ public class FieldPanel extends JPanel{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        solarstorm=false;
+        solarstorm=false; //mindig false-ra állitjuk
     }
 
     public void SetView(View v){view=v;}
