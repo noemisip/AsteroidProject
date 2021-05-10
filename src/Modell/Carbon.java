@@ -15,6 +15,8 @@ public class Carbon extends Material {
 		// ellenorzi, hogy a megadott material ugyanolyan fajta- e, mint az osztaly
 		return m.getClass()==this.getClass();
 	}
+	
+	//ha egy aszteroidaban szen talalhato, akkor kiirja a nevet
 	public String ToString(){
 		return "carbon";
 	}
