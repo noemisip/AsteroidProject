@@ -6,12 +6,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class GameFrame extends JFrame {
-    FieldPanel field=new FieldPanel();
+public class GameFrame extends JFrame {                   //jatekter megjelenitese, bal oldalt a controlpanellel jobb oldalon pedig a jatek megjelenitesevel, telepesek, aszteroidak stb..
+    FieldPanel field=new FieldPanel();                      //panelek letrehozasa
     ControlPanel control=new ControlPanel();
     View view;
 
-    public GameFrame(View v) throws IOException {
+    public GameFrame(View v) throws IOException {            //panelek hozzaadasa
         super("Aszteroida banyaszat");
         view=v;
         field.SetView(v);
@@ -23,11 +23,11 @@ public class GameFrame extends JFrame {
         this.pack();
         this.setVisible(true);
     }
-    public ControlPanel GetControlPanel(){
+    public ControlPanel GetControlPanel(){            //controlpanel getter fuggveny
         return control;
     }
-    public FieldPanel GetFieldPanel(){return field;}
-    public void Exit(){
+    public FieldPanel GetFieldPanel(){return field;}  //fieldpanel getter fuggveny
+    public void Exit(){                             //kilepes
         dispose();
     }
 }
